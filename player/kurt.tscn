@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bvaer7dv3d5bi"]
+
+[ext_resource type="Texture2D" uid="uid://djnrpkrcpmi00" path="res://player/kurt_idle.png" id="1_krwao"]
+
+[sub_resource type="Animation" id="Animation_krwao"]
+resource_name = "kurt_idle_down"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1esnm"]
+_data = {
+&"kurt_idle_down": SubResource("Animation_krwao")
+}
+
+[node name="Node2D" type="CharacterBody2D" unique_id=437297442]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=541461178]
+texture_filter = 1
+position = Vector2(0, -28)
+texture = ExtResource("1_krwao")
+hframes = 24
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=2143646424]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1169897675]
+libraries/ = SubResource("AnimationLibrary_1esnm")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1362754908]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1793881773]
+
+[node name="StateMachine" type="Node" parent="." unique_id=1289282382]
+
+[node name="StateIdle" type="Node" parent="StateMachine" unique_id=50546725]
+
+[node name="StateWalk" type="Node" parent="StateMachine" unique_id=419270199]
+
+[node name="StateAttack" type="Node" parent="StateMachine" unique_id=2137699398]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=841006665]
