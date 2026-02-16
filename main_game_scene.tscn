@@ -1,3 +1,13 @@
 [gd_scene format=3 uid="uid://depy6hpa1hpfc"]
 
-[node name="Node2D" type="Node2D" unique_id=1269264465]
+[ext_resource type="PackedScene" uid="uid://r0b15rh5qfai" path="res://tiles.tscn" id="1_qmwpp"]
+[ext_resource type="PackedScene" uid="uid://bvaer7dv3d5bi" path="res://player/kurt.tscn" id="2_wpvyo"]
+
+[node name="MainScene" type="Node2D" unique_id=1269264465]
+
+[node name="TileMapLayer" parent="." unique_id=1616239644 instance=ExtResource("1_qmwpp")]
+position = Vector2(232, 135)
+
+[node name="player" parent="." unique_id=437297442 instance=ExtResource("2_wpvyo")]
+visible = false
+position = Vector2(268, 141)

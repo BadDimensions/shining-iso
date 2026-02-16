@@ -1,11 +1,26 @@
-extends Node
+class_name State_Idle extends State
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@onready var state_attack: State_Attack = $"../StateAttack"
+@onready var state_walk: State_Walk = $"../StateWalk"
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func Enter() -> void:
+	player.UpdateAnimation("idle")
 	pass
+	
+func Exit() -> void:
+	pass
+	
+func Process(_delta : float) -> State:
+	if player.direction != Vector2.ZERO:
+		return state_walk
+	player.velocity = Vector2.ZERO
+	return null
+	
+func Physics(_delta: float) -> State:
+	return null
+	
+func HandleInput(_event: InputEvent) -> State:
+	if _event.is_action_pressed("attack"):
+		return state_attack 
+	return null

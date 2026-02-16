@@ -24,7 +24,7 @@ _data = {
 radius = 7.0
 height = 38.0
 
-[node name="player" type="CharacterBody2D" unique_id=437297442]
+[node name="player" type="CharacterBody2D" unique_id=437297442 groups=["Player"]]
 collision_mask = 16
 motion_mode = 1
 wall_min_slide_angle = 0.17453292

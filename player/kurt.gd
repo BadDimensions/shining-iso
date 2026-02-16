@@ -1,11 +1,46 @@
-extends Node
+class_name Player extends CharacterBody2D
 
+var cardinal_direction : Vector2 = Vector2.DOWN
+const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
+var direction : Vector2 = Vector2.ZERO
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var state_machine: PlayerStateMachine = $StateMachine
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
+signal DirectionChanged (new_direction: Vector2)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	PlayerManager.player = self
+	state_machine.Initialize(self)
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()
 	pass
+
+func _physics_process(delta):
+	move_and_slide()
+	
+func SetDirection() -> bool:
+	var direction_id: int = int(round((direction + cardinal_direction * 0.1).angle() / TAU * DIR_4.size()))	
+	var new_dir = DIR_4 [ direction_id ]
+	
+	if new_dir == cardinal_direction:
+		return false
+		
+	cardinal_direction = new_dir
+	DirectionChanged.emit(new_dir)
+	sprite_2d.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
+	return true
+	
+func UpdateAnimation(state: String) -> void:
+	animation_player.play(state + "_" + AnimDirection())
+	
+func AnimDirection() -> String:
+	if cardinal_direction == Vector2.DOWN:
+		return "down"
+	if cardinal_direction == Vector2.UP:
+		return "up"
+	else:
+		return "side"	
