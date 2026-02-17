@@ -9,16 +9,19 @@ func _ready() -> void:
 	pass 
 
 func _process(delta):
-	ChangeState(current_state.Process(delta))
-	pass
+	if current_state:
+		ChangeState(current_state.Process(delta))
+		pass
 
 func _physics_process(delta):
-	ChangeState(current_state.Physics(delta))
-	pass
+	if current_state:
+		ChangeState(current_state.Physics(delta))
+		pass
 	
 func _unhandled_input(event):
-	ChangeState(current_state.HandleInput(event))
-	pass
+	if current_state:
+		ChangeState(current_state.HandleInput(event))
+		pass
 	
 func Initialize(_player : Player) -> void:
 		states = []
@@ -42,3 +45,5 @@ func ChangeState(new_state: State) -> void:
 		prev_state = current_state
 		current_state = new_state
 		current_state.Enter()		
+ 
+	print(current_state)
