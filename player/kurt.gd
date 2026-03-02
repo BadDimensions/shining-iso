@@ -19,7 +19,6 @@ func _process(delta: float) -> void:
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
 	if direction.length() >= 0.1:
 		last_direction = direction
-	#direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()
 	SetDirection()
 	pass
 
@@ -28,17 +27,6 @@ func _physics_process(delta : float) -> void:
 		state_machine.ChangeState(state_machine.current_state.Physics(delta))
 	move_and_slide()
 	
-#func SetDirection() -> bool:
-	#var direction_id: int = int(round((direction + cardinal_direction * 0.1).angle() / TAU * DIR_4.size()))	
-	#var new_dir = DIR_4 [ direction_id ]
-	
-	#if new_dir == cardinal_direction:
-		#return false
-		
-	#cardinal_direction = new_dir
-	#DirectionChanged.emit(new_dir)
-	#sprite_2d.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
-	#return true
 func SetDirection() -> void:
 	if direction.length() < 0.1:
 		return
