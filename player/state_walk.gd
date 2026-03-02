@@ -22,9 +22,7 @@ func Process(_delta : float) -> State:
 
 func Physics(_delta: float) -> State:
 	if player.direction != Vector2.ZERO:
-		#var iso_dir = player.cartesian_to_isometric(player.direction).normalized()
-		var iso_direction = Vector2(player.direction.x - player.direction.y,(player.direction.x + player.direction.y)/2).normalized()
-		player.velocity = iso_direction * move_speed
+		player.velocity = player.direction * move_speed
 	else:
 		player.velocity = Vector2.ZERO
 	#player.SetDirection()

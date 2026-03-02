@@ -29,6 +29,7 @@ func _physics_process(delta : float) -> void:
 	
 func SetDirection() -> void:
 	if direction.length() < 0.1:
+		last_direction = direction
 		return
 
 	var anim_dir = AnimDirection()
@@ -45,8 +46,6 @@ func SetDirection() -> void:
 		cardinal_direction = Vector2.DOWN if direction.y > 0 else Vector2.UP
 
 	DirectionChanged.emit(cardinal_direction)
-func cartesian_to_isometric(cartesian: Vector2) -> Vector2:
-	return Vector2(cartesian.x - cartesian.y,(cartesian.x + cartesian.y) / 2)
 
 func UpdateAnimation(state: String) -> void:
 	animation_player.play(state + "_" + AnimDirection())
