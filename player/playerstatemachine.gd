@@ -25,16 +25,17 @@ func _unhandled_input(event):
 	
 func Initialize(_player : Player) -> void:
 		states = []
-		
+	
 		for c in get_children():
 			if c is State:
+				c.player = _player
 				states.append(c)
 				
 		if states.size() > 0:
 			states[0].player = _player
 			ChangeState( states[0])
 			process_mode = Node.PROCESS_MODE_INHERIT
-			
+		
 func ChangeState(new_state: State) -> void:
 	if new_state == null || new_state == current_state:
 		return
@@ -42,8 +43,6 @@ func ChangeState(new_state: State) -> void:
 	if current_state:
 		current_state.Exit()
 		
-		prev_state = current_state
-		current_state = new_state
-		current_state.Enter()		
- 
-	print(current_state)
+	prev_state = current_state
+	current_state = new_state
+	current_state.Enter()	

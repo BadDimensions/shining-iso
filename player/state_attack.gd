@@ -1,17 +1,16 @@
 class_name State_Attack extends State
 
 var attacking : bool = false
+@onready var state_idle: State_Idle = $"../StateIdle"
+@onready var state_walk: State_Walk = $"../StateWalk"
 
 @export_range(1.20,0.5) var decelerate_speed: float = 5.0
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 
 @onready var attack_hurtbox: Hurtbox = $"../../Sprite2D/AttackHurtbox"
-@onready var state_walk: State_Walk = $"../StateWalk"
-@onready var state_idle: State_Idle = $"../StateIdle"
-
 # Called when the node enters the scene tree for the first time.
 func Enter() -> void:
-	player.UpdateAnimation("attack")
+	player.UpdateAnimation("kurt_attack")
 	animation_player.animation_finished.connect(EndAttack)
 	attacking = true
 	await get_tree().create_timer(0.075).timeout
@@ -19,7 +18,7 @@ func Enter() -> void:
 	pass
 	
 func Exit() -> void:
-	animation_player.animatin_finished.disconnect(EndAttack)
+	animation_player.animation_finished.disconnect(EndAttack)
 	attacking = false
 	attack_hurtbox.monitoring = false
 	pass
