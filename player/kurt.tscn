@@ -410,7 +410,6 @@ radius = 7.0
 height = 38.0
 
 [node name="player" type="CharacterBody2D" unique_id=437297442]
-z_index = 1
 collision_mask = 16
 motion_mode = 1
 wall_min_slide_angle = 0.17453292
@@ -428,6 +427,8 @@ position = Vector2(32, 2)
 texture = ExtResource("3_fsvws")
 
 [node name="AttackHurtbox" type="Area2D" parent="Sprite2D" unique_id=951409074]
+collision_layer = 0
+collision_mask = 256
 script = ExtResource("3_v57gg")
 metadata/_custom_type_script = "uid://bkv5sfdd4ugal"
 
