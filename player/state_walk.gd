@@ -10,13 +10,11 @@ func Enter() -> void:
 
 func Exit() -> void:
 	pass
-	
+
 func Process(_delta : float) -> State:
 	if player.direction.length() < 0.1:
 		return state_idle
-	
-		
-	player.SetDirection()
+
 	player.UpdateAnimation("kurt_walk")
 	return null
 
@@ -25,12 +23,11 @@ func Physics(_delta: float) -> State:
 		player.velocity = player.direction * move_speed
 	else:
 		player.velocity = Vector2.ZERO
-	#player.SetDirection()
 	player.move_and_slide()
 	return null
-	
+
 
 func HandleInput(_event: InputEvent) -> State:
 	if _event.is_action_pressed("attack"):
-		return state_attack	
+		return state_attack
 	return null

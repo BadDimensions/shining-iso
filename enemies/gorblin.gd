@@ -18,10 +18,13 @@ const DIR_8 = [
 @export var hp : int = 3
 
 var cardinal_direction : Vector2 = Vector2.DOWN
-var direction : Vector2 = Vector2.ZERO
 var last_direction: Vector2 = Vector2.DOWN
 var player : Player
 var invulnerable : bool = false
+var direction : Vector2 = Vector2.ZERO:
+	set(new_direction):
+		direction = new_direction
+		UpdateFacing(new_direction)
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -38,37 +41,39 @@ func _ready() -> void:
 
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_and_slide()
-	SetDirection()
 
 
-func SetDirection() -> void:
-	if direction.length() > 0.1:
-		last_direction = direction	
+func UpdateFacing(new_direction: Vector2) -> void:
+	if new_direction.length() < 0.1:
 		return
-		
-		
-	var anim_dir = AnimDirection()
+
+	last_direction = new_direction
 
 	# Flip only for side animation
-	if direction.x != 0:
-		sprite_2d.scale.x = -1 if direction.x < 0 else 1
+	if new_direction.x != 0:
+		sprite_2d.scale.x = -1 if new_direction.x < 0 else 1
 	else:
 		sprite_2d.scale.x = 1
-	# Update cardinal direction (if you still need it)
-	if abs(direction.x) > abs(direction.y):
-		cardinal_direction = Vector2.RIGHT if direction.x > 0 else Vector2.LEFT
-	else:
-		cardinal_direction = Vector2.DOWN if direction.y > 0 else Vector2.UP
 
-	direction_changed.emit(cardinal_direction)
+	# Calculate the new cardinal direction
+	var new_cardinal : Vector2
+	if abs(new_direction.x) > abs(new_direction.y):
+		new_cardinal = Vector2.RIGHT if new_direction.x > 0 else Vector2.LEFT
+	else:
+		new_cardinal = Vector2.DOWN if new_direction.y > 0 else Vector2.UP
+
+	# 2. Only update and emit the signal if direction is changed
+	if new_cardinal != cardinal_direction:
+		cardinal_direction = new_cardinal
+		direction_changed.emit(cardinal_direction)
+
 
 func UpdateAnimation(state : String) -> void:
-	animation_player.play( state + "_" + AnimDirection())
+	animation_player.play( state + "_" + AnimDirection(direction))
 
-func AnimDirection() -> String:
-	var dir = direction
+func AnimDirection(dir: Vector2) -> String:
 	if dir.length() < 0.1:
 		dir = last_direction
 
@@ -82,8 +87,8 @@ func AnimDirection() -> String:
 		return "diagonal_down"
 	else:
 		return "side"
-	
-			
+
+
 func _take_damage( damage : int) -> void:
 	if invulnerable == true:
 		return

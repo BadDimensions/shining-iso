@@ -21,7 +21,7 @@ func _ready():
 func Enter() -> void:
 	timer = randi_range(state_cycles_min, state_cycles_max) * state_animation_duration
 	direction = enemy.DIR_8.pick_random().normalized()
-	enemy.SetDirection()
+	enemy.direction = direction
 	enemy.velocity = direction * wander_speed
 	enemy.UpdateAnimation(anim_name)
 	pass
@@ -37,7 +37,7 @@ func Process(_delta: float) -> EnemyState:
 
 func Physics(delta: float) -> EnemyState:
 	enemy.velocity = direction * wander_speed
-	enemy.SetDirection()
+	enemy.direction = direction
 	enemy.UpdateAnimation(anim_name) 
 	return null
 	
