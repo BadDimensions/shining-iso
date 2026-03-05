@@ -396,7 +396,7 @@ height = 36.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_irknb"]
 
 [node name="gorblin" type="CharacterBody2D" unique_id=720483896]
-collision_layer = 256
+collision_mask = 16
 script = ExtResource("1_3q6jj")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=279699007]
