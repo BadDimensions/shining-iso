@@ -39,6 +39,13 @@ func on_enemy_destroyed() -> void:
 
 func on_animation_finished(finished_anim: String) -> void:
 	print("Animation finished:", finished_anim)
-	if finished_anim == anim_name:
+#	
+	# if finished_anim.begins_with(anim_name):
+	# This isn't triggering since in the gorblin script, we play anim like `animation_player.play(state + "_" + AnimDirection(direction))`
+	# The finished_anim is like "destroy_up", "destroy_down", etc
+	# But we're checking for a match of `finished_anim == "destroy"`, which never comes, it's always prepended with a direction
+	
+	# Check if the animation name starts with our state's base name (e.g., "destroy")
+	if finished_anim.begins_with(anim_name):
 		enemy.queue_free()
  		
