@@ -31,8 +31,9 @@ func Exit() -> void:
 
 func Process(_delta: float) -> EnemyState:
 	if animation_finished == true:
-		return next_state
 		enemy.velocity -= enemy.velocity * decelerate_speed * _delta
+		return next_state
+		#enemy.velocity -= enemy.velocity * decelerate_speed * _delta
 	return null
 
 func Physics(_delta: float) -> EnemyState:
@@ -41,5 +42,6 @@ func Physics(_delta: float) -> EnemyState:
 func on_enemy_damaged() -> void:
 	state_machine.ChangeState(self)
 	
+
 func on_animation_finished(I_a : String) -> void:
 	animation_finished = true
