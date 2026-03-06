@@ -5,11 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://dw73j2t5sd1wp" path="res://enemies/gorblin.tscn" id="3_wpvyo"]
 
 [node name="MainScene" type="Node2D" unique_id=1269264465]
-
-[node name="TileMapLayer" parent="." unique_id=1616239644 instance=ExtResource("2_qmwpp")]
+y_sort_enabled = true
 
 [node name="player" parent="." unique_id=437297442 instance=ExtResource("2_wpvyo")]
 position = Vector2(1, 2)
 
 [node name="gorblin" parent="." unique_id=720483896 instance=ExtResource("3_wpvyo")]
 position = Vector2(112, -48)
+
+[node name="TileMapLayer" parent="." unique_id=1616239644 instance=ExtResource("2_qmwpp")]

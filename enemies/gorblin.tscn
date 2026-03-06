@@ -108,8 +108,80 @@ tracks/0/keys = {
 "values": [52, 53, 54]
 }
 
+[sub_resource type="Animation" id="Animation_3qvaj"]
+resource_name = "destroy_diagonal_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [56]
+}
+
+[sub_resource type="Animation" id="Animation_kgffr"]
+resource_name = "destroy_diagonal_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [58]
+}
+
 [sub_resource type="Animation" id="Animation_knksa"]
-resource_name = "destroy"
+resource_name = "destroy_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [55]
+}
+
+[sub_resource type="Animation" id="Animation_u0mp7"]
+resource_name = "destroy_side"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [57]
+}
+
+[sub_resource type="Animation" id="Animation_64jn7"]
+resource_name = "destroy_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [59]
+}
 
 [sub_resource type="Animation" id="Animation_h1spn"]
 resource_name = "idle_diagonal_down"
@@ -198,7 +270,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_br7mo"]
 resource_name = "stun_diagonal_down"
-length = 0.1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -206,15 +278,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [56]
+"values": [56, 56]
 }
 
 [sub_resource type="Animation" id="Animation_nbrnj"]
 resource_name = "stun_diagonal_up"
-length = 0.1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -222,15 +294,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [58]
+"values": [58, 58]
 }
 
 [sub_resource type="Animation" id="Animation_frn8x"]
 resource_name = "stun_down"
-length = 0.1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -238,15 +310,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [55]
+"values": [55, 55]
 }
 
 [sub_resource type="Animation" id="Animation_b7jjh"]
 resource_name = "stun_side"
-length = 0.1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -254,15 +326,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [57]
+"values": [57, 57]
 }
 
 [sub_resource type="Animation" id="Animation_pax3l"]
 resource_name = "stun_up"
-length = 0.1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -270,10 +342,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [59]
+"values": [59, 59]
 }
 
 [sub_resource type="Animation" id="Animation_2l3cw"]
@@ -369,7 +441,11 @@ _data = {
 &"attack_down": SubResource("Animation_ffrfj"),
 &"attack_side": SubResource("Animation_ka85s"),
 &"attack_up": SubResource("Animation_28eho"),
-&"destroy": SubResource("Animation_knksa"),
+&"destroy_diagonal_down": SubResource("Animation_3qvaj"),
+&"destroy_diagonal_up": SubResource("Animation_kgffr"),
+&"destroy_down": SubResource("Animation_knksa"),
+&"destroy_side": SubResource("Animation_u0mp7"),
+&"destroy_up": SubResource("Animation_64jn7"),
 &"idle_diagonal_down": SubResource("Animation_h1spn"),
 &"idle_diagonal_up": SubResource("Animation_k0yaw"),
 &"idle_down": SubResource("Animation_i4ur1"),
@@ -388,9 +464,9 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rrthw"]
-radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_irknb"]
+radius = 13.0
 
 [node name="gorblin" type="CharacterBody2D" unique_id=720483896]
 collision_layer = 2
@@ -432,23 +508,23 @@ next_state = NodePath("../Idle")
 script = ExtResource("8_irknb")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=67094015]
-collision_layer = 4
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("3_g6mnb")
 metadata/_custom_type_script = "uid://bkv5sfdd4ugal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1532234385]
-position = Vector2(0, 28)
+position = Vector2(0, 29)
 shape = SubResource("CircleShape2D_rrthw")
 debug_color = Color(0, 0.6, 0, 0.41960785)
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1401919094]
-collision_layer = 0
-collision_mask = 0
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("4_xvj7g")
 metadata/_custom_type_script = "uid://dwv7neum3vd4c"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1554509353]
-position = Vector2(0, 29)
+position = Vector2(0, 28)
 shape = SubResource("CircleShape2D_irknb")
 debug_color = Color(0.9764706, 0, 0, 0.41960785)

@@ -6,31 +6,39 @@ class_name EnemyStateDestroy extends EnemyState
 @export_category ("AI")
 
 var direction : Vector2
-var animation_finished : bool = false
 
 func init() -> void:
 	enemy.enemy_destroyed.connect(on_enemy_destroyed)
-	pass
-	
-func _ready():
-	pass # Replace with function body.
+	# Connect animation_finished once here
+	enemy.animation_player.animation_finished.connect(on_animation_finished)
 
 func Enter() -> void:
 	enemy.invulnerable = true
 	direction = enemy.global_position.direction_to(enemy.player.global_position)
-	enemy.set_direction(direction)
+	enemy.UpdateFacing(direction)
 	enemy.velocity = direction * -knockback_speed
-	enemy.update_animation(anim_name)
+	enemy.UpdateAnimation(anim_name)
+
+func Exit() -> void:
 	pass
 
 func Process(_delta: float) -> EnemyState:
+	enemy.velocity -= enemy.velocity * decelerate_speed * _delta
 	return null
 
 func Physics(_delta: float) -> EnemyState:
 	return null
-	
+
+#func on_enemy_destroyed() -> void:
+	#state_machine.ChangeState(self)
+	#pass
 func on_enemy_destroyed() -> void:
-	state_machine.ChangeState(self)
-	
-func on_animation_finished():
-	enemy.queue_free()
+	# Only change state if not already in Destroy
+	if state_machine.current_state != self:
+		state_machine.ChangeState(self)
+
+func on_animation_finished(finished_anim: String) -> void:
+	print("Animation finished:", finished_anim)
+	if finished_anim == anim_name:
+		enemy.queue_free()
+ 		

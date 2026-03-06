@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cwaemvsg3eqxt" path="res://player/state_walk.gd" id="3_he7lc"]
 [ext_resource type="Script" uid="uid://cg20htlnhn5lb" path="res://player/playerstatemachine.gd" id="3_vaxvc"]
 [ext_resource type="Script" uid="uid://dsxyrbov8usru" path="res://player/state_attack.gd" id="4_bxe58"]
-[ext_resource type="Script" uid="uid://dwv7neum3vd4c" path="res://scripts/hitbox.gd" id="4_v57gg"]
+[ext_resource type="Script" uid="uid://bkv5sfdd4ugal" path="res://scripts/hurtbox.gd" id="4_v57gg"]
 [ext_resource type="Script" uid="uid://c6vs0ter1dm7f" path="res://player/playercamera.gd" id="5_vaxvc"]
 [ext_resource type="Script" uid="uid://xx1rt7x73618" path="res://player/playerinteractionshost.gd" id="6_v57gg"]
 
@@ -30,7 +30,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/AttackHitbox/CollisionShape2D:position")
+tracks/1/path = NodePath("Sprite2D/AttackHurtbox/CollisionShape2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -42,7 +42,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/AttackHitbox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("Sprite2D/AttackHurtbox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -70,7 +70,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/AttackHitbox/CollisionShape2D:disabled")
+tracks/1/path = NodePath("Sprite2D/AttackHurtbox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -98,7 +98,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/AttackHitbox/CollisionShape2D:disabled")
+tracks/1/path = NodePath("Sprite2D/AttackHurtbox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -126,7 +126,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/AttackHitbox/CollisionShape2D:position")
+tracks/1/path = NodePath("Sprite2D/AttackHurtbox/CollisionShape2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -138,7 +138,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/AttackHitbox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("Sprite2D/AttackHurtbox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -166,7 +166,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/AttackHitbox/CollisionShape2D:position")
+tracks/1/path = NodePath("Sprite2D/AttackHurtbox/CollisionShape2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -178,7 +178,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/AttackHitbox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("Sprite2D/AttackHurtbox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -206,7 +206,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/AttackHitbox/CollisionShape2D:position")
+tracks/1/path = NodePath("Sprite2D/AttackHurtbox/CollisionShape2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -218,7 +218,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/AttackHitbox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("Sprite2D/AttackHurtbox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -544,13 +544,13 @@ show_behind_parent = true
 position = Vector2(32, 2)
 texture = ExtResource("3_fsvws")
 
-[node name="AttackHitbox" type="Area2D" parent="Sprite2D" unique_id=1267789326]
+[node name="AttackHurtbox" type="Area2D" parent="Sprite2D" unique_id=484564105]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("4_v57gg")
-metadata/_custom_type_script = "uid://dwv7neum3vd4c"
+metadata/_custom_type_script = "uid://bkv5sfdd4ugal"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/AttackHitbox" unique_id=1755830649]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/AttackHurtbox" unique_id=1755830649]
 z_index = 1
 position = Vector2(1, -11)
 shape = SubResource("CircleShape2D_vaxvc")

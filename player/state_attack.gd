@@ -7,7 +7,8 @@ var attacking : bool = false
 @export_range(1.20,0.5) var decelerate_speed: float = 5.0
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 
-@onready var attack_hitbox: Hitbox = $"../../Sprite2D/AttackHitbox"
+@onready var attack_hurtbox: Hurtbox = $"../../Sprite2D/AttackHurtbox"
+
 
 # Called when the node enters the scene tree for the first time.
 func Enter() -> void:
@@ -15,13 +16,13 @@ func Enter() -> void:
 	animation_player.animation_finished.connect(EndAttack)
 	attacking = true
 	await get_tree().create_timer(0.075).timeout
-	attack_hitbox.monitoring = true
+	attack_hurtbox.monitoring = true
 	pass
 	
 func Exit() -> void:
 	animation_player.animation_finished.disconnect(EndAttack)
 	attacking = false
-	attack_hitbox.monitoring = false
+	attack_hurtbox.monitoring = false
 	pass
 	
 func Process(_delta : float) -> State:
