@@ -1,4 +1,4 @@
-class_name EnemyStateWander extends EnemyState
+class_name EnemyStateChase extends EnemyState
 
 @export var anim_name : String = "walk"
 @export var wander_speed : float = 20.0
@@ -20,7 +20,7 @@ func _ready():
 
 func Enter() -> void:
 	timer = randi_range(state_cycles_min, state_cycles_max) * state_animation_duration
-	direction = get_safe_direction()
+	direction = enemy.DIR_8.pick_random().normalized()
 	enemy.direction = direction
 	enemy.velocity = direction * wander_speed
 	enemy.UpdateAnimation(anim_name)
@@ -41,21 +41,3 @@ func Physics(delta: float) -> EnemyState:
 	enemy.UpdateAnimation(anim_name) 
 	return null
 	
-func get_safe_direction() -> Vector2:
-	var max_attempts = 10
-	var space_state = enemy.get_world_2d().direct_space_state
-
-	for i in range(max_attempts):
-		var dir = Vector2(randf_range(-1,1), randf_range(-1,1)).normalized()
-		
-		var ray = PhysicsRayQueryParameters2D.new()
-		ray.from = enemy.global_position
-		ray.to = enemy.global_position + dir * 16
-		ray.exclude = [enemy]
-		
-		var result = space_state.intersect_ray(ray)
-		if not result: # no wall detected
-			return dir
-
-	# fallback if all directions blocked
-	return Vector2.RIGHT

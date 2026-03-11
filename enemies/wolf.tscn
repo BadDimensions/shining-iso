@@ -11,6 +11,9 @@
 [ext_resource type="Script" uid="uid://bkv5sfdd4ugal" path="res://scripts/hurtbox.gd" id="9_83wqi"]
 [ext_resource type="Script" uid="uid://dwv7neum3vd4c" path="res://scripts/hitbox.gd" id="10_4ab77"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_d1wb7"]
+radius = 6.0827627
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_jrx2r"]
 radius = 6.0
 
@@ -464,9 +467,6 @@ _data = {
 &"walk_up": SubResource("Animation_kit8w")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_d1wb7"]
-radius = 6.0827627
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_lpckx"]
 
 [node name="wolf" type="CharacterBody2D" unique_id=1588315159]
@@ -483,6 +483,15 @@ show_behind_parent = true
 position = Vector2(32, 3)
 texture = ExtResource("3_oh1j4")
 
+[node name="Attack" type="Area2D" parent="Sprite2D" unique_id=207651212]
+script = ExtResource("9_83wqi")
+metadata/_custom_type_script = "uid://bkv5sfdd4ugal"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Attack" unique_id=2055840063]
+position = Vector2(0, 28)
+shape = SubResource("CircleShape2D_d1wb7")
+debug_color = Color(0, 0.95686275, 0.02745098, 0.41960785)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=881866611]
 position = Vector2(0, 28)
 shape = SubResource("CircleShape2D_jrx2r")
@@ -493,17 +502,23 @@ libraries/ = SubResource("AnimationLibrary_8fay2")
 [node name="EnemyStateMachine" type="Node" parent="." unique_id=1782300529]
 script = ExtResource("4_jvl8q")
 
-[node name="Idle" type="Node" parent="EnemyStateMachine" unique_id=996495546]
+[node name="Idle" type="Node" parent="EnemyStateMachine" unique_id=996495546 node_paths=PackedStringArray("after_idle_state")]
 script = ExtResource("5_32agx")
+after_idle_state = NodePath("../Wander")
 
-[node name="Wander" type="Node" parent="EnemyStateMachine" unique_id=1359172484]
+[node name="Wander" type="Node" parent="EnemyStateMachine" unique_id=1359172484 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_xsae6")
+wander_speed = 50.0
+next_state = NodePath("../Idle")
 
-[node name="Stun" type="Node" parent="EnemyStateMachine" unique_id=609479918]
+[node name="Stun" type="Node" parent="EnemyStateMachine" unique_id=609479918 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_mi7im")
+next_state = NodePath("../Idle")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine" unique_id=1514031826]
 script = ExtResource("8_8x14a")
+
+[node name="Chase" type="Node" parent="EnemyStateMachine" unique_id=817896230]
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=604769136]
 script = ExtResource("9_83wqi")
