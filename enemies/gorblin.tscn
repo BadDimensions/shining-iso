@@ -11,7 +11,9 @@
 [ext_resource type="Script" uid="uid://cogak2qixmfiv" path="res://enemies/states/Enemy_State_Stun.gd" id="7_x10xp"]
 [ext_resource type="Script" uid="uid://6x8vt3tgtqjf" path="res://enemies/states/Enemy_State_Destroy.gd" id="8_irknb"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7bg2j"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_irknb"]
+radius = 8.0
+height = 18.0
 
 [sub_resource type="Animation" id="Animation_irknb"]
 length = 0.001
@@ -466,7 +468,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_rrthw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_irknb"]
-radius = 13.0
+radius = 7.0
 
 [node name="gorblin" type="CharacterBody2D" unique_id=720483896]
 collision_layer = 2
@@ -483,8 +485,8 @@ position = Vector2(32, 1)
 texture = ExtResource("2_xvj7g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1315272181]
-position = Vector2(0, 28)
-shape = SubResource("CircleShape2D_7bg2j")
+position = Vector2(0, 25)
+shape = SubResource("CapsuleShape2D_irknb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1155982547]
 libraries/ = SubResource("AnimationLibrary_3qvaj")
@@ -509,22 +511,23 @@ script = ExtResource("8_irknb")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=67094015]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 16
 script = ExtResource("3_g6mnb")
 metadata/_custom_type_script = "uid://bkv5sfdd4ugal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1532234385]
-position = Vector2(0, 29)
+position = Vector2(0, 27)
 shape = SubResource("CircleShape2D_rrthw")
-debug_color = Color(0, 0.6, 0, 0.41960785)
+debug_color = Color(0.99607843, 0, 0, 0.41960785)
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1401919094]
 collision_layer = 4
 collision_mask = 2
+monitoring = false
 script = ExtResource("4_xvj7g")
 metadata/_custom_type_script = "uid://dwv7neum3vd4c"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1554509353]
-position = Vector2(0, 28)
+position = Vector2(0, 26)
 shape = SubResource("CircleShape2D_irknb")
-debug_color = Color(0.9764706, 0, 0, 0.41960785)
+debug_color = Color(0.02745098, 0.9490196, 0.007843138, 0.41960785)

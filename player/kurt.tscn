@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://bkv5sfdd4ugal" path="res://scripts/hurtbox.gd" id="4_v57gg"]
 [ext_resource type="Script" uid="uid://c6vs0ter1dm7f" path="res://player/playercamera.gd" id="5_vaxvc"]
 [ext_resource type="Script" uid="uid://xx1rt7x73618" path="res://player/playerinteractionshost.gd" id="6_v57gg"]
+[ext_resource type="Script" uid="uid://d0blx860ltkp2" path="res://player/state_stun.gd" id="9_cnlbk"]
+[ext_resource type="Script" uid="uid://dwv7neum3vd4c" path="res://scripts/hitbox.gd" id="11_fsvws"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vaxvc"]
 
@@ -246,7 +248,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_v0x6u"]
 resource_name = "kurt_hit_diagonal_down"
-length = 0.1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -262,7 +264,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_rt2d8"]
 resource_name = "kurt_hit_diagonal_up"
-length = 0.1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -278,7 +280,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_yhym3"]
 resource_name = "kurt_hit_down"
-length = 0.1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -294,7 +296,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_dffne"]
 resource_name = "kurt_hit_side"
-length = 0.1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -310,7 +312,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_4sy26"]
 resource_name = "kurt_hit_up"
-length = 0.1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -525,9 +527,66 @@ _data = {
 &"kurt_walk_up": SubResource("Animation_4akaw")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v57gg"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cnlbk"]
+radius = 8.0
+height = 18.0
 
-[node name="player" type="CharacterBody2D" unique_id=437297442]
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnlbk"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_dwdc1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kdlw2"]
+resource_name = "damaged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.09803922), Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 1), Color(1, 1, 1, 0.39215687), Color(1, 1, 1, 1), Color(1, 1, 1, 0.5882353), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dgfj8"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2bq5p"]
+_data = {
+&"RESET": SubResource("Animation_dwdc1"),
+&"damaged": SubResource("Animation_kdlw2"),
+&"default": SubResource("Animation_dgfj8")
+}
+
+[node name="player" type="CharacterBody2D" unique_id=437297442 groups=["player"]]
 collision_mask = 2
 motion_mode = 1
 wall_min_slide_angle = 0.17453292
@@ -561,7 +620,7 @@ debug_color = Color(0.96862745, 0.05882353, 0.05882353, 0.41960785)
 libraries/ = SubResource("AnimationLibrary_1esnm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1793881773]
-shape = SubResource("CircleShape2D_v57gg")
+shape = SubResource("CapsuleShape2D_cnlbk")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1289282382]
 script = ExtResource("3_vaxvc")
@@ -575,8 +634,24 @@ script = ExtResource("3_he7lc")
 [node name="StateAttack" type="Node" parent="StateMachine" unique_id=2137699398]
 script = ExtResource("4_bxe58")
 
+[node name="StateStun" type="Node" parent="StateMachine" unique_id=154099999]
+script = ExtResource("9_cnlbk")
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=841006665]
 script = ExtResource("5_vaxvc")
 
 [node name="Interactions" type="Node2D" parent="." unique_id=579718503]
 script = ExtResource("6_v57gg")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1136919044]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("11_fsvws")
+metadata/_custom_type_script = "uid://dwv7neum3vd4c"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1427857844]
+shape = SubResource("CircleShape2D_cnlbk")
+debug_color = Color(0, 0.91764706, 0.043137256, 0.41960785)
+
+[node name="EffectsAnimationPlayer" type="AnimationPlayer" parent="." unique_id=439902054]
+libraries/ = SubResource("AnimationLibrary_2bq5p")

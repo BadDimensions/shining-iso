@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://dwv7neum3vd4c" path="res://scripts/hitbox.gd" id="10_4ab77"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d1wb7"]
-radius = 6.0827627
+radius = 9.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jrx2r"]
 radius = 6.0
@@ -468,6 +468,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lpckx"]
+radius = 6.0827627
 
 [node name="wolf" type="CharacterBody2D" unique_id=1588315159]
 collision_layer = 2
@@ -521,13 +522,15 @@ script = ExtResource("8_8x14a")
 [node name="Chase" type="Node" parent="EnemyStateMachine" unique_id=817896230]
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=604769136]
+collision_layer = 0
+collision_mask = 16
 script = ExtResource("9_83wqi")
 metadata/_custom_type_script = "uid://bkv5sfdd4ugal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=910111309]
 position = Vector2(0, 28)
 shape = SubResource("CircleShape2D_d1wb7")
-debug_color = Color(0, 0.95686275, 0.02745098, 0.41960785)
+debug_color = Color(0.9764706, 0, 0.02745098, 0.41960785)
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=129993253]
 collision_layer = 4
@@ -538,4 +541,4 @@ metadata/_custom_type_script = "uid://dwv7neum3vd4c"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1871653608]
 position = Vector2(0, 29)
 shape = SubResource("CircleShape2D_lpckx")
-debug_color = Color(1, 0, 0, 0.41960785)
+debug_color = Color(0, 0.96862745, 0, 0.41960785)
