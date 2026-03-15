@@ -476,6 +476,7 @@ script = ExtResource("1_0ox3s")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1680156748]
 texture_filter = 1
+position = Vector2(0, -28)
 texture = ExtResource("2_vllxw")
 hframes = 60
 
@@ -494,7 +495,6 @@ shape = SubResource("CircleShape2D_d1wb7")
 debug_color = Color(0, 0.95686275, 0.02745098, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=881866611]
-position = Vector2(0, 28)
 shape = SubResource("CircleShape2D_jrx2r")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1749109211]
@@ -528,7 +528,6 @@ script = ExtResource("9_83wqi")
 metadata/_custom_type_script = "uid://bkv5sfdd4ugal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=910111309]
-position = Vector2(0, 28)
 shape = SubResource("CircleShape2D_d1wb7")
 debug_color = Color(0.9764706, 0, 0.02745098, 0.41960785)
 
@@ -539,6 +538,5 @@ script = ExtResource("10_4ab77")
 metadata/_custom_type_script = "uid://dwv7neum3vd4c"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1871653608]
-position = Vector2(0, 29)
 shape = SubResource("CircleShape2D_lpckx")
 debug_color = Color(0, 0.96862745, 0, 0.41960785)

@@ -1,20 +1,107 @@
 [gd_scene format=3 uid="uid://depy6hpa1hpfc"]
 
-[ext_resource type="PackedScene" uid="uid://r0b15rh5qfai" path="res://tiles.tscn" id="2_qmwpp"]
+[ext_resource type="PackedScene" uid="uid://r0b15rh5qfai" path="res://level_structure/tiles.tscn" id="2_qmwpp"]
 [ext_resource type="PackedScene" uid="uid://bvaer7dv3d5bi" path="res://player/kurt.tscn" id="2_wpvyo"]
+[ext_resource type="PackedScene" uid="uid://brtmlsljnhisu" path="res://objects/barrel.tscn" id="3_fof2l"]
 [ext_resource type="PackedScene" uid="uid://dw73j2t5sd1wp" path="res://enemies/gorblin.tscn" id="3_wpvyo"]
+[ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/stump.tscn" id="4_d6vru"]
 [ext_resource type="PackedScene" uid="uid://bofoatgma3srf" path="res://enemies/wolf.tscn" id="4_s4q73"]
+[ext_resource type="PackedScene" uid="uid://1uqsmbyugq04" path="res://objects/treasure_chest.tscn" id="6_fof2l"]
+[ext_resource type="PackedScene" uid="uid://cwo4lb0qyyjwe" path="res://level_structure/left_wall.tscn" id="8_7khgq"]
+[ext_resource type="PackedScene" uid="uid://e8xujesqxoho" path="res://objects/door.tscn" id="9_5dduq"]
+[ext_resource type="PackedScene" uid="uid://g1hbq0qp6l0j" path="res://level_structure/right_wall.tscn" id="10_1ghi0"]
 
 [node name="MainScene" type="Node2D" unique_id=1269264465]
+z_as_relative = false
+
+[node name="Node2D" parent="." unique_id=1122495924 instance=ExtResource("2_qmwpp")]
+
+[node name="YSort" type="Node2D" parent="." unique_id=1563020644]
 y_sort_enabled = true
 
-[node name="player" parent="." unique_id=437297442 instance=ExtResource("2_wpvyo")]
-position = Vector2(1, 2)
+[node name="player" parent="YSort" unique_id=437297442 instance=ExtResource("2_wpvyo")]
+position = Vector2(-8, 128)
 
-[node name="gorblin" parent="." unique_id=720483896 instance=ExtResource("3_wpvyo")]
-position = Vector2(112, -48)
+[node name="gorblin" parent="YSort" unique_id=720483896 instance=ExtResource("3_wpvyo")]
+position = Vector2(98, 63)
 
-[node name="TileMapLayer" parent="." unique_id=1616239644 instance=ExtResource("2_qmwpp")]
+[node name="wolf" parent="YSort" unique_id=1588315159 instance=ExtResource("4_s4q73")]
+position = Vector2(-151, 56)
 
-[node name="wolf" parent="." unique_id=1588315159 instance=ExtResource("4_s4q73")]
-position = Vector2(-170, -116)
+[node name="TreasureChest" parent="YSort" unique_id=1734926386 instance=ExtResource("6_fof2l")]
+position = Vector2(-92, -204)
+
+[node name="Objects" type="Node2D" parent="YSort" unique_id=653628365]
+y_sort_enabled = true
+
+[node name="Barrel" parent="YSort/Objects" unique_id=1459545463 instance=ExtResource("3_fof2l")]
+position = Vector2(120, -144)
+
+[node name="Barrel2" parent="YSort/Objects" unique_id=781328009 instance=ExtResource("3_fof2l")]
+position = Vector2(384, 2)
+
+[node name="Barrel3" parent="YSort/Objects" unique_id=1649624339 instance=ExtResource("3_fof2l")]
+position = Vector2(409, 5)
+
+[node name="Stump" parent="YSort/Objects" unique_id=627746519 instance=ExtResource("4_d6vru")]
+position = Vector2(-130, -55)
+
+[node name="Stump3" parent="YSort/Objects" unique_id=505245347 instance=ExtResource("4_d6vru")]
+position = Vector2(325, 91)
+
+[node name="Stump2" parent="YSort/Objects" unique_id=309807797 instance=ExtResource("4_d6vru")]
+position = Vector2(-224, -149)
+
+[node name="Walls" type="Node2D" parent="YSort" unique_id=752526270]
+y_sort_enabled = true
+
+[node name="LeftWall" parent="YSort/Walls" unique_id=260363876 instance=ExtResource("8_7khgq")]
+position = Vector2(-560, -32)
+
+[node name="LeftWall2" parent="YSort/Walls" unique_id=1046571153 instance=ExtResource("8_7khgq")]
+position = Vector2(-496, -64)
+
+[node name="LeftWall3" parent="YSort/Walls" unique_id=719574138 instance=ExtResource("8_7khgq")]
+position = Vector2(-432, -96)
+
+[node name="LeftWall4" parent="YSort/Walls" unique_id=1503698855 instance=ExtResource("8_7khgq")]
+position = Vector2(-368, -128)
+
+[node name="LeftWall5" parent="YSort/Walls" unique_id=1376745299 instance=ExtResource("8_7khgq")]
+position = Vector2(-304, -160)
+
+[node name="LeftWall6" parent="YSort/Walls" unique_id=1999164047 instance=ExtResource("8_7khgq")]
+position = Vector2(-240, -192)
+
+[node name="LeftWall7" parent="YSort/Walls" unique_id=1885287548 instance=ExtResource("8_7khgq")]
+position = Vector2(-176, -224)
+
+[node name="Door" parent="YSort/Walls" unique_id=940012692 instance=ExtResource("9_5dduq")]
+position = Vector2(192, -120)
+
+[node name="RightWall" parent="YSort/Walls" unique_id=875123341 instance=ExtResource("10_1ghi0")]
+position = Vector2(-32, -232)
+
+[node name="RightWall2" parent="YSort/Walls" unique_id=220445080 instance=ExtResource("10_1ghi0")]
+position = Vector2(32, -200)
+
+[node name="RightWall3" parent="YSort/Walls" unique_id=1677026702 instance=ExtResource("10_1ghi0")]
+position = Vector2(96, -168)
+
+[node name="RightWall4" parent="YSort/Walls" unique_id=1294467756 instance=ExtResource("10_1ghi0")]
+position = Vector2(160, -136)
+
+[node name="RightWall5" parent="YSort/Walls" unique_id=735456938 instance=ExtResource("10_1ghi0")]
+position = Vector2(256, -88)
+
+[node name="RightWall6" parent="YSort/Walls" unique_id=608140071 instance=ExtResource("10_1ghi0")]
+position = Vector2(320, -56)
+
+[node name="RightWall7" parent="YSort/Walls" unique_id=1500562925 instance=ExtResource("10_1ghi0")]
+position = Vector2(384, -24)
+
+[node name="RightWall8" parent="YSort/Walls" unique_id=1381136878 instance=ExtResource("10_1ghi0")]
+position = Vector2(448, 8)
+
+[node name="RightWall9" parent="YSort/Walls" unique_id=1901266238 instance=ExtResource("10_1ghi0")]
+position = Vector2(512, 40)

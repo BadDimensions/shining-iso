@@ -587,7 +587,8 @@ _data = {
 }
 
 [node name="player" type="CharacterBody2D" unique_id=437297442 groups=["player"]]
-collision_mask = 2
+y_sort_enabled = true
+collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.17453292
 script = ExtResource("1_bxe58")

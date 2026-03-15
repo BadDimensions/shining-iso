@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://g1hbq0qp6l0j"]
+
+[ext_resource type="Texture2D" uid="uid://d11yboc54dcp3" path="res://sprite_sheets/wall01.png" id="1_pnsvo"]
+
+[node name="RightWall" type="StaticBody2D" unique_id=875123341]
+y_sort_enabled = true
+texture_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1769238668]
+texture_filter = 1
+position = Vector2(-22, -38)
+texture = ExtResource("1_pnsvo")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=374475457]
+polygon = PackedVector2Array(-64, -31, 0, 1, 32, -15, -31, -45)
