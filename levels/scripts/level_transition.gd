@@ -3,11 +3,11 @@ class_name LevelTransition extends Area2D
 
 enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 
-@export_file ("*.tscn") var level
+@export_file("*.tscn") var level
 @export var target_transition_area: String = "LevelTransition"
 
-@export_category ("Collision Area Setting")
-@export_range (1, 12, 1, "or_greater") var size : int = 2 :
+@export_category("Collision Area Setting")
+@export_range(1, 12, 1, "or_greater") var size: int = 2:
 	set(_v):
 		size = _v
 		_update_area()
@@ -15,54 +15,67 @@ enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 	set(_v):
 		side = _v
 		_update_area()
-@export var snap_to_grid : bool = false:
+@export var snap_to_grid: bool = false:
 	set(_v):
 		_snap_to_grid()
+
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+
 
 func _ready() -> void:
 	_update_area()
 	if Engine.is_editor_hint():
 		return
+
 	monitoring = false
 	_place_player()
 	await LevelManager.level_loaded
-	
 	monitoring = true
 	body_entered.connect(_player_entered)
-
-	pass
-
+	
+# Called when player enters this transition
 func _player_entered(_p: Node2D) -> void:
-	LevelManager.load_new_level(level, target_transition_area, get_offset())
-	pass
+	if not monitoring:
+		return
+	set_deferred("monitoring", false)  # prevents immediate retrigger during signal
+	LevelManager.load_new_level(level, target_transition_area, Vector2.ZERO)
 
+# Places the player at the transition in the new level
 func _place_player() -> void:
+	if not is_instance_valid(PlayerManager.player):
+		return
 	if name != LevelManager.target_transition:
 		return
-	PlayerManager.set_player_position(global_position * LevelManager.position_offset)
 
-func get_offset() -> Vector2:
-	var offset : Vector2 = Vector2.ZERO
-	var player_pos = PlayerManager.player.global_position
-	
-	if side == SIDE.LEFT or side == SIDE.RIGHT:
-		offset.y = player_pos.y - global_position.y
-		offset.x *= 16
-		if side == SIDE.LEFT:
-			offset.x *= -1
-	else:
-		offset.x = player_pos.x - global_position.x
-		offset.y *= 16
-		if side == SIDE.TOP:
-			offset.y *= -1		
-		
-	return offset
-		
+	var new_position = global_position
+
+	# Move player outside the transition box to prevent retrigger
+	match side:
+		SIDE.LEFT:  new_position.x += 32
+		SIDE.RIGHT: new_position.x -= 32
+		SIDE.TOP:   new_position.y += 32
+		SIDE.BOTTOM:new_position.y -= 32
+
+	# Adjust Y so the player stands visually on top of the floor
+	new_position.y -= 16  # tweak based on your sprite pivot/floor height
+
+	PlayerManager.set_player_position(new_position)
+
+# Recursively find the TileMapLayer (your floor layer)
+func find_tilemaplayer(node: Node) -> TileMapLayer:
+	if node is TileMapLayer:
+		return node
+	for child in node.get_children():
+		var found = find_tilemaplayer(child)
+		if found != null:
+			return found
+	return null
+
+# Updates the Area2D size/position based on side and size
 func _update_area() -> void:
-	var new_rect : Vector2 = Vector2(32,32)
-	var new_position : Vector2 = Vector2.ZERO
-	
+	var new_rect: Vector2 = Vector2(32, 32)
+	var new_position: Vector2 = Vector2.ZERO
+
 	if side == SIDE.TOP:
 		new_rect.x *= size
 		new_position.y -= 16
@@ -74,14 +87,15 @@ func _update_area() -> void:
 		new_position.x -= 16
 	elif side == SIDE.RIGHT:
 		new_rect.y *= size
-		new_position.x += 16	
-		
+		new_position.x += 16
+
 	if collision_shape == null:
 		collision_shape = get_node("CollisionShape2D")
-		
+
 	collision_shape.shape.size = new_rect
 	collision_shape.position = new_position
-	
+
+# Snaps transition nodes to the grid
 func _snap_to_grid() -> void:
-	position.x = round(position.x/16) * 16
-	position.y = round(position.y/16) * 16
+	position.x = round(position.x / 16) * 16
+	position.y = round(position.y / 16) * 16

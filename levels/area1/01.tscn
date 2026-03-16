@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b8brdot0bk260"]
 
-[ext_resource type="PackedScene" uid="uid://r0b15rh5qfai" path="res://levels/tiles.tscn" id="1_gssw6"]
+[ext_resource type="PackedScene" uid="uid://r0b15rh5qfai" path="res://levels/tiles/tiles.tscn" id="1_gssw6"]
 [ext_resource type="Script" uid="uid://cla0rjuvhfp0t" path="res://levels/scripts/Level.gd" id="1_y63o5"]
 [ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/PlayerSpawn.tscn" id="2_7m3nb"]
 [ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/LevelTransition.tscn" id="3_lvlyw"]
@@ -11,11 +11,12 @@ script = ExtResource("1_y63o5")
 [node name="TileMapLayer" parent="." unique_id=1616239644 instance=ExtResource("1_gssw6")]
 
 [node name="Actors" type="Node2D" parent="." unique_id=2124882686 groups=["Actors"]]
+y_sort_enabled = true
 
 [node name="PlayerSpawn" parent="." unique_id=2136238899 instance=ExtResource("2_7m3nb")]
 position = Vector2(24, 184)
 
 [node name="LevelTransition" parent="." unique_id=466434468 instance=ExtResource("3_lvlyw")]
-position = Vector2(-320, -160)
+position = Vector2(-328, -168)
 level = "uid://daq5bca5ale7j"
-side = 3
+side = 1

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://djjyx28ne6qrb"]
 
-[ext_resource type="Script" uid="uid://v32i1mlce85u" path="res://levels/leveltilemap.gd" id="1_icte8"]
+[ext_resource type="Script" uid="uid://v32i1mlce85u" path="res://levels/scripts/leveltilemap.gd" id="1_icte8"]
 [ext_resource type="Texture2D" uid="uid://7ofhvv1sa74p" path="res://sprite_sheets/cave_tiles.png" id="1_r8b25"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4w4m1"]
