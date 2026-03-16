@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b17anoh1sw11n"]
+
+[ext_resource type="Texture2D" uid="uid://dsgil62wm6h6b" path="res://sprite_sheets/wall03.png" id="1_dyl8t"]
+
+[node name="LeftCaveWall" type="StaticBody2D" unique_id=975100811]
+y_sort_enabled = true
+texture_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=201087957]
+position = Vector2(26, -22)
+texture = ExtResource("1_dyl8t")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1740715870]
+polygon = PackedVector2Array(47, -23, 0, 1, -32, -15, 18, -38)

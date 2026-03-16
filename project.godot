@@ -29,6 +29,10 @@ window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
 
+[global_group]
+
+Actors=""
+
 [input]
 
 left={

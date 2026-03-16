@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://idwttcxdpctq"]
+
+[ext_resource type="Script" uid="uid://bxkn23ko1xo3b" path="res://levels/scripts/PlayerSpawn.gd" id="1_kn1ip"]
+[ext_resource type="Texture2D" uid="uid://yrxreqga7cwh" path="res://player/kurt_01.png" id="2_ctv3u"]
+
+[node name="PlayerSpawn" type="Node2D" unique_id=2136238899]
+script = ExtResource("1_kn1ip")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1546992900]
+modulate = Color(0, 0.9843137, 0.019607844, 1)
+texture_filter = 1
+texture = ExtResource("2_ctv3u")
+hframes = 104
