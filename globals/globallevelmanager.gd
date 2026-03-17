@@ -32,13 +32,18 @@ func load_new_level(
 	
 	await SceneTransition.fade_out()
 	
+	# level.gd listens for this, calls unparent_player
+	# this detaches player from old Actors and parks under root?
 	level_load_started.emit()
+	
 	
 	await get_tree().process_frame
 	
-	get_tree().change_scene_to_file(level_path)
+	get_tree().change_scene_to_file(level_path) # old level freed, new scene loaded
 	
-	await get_tree().scene_changed
+	await get_tree().scene_changed # new scene tree fully build
+	
+	PlayerManager.add_player_instance() # player pulled from root and added to new Actors
 	
 	await SceneTransition.fade_in()
 	
