@@ -11,19 +11,21 @@ func _ready() -> void:
 	player_spawned = true
 
 func add_player_instance() -> void:
-	if is_instance_valid(player):
-		return
-
-	
+	# get the actors node for whatever level loaded
 	var actors = get_tree().current_scene.get_node("Actors")
-	#if actors == null:
-		#actors = Node2D.new()
-		#actors.name = "Actors"
-		#actors.y_sort_enabled = true
-		#actors.add_to_group("Actors")
-		#get_tree().root.add_child(actors)
-
-	player = KURT.instantiate()
+	
+	if not is_instance_valid(player):
+		# first boot - instantiate player
+		player = KURT.instantiate()
+	else:
+		# after transition, the player is parked under root
+		# (put there by unparent_player during transition)
+		# detach from root before we place in new levels Actor node
+		var current_parent = player.get_parent()
+		if current_parent:
+			current_parent.remove_child(player)
+	
+	# player has no parent, we can safely add to level node
 	actors.add_child(player)
 
 
