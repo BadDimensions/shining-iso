@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cla0rjuvhfp0t" path="res://levels/scripts/Level.gd" id="1_d1f8d"]
 [ext_resource type="PackedScene" uid="uid://b5lovwe4nc01c" path="res://levels/tiles/GrassTiles.tscn" id="2_3x5je"]
+[ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/stump.tscn" id="3_8suul"]
 [ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/PlayerSpawn.tscn" id="3_ka62j"]
+[ext_resource type="PackedScene" uid="uid://dw73j2t5sd1wp" path="res://enemies/gorblin.tscn" id="4_7x2vg"]
 [ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/LevelTransition.tscn" id="4_8suul"]
 
 [node name="02" type="Node2D" unique_id=2138828778]
@@ -14,15 +16,22 @@ tile_map_data = PackedByteArray("AAD8/wMAAAABAAMAAAD8/wIAAAADAAQAAAD8/wEAAAABAAM
 [node name="Actors" type="Node2D" parent="." unique_id=355205706 groups=["Actors"]]
 y_sort_enabled = true
 
+[node name="Stump" parent="Actors" unique_id=627746519 instance=ExtResource("3_8suul")]
+position = Vector2(16, -72)
+
+[node name="gorblin" parent="Actors" unique_id=720483896 instance=ExtResource("4_7x2vg")]
+position = Vector2(144, -40)
+
 [node name="PlayerSpawn" parent="." unique_id=2136238899 instance=ExtResource("3_ka62j")]
 
 [node name="LevelTransition" parent="." unique_id=466434468 instance=ExtResource("4_8suul")]
-position = Vector2(96, 56)
+position = Vector2(112, 56)
 level = "uid://b8brdot0bk260"
-side = 2
+size = 1
 
 [node name="LevelTransition2" parent="." unique_id=1540268326 instance=ExtResource("4_8suul")]
-position = Vector2(-104, -80)
+position = Vector2(-112, -72)
 level = "uid://depy6hpa1hpfc"
 target_transition_area = "LevelTransition2"
+size = 1
 side = 1

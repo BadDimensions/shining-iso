@@ -18,6 +18,7 @@ y_sort_enabled = true
 position = Vector2(32, 56)
 
 [node name="LevelTransition" parent="." unique_id=466434468 instance=ExtResource("3_f2xdj")]
-position = Vector2(-88, 80)
+position = Vector2(-88, 64)
 level = "uid://depy6hpa1hpfc"
-side = 2
+size = 1
+side = 3

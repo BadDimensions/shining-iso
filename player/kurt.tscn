@@ -638,7 +638,7 @@ script = ExtResource("4_bxe58")
 [node name="StateStun" type="Node" parent="StateMachine" unique_id=154099999]
 script = ExtResource("9_cnlbk")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=841006665]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=841006665 groups=["Actors", "player"]]
 script = ExtResource("5_vaxvc")
 
 [node name="Interactions" type="Node2D" parent="." unique_id=579718503]

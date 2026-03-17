@@ -7,6 +7,7 @@ var current_tilemap_bounds: Array[Vector2]
 var target_transition : String
 var position_offset : Vector2
 
+
 signal TileMapBoundsChanged(bounds: Array[Vector2])
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

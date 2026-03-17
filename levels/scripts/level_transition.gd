@@ -33,14 +33,14 @@ func _ready() -> void:
 	monitoring = true
 	body_entered.connect(_player_entered)
 	
-# Called when player enters this transition
+#called when player enters this transition
 func _player_entered(_p: Node2D) -> void:
 	if not monitoring:
 		return
-	set_deferred("monitoring", false)  # prevents immediate retrigger during signal
+	set_deferred("monitoring", false)  
 	LevelManager.load_new_level(level, target_transition_area, Vector2.ZERO)
 
-# Places the player at the transition in the new level
+#places the player at the transition in the new level
 func _place_player() -> void:
 	if not is_instance_valid(PlayerManager.player):
 		return
@@ -48,20 +48,18 @@ func _place_player() -> void:
 		return
 
 	var new_position = global_position
-
-	# Move player outside the transition box to prevent retrigger
+	
+	#move player outside the transition box to prevent retrigger
+	
 	match side:
-		SIDE.LEFT:  new_position.x += 32
-		SIDE.RIGHT: new_position.x -= 32
-		SIDE.TOP:   new_position.y += 32
-		SIDE.BOTTOM:new_position.y -= 32
-
-	# Adjust Y so the player stands visually on top of the floor
-	new_position.y -= 16  # tweak based on your sprite pivot/floor height
+		SIDE.LEFT:   new_position += Vector2(-48, -24)
+		SIDE.RIGHT:  new_position += Vector2(48, 24)
+		SIDE.TOP:    new_position += Vector2(-48, 24)
+		SIDE.BOTTOM: new_position += Vector2(48, -24)
 
 	PlayerManager.set_player_position(new_position)
 
-# Recursively find the TileMapLayer (your floor layer)
+#find the TileMapLayer (your floor layer)
 func find_tilemaplayer(node: Node) -> TileMapLayer:
 	if node is TileMapLayer:
 		return node
@@ -71,7 +69,6 @@ func find_tilemaplayer(node: Node) -> TileMapLayer:
 			return found
 	return null
 
-# Updates the Area2D size/position based on side and size
 func _update_area() -> void:
 	var new_rect: Vector2 = Vector2(32, 32)
 	var new_position: Vector2 = Vector2.ZERO
@@ -95,7 +92,7 @@ func _update_area() -> void:
 	collision_shape.shape.size = new_rect
 	collision_shape.position = new_position
 
-# Snaps transition nodes to the grid
+
 func _snap_to_grid() -> void:
 	position.x = round(position.x / 16) * 16
 	position.y = round(position.y / 16) * 16

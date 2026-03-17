@@ -10,18 +10,18 @@ func _ready() -> void:
 	await get_tree().create_timer(0.2).timeout
 	player_spawned = true
 
-# PlayerManager.gd
 func add_player_instance() -> void:
 	if is_instance_valid(player):
 		return
 
-	var actors = get_tree().get_first_node_in_group("Actors")
-	if actors == null:
-		actors = Node2D.new()
-		actors.name = "Actors"
-		actors.y_sort_enabled = true
-		actors.add_to_group("Actors")
-		get_tree().root.add_child(actors)
+	
+	var actors = get_tree().current_scene.get_node("Actors")
+	#if actors == null:
+		#actors = Node2D.new()
+		#actors.name = "Actors"
+		#actors.y_sort_enabled = true
+		#actors.add_to_group("Actors")
+		#get_tree().root.add_child(actors)
 
 	player = KURT.instantiate()
 	actors.add_child(player)

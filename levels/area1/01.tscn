@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://r0b15rh5qfai" path="res://levels/tiles/tiles.tscn" id="1_gssw6"]
 [ext_resource type="Script" uid="uid://cla0rjuvhfp0t" path="res://levels/scripts/Level.gd" id="1_y63o5"]
 [ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/PlayerSpawn.tscn" id="2_7m3nb"]
+[ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/stump.tscn" id="3_j7fo1"]
 [ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/LevelTransition.tscn" id="3_lvlyw"]
 
 [node name="01" type="Node2D" unique_id=2033094809]
@@ -13,10 +14,14 @@ script = ExtResource("1_y63o5")
 [node name="Actors" type="Node2D" parent="." unique_id=2124882686 groups=["Actors"]]
 y_sort_enabled = true
 
+[node name="Stump" parent="Actors" unique_id=627746519 instance=ExtResource("3_j7fo1")]
+position = Vector2(232, -16)
+
 [node name="PlayerSpawn" parent="." unique_id=2136238899 instance=ExtResource("2_7m3nb")]
 position = Vector2(24, 184)
 
 [node name="LevelTransition" parent="." unique_id=466434468 instance=ExtResource("3_lvlyw")]
-position = Vector2(-328, -168)
+position = Vector2(-352, -160)
 level = "uid://daq5bca5ale7j"
+size = 1
 side = 1
