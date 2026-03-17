@@ -35,9 +35,8 @@ var direction : Vector2 = Vector2.ZERO:
 
 func _ready() -> void:
 	enemy_state_machine.Initialize(self)
-	player = PlayerManager.player
+	player = get_tree().get_first_node_in_group("player")
 	hitbox.Damaged.connect(_take_damage)
-	pass # Replace with function body.
 
 
 

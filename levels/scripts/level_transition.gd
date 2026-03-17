@@ -42,22 +42,22 @@ func _player_entered(_p: Node2D) -> void:
 
 #places the player at the transition in the new level
 func _place_player() -> void:
-	if not is_instance_valid(PlayerManager.player):
+	var player = get_tree().get_first_node_in_group("player")
+	if not is_instance_valid(player):
 		return
 	if name != LevelManager.target_transition:
 		return
 
 	var new_position = global_position
-	
-	#move player outside the transition box to prevent retrigger
-	
+
 	match side:
 		SIDE.LEFT:   new_position += Vector2(-48, -24)
 		SIDE.RIGHT:  new_position += Vector2(48, 24)
 		SIDE.TOP:    new_position += Vector2(-48, 24)
 		SIDE.BOTTOM: new_position += Vector2(48, -24)
 
-	PlayerManager.set_player_position(new_position)
+	player.global_position = new_position
+
 
 #find the TileMapLayer (your floor layer)
 func find_tilemaplayer(node: Node) -> TileMapLayer:
