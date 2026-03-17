@@ -1,15 +1,10 @@
 extends Node2D
 
+const KURT = preload("res://player/kurt.tscn")
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = false
-	if PlayerManager.player_spawned == false:
-		PlayerManager.set_player_position(global_position)
-		PlayerManager.player_spawned = true	
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	var player = KURT.instantiate()
+	get_parent().get_node("Actors").add_child(player)
+	player.global_position = global_position

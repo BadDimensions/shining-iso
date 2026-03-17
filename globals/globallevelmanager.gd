@@ -1,14 +1,14 @@
 extends Node
 
-signal level_load_started
+
 signal level_loaded
 
 var current_tilemap_bounds: Array[Vector2]
 var target_transition : String
 var position_offset : Vector2
 
-
 signal TileMapBoundsChanged(bounds: Array[Vector2])
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().process_frame
@@ -32,18 +32,11 @@ func load_new_level(
 	
 	await SceneTransition.fade_out()
 	
-	# level.gd listens for this, calls unparent_player
-	# this detaches player from old Actors and parks under root?
-	level_load_started.emit()
-	
-	
 	await get_tree().process_frame
 	
 	get_tree().change_scene_to_file(level_path) # old level freed, new scene loaded
 	
 	await get_tree().scene_changed # new scene tree fully build
-	
-	PlayerManager.add_player_instance() # player pulled from root and added to new Actors
 	
 	await SceneTransition.fade_in()
 	
