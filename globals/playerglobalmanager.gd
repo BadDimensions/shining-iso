@@ -26,7 +26,7 @@ func add_player_instance() -> void:
 	player = KURT.instantiate()
 	actors.add_child(player)
 
-#this will be the final version of this function, the above is for testing only
+
 #func add_player_instance() -> void:
 	#player = KURT.instantiate()
 	#var actors = get_tree().get_first_node_in_group("actors")

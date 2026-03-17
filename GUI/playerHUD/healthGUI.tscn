@@ -41,6 +41,7 @@ _data = {
 }
 
 [node name="HealthGUI" type="CanvasLayer" unique_id=526147568]
+layer = 2
 script = ExtResource("1_x7nqt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=825193202]

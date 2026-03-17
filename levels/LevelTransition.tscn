@@ -4,6 +4,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8krqk"]
 resource_local_to_scene = true
+size = Vector2(32, 64)
 
 [node name="LevelTransition" type="Area2D" unique_id=466434468]
 collision_layer = 0
@@ -11,6 +12,7 @@ monitorable = false
 script = ExtResource("1_8krqk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=874904565]
+position = Vector2(-16, 0)
 rotation = 0.7853982
 shape = SubResource("RectangleShape2D_8krqk")
 debug_color = Color(1, 0, 1, 0.41960785)
