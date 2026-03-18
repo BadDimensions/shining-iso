@@ -22,7 +22,7 @@ var last_direction: Vector2 = Vector2.DOWN
 signal DirectionChanged (new_direction: Vector2)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	PlayerManager.player = self 
+	PlayerManager.player = self
 	global_position = PlayerManager.player_position
 	hp = PlayerManager.hp
 	max_hp = PlayerManager.max_hp
@@ -30,7 +30,7 @@ func _ready() -> void:
 	state_machine.Initialize(self)
 	hit_box.Damaged.connect(_take_damage)
 	emit_signal("health_changed", hp, max_hp)
-	
+
 
 func _process(delta: float) -> void:
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
@@ -84,8 +84,8 @@ func _take_damage(hurt_box : Hurtbox) -> void:
 	if hp > 0:
 		player_damaged.emit(hurt_box)
 	else:
-		player_damaged.emit(hurt_box)
-		
+		pass # TODO: state_machine.ChangeState("Death")
+
 
 func update_hp(_delta: int) -> void:
 	hp = clampi(hp + _delta, 0, max_hp)
@@ -94,12 +94,12 @@ func update_hp(_delta: int) -> void:
 func make_invulnerable(_duration : float = 1.0) -> void:
 	invulnerable = true
 	hit_box.monitoring = false
-	
+
 	await get_tree().create_timer(_duration).timeout
 	invulnerable = false
 	hit_box.monitoring = true
 	pass
-	
+
 func _exit_tree() -> void:
 	PlayerManager.hp = hp
 	PlayerManager.max_hp = max_hp
