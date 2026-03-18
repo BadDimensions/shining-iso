@@ -1,6 +1,6 @@
 extends Node
 
-
+signal level_load_started
 signal level_loaded
 
 var current_tilemap_bounds: Array[Vector2]

@@ -47,9 +47,11 @@ func _place_player() -> void:
 		return
 	if name != LevelManager.target_transition:
 		return
-
+	if PlayerManager.is_loading:  
+		return
+	
 	var new_position = global_position
-
+	
 	match side:
 		SIDE.LEFT:   new_position += Vector2(-48, -24)
 		SIDE.RIGHT:  new_position += Vector2(48, 24)
@@ -57,7 +59,6 @@ func _place_player() -> void:
 		SIDE.BOTTOM: new_position += Vector2(48, -24)
 
 	player.global_position = new_position
-
 
 #find the TileMapLayer (your floor layer)
 func find_tilemaplayer(node: Node) -> TileMapLayer:

@@ -22,6 +22,8 @@ var last_direction: Vector2 = Vector2.DOWN
 signal DirectionChanged (new_direction: Vector2)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	PlayerManager.player = self 
+	global_position = PlayerManager.player_position
 	hp = PlayerManager.hp
 	max_hp = PlayerManager.max_hp
 	last_direction = PlayerManager.last_direction
