@@ -1,7 +1,8 @@
-class_name ItemPickup extends Node2D
+class_name ItemPickup extends CharacterBody2D
 
 @onready var area_2d: Area2D = $Area2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var item_data : ItemData : set = _set_item_data
 
@@ -10,6 +11,14 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	area_2d.body_entered.connect(_on_body_entered)
+	
+	
+
+func _physics_process(delta : float) -> void:
+	var collision_info = move_and_collide(velocity * delta)
+	if collision_info:
+		velocity = velocity.bounce(collision_info.get_normal())
+	velocity -= velocity * delta * 4
 
 func _on_body_entered(b) -> void:
 	if b is Player:
@@ -31,4 +40,8 @@ func _update_texture() -> void:
 
 func _set_item_data( value : ItemData ) -> void:
 	item_data = value
+	pass
+
+func bounce() -> void:
+	animation_player.play("bounce")
 	pass

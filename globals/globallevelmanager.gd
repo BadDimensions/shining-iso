@@ -35,7 +35,7 @@ func load_new_level(
 	
 	await get_tree().process_frame
 	
-	get_tree().change_scene_to_file(level_path)#this line is giving me the error
+	get_tree().change_scene_to_file(level_path)#this line is giving me the error i feel like level path used to be somewhere and i deleted it
 	
 	await get_tree().scene_changed 
 	

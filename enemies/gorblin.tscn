@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://dgfy6oawlfbs3" path="res://enemies/states/Enemy_State_Wander.gd" id="6_tu330"]
 [ext_resource type="Script" uid="uid://cogak2qixmfiv" path="res://enemies/states/Enemy_State_Stun.gd" id="7_x10xp"]
 [ext_resource type="Script" uid="uid://6x8vt3tgtqjf" path="res://enemies/states/Enemy_State_Destroy.gd" id="8_irknb"]
+[ext_resource type="Script" uid="uid://mjye3rmpbhwu" path="res://enemies/drop_data.gd" id="9_rrthw"]
+[ext_resource type="Resource" uid="uid://denkv85305cti" path="res://items/potion.tres" id="10_ffrfj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_irknb"]
 radius = 8.0
@@ -465,6 +467,12 @@ _data = {
 &"walk_up": SubResource("Animation_ruu43")
 }
 
+[sub_resource type="Resource" id="Resource_ka85s"]
+script = ExtResource("9_rrthw")
+item = ExtResource("10_ffrfj")
+probability = 50.0
+metadata/_custom_type_script = "uid://mjye3rmpbhwu"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_rrthw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_irknb"]
@@ -509,6 +517,7 @@ next_state = NodePath("../Idle")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine" unique_id=2143461096]
 script = ExtResource("8_irknb")
+drops = Array[ExtResource("9_rrthw")]([SubResource("Resource_ka85s")])
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=67094015]
 collision_layer = 0

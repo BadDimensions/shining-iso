@@ -1,10 +1,36 @@
 [gd_scene format=3 uid="uid://dirqmwd7jksf4"]
 
 [ext_resource type="Script" uid="uid://dixqq82s23xgu" path="res://items/item_pickups/itempickup.gd" id="1_1pfjk"]
+[ext_resource type="Texture2D" uid="uid://bia2s1khi1ec4" path="res://enemies/shadow.png" id="2_bo2ue"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bpkyi"]
 
-[node name="ItemPickup" type="Node2D" unique_id=290828739]
+[sub_resource type="Animation" id="Animation_lmypb"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_bo2ue"]
+resource_name = "bounce"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004, 0.6, 0.8000001, 0.90000004, 1),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, 0), Vector2(0, -3), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lmypb"]
+_data = {
+&"RESET": SubResource("Animation_lmypb"),
+&"bounce": SubResource("Animation_bo2ue")
+}
+
+[node name="ItemPickup" type="CharacterBody2D" unique_id=915958399]
+collision_layer = 0
 script = ExtResource("1_1pfjk")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1974323477]
@@ -13,3 +39,17 @@ script = ExtResource("1_1pfjk")
 shape = SubResource("CircleShape2D_bpkyi")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1025540334]
+
+[node name="shadow" type="Sprite2D" parent="." unique_id=1611579844]
+modulate = Color(1, 1, 1, 0.78431374)
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(16, -5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_bo2ue")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1892293321]
+shape = SubResource("CircleShape2D_bpkyi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=247206380]
+libraries/ = SubResource("AnimationLibrary_lmypb")

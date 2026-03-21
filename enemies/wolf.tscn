@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://6x8vt3tgtqjf" path="res://enemies/states/Enemy_State_Destroy.gd" id="8_8x14a"]
 [ext_resource type="Script" uid="uid://bkv5sfdd4ugal" path="res://scripts/hurtbox.gd" id="9_83wqi"]
 [ext_resource type="Script" uid="uid://dwv7neum3vd4c" path="res://scripts/hitbox.gd" id="10_4ab77"]
+[ext_resource type="Script" uid="uid://mjye3rmpbhwu" path="res://enemies/drop_data.gd" id="10_oh1j4"]
+[ext_resource type="Resource" uid="uid://cai8c3es8s40" path="res://items/key.tres" id="11_jvl8q"]
+[ext_resource type="Resource" uid="uid://denkv85305cti" path="res://items/potion.tres" id="12_jvl8q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d1wb7"]
 radius = 9.0
@@ -467,6 +470,17 @@ _data = {
 &"walk_up": SubResource("Animation_kit8w")
 }
 
+[sub_resource type="Resource" id="Resource_32agx"]
+script = ExtResource("10_oh1j4")
+item = ExtResource("11_jvl8q")
+metadata/_custom_type_script = "uid://mjye3rmpbhwu"
+
+[sub_resource type="Resource" id="Resource_xsae6"]
+script = ExtResource("10_oh1j4")
+item = ExtResource("12_jvl8q")
+probability = 33.0
+metadata/_custom_type_script = "uid://mjye3rmpbhwu"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_lpckx"]
 radius = 6.0827627
 
@@ -518,6 +532,7 @@ next_state = NodePath("../Idle")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine" unique_id=1514031826]
 script = ExtResource("8_8x14a")
+drops = Array[ExtResource("10_oh1j4")]([SubResource("Resource_32agx"), SubResource("Resource_xsae6")])
 
 [node name="Chase" type="Node" parent="EnemyStateMachine" unique_id=817896230]
 
