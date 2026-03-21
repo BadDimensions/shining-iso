@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://cwo4lb0qyyjwe" path="res://levels/tiles/left_wall.tscn" id="7_27xqd"]
 [ext_resource type="PackedScene" uid="uid://e8xujesqxoho" path="res://objects/door.tscn" id="8_47i2q"]
 [ext_resource type="PackedScene" uid="uid://g1hbq0qp6l0j" path="res://levels/tiles/right_wall.tscn" id="9_fr7sp"]
+[ext_resource type="PackedScene" uid="uid://dirqmwd7jksf4" path="res://items/item_pickups/item_pickup.tscn" id="10_l8w45"]
+[ext_resource type="Resource" uid="uid://denkv85305cti" path="res://items/potion.tres" id="11_c8vo2"]
 
 [node name="03" type="Node2D" unique_id=1269264465]
 z_as_relative = false
@@ -103,6 +105,10 @@ position = Vector2(448, 8)
 
 [node name="RightWall9" parent="Actors/Walls" unique_id=1901266238 instance=ExtResource("9_fr7sp")]
 position = Vector2(512, 40)
+
+[node name="ItemPickup" parent="Actors" unique_id=290828739 instance=ExtResource("10_l8w45")]
+position = Vector2(-352, -32)
+item_data = ExtResource("11_c8vo2")
 
 [node name="PlayerSpawn" parent="." unique_id=2136238899 instance=ExtResource("2_48ag6")]
 position = Vector2(48, 160)

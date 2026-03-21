@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cyi0p832nutap"]
+
+[ext_resource type="Script" uid="uid://dwbuideqg58os" path="res://GUI/PauseMenu/inventory/scripts/inventory_slot_UI.gd" id="1_b3cmb"]
+
+[node name="InventorySlot" type="Button" unique_id=363513625]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_b3cmb")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1690827651]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="." unique_id=1035992531]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 8
+text = "5
+"
+horizontal_alignment = 2

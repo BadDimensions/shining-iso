@@ -1,7 +1,11 @@
 extends CanvasLayer
 
-@onready var button_save: Button = $VBoxContainer/button_save
-@onready var button_load: Button = $VBoxContainer/button_load
+signal shown
+signal hidden
+
+@onready var button_save: Button = $Control/HBoxContainer/button_save
+@onready var button_load: Button = $Control/HBoxContainer/button_load
+@onready var item_description: Label = $Control/ItemDescription
 
 var is_paused : bool = false
 # Called when the node enters the scene tree for the first time.
@@ -23,13 +27,14 @@ func show_pause_menu() -> void:
 	get_tree().paused = true
 	visible = true
 	is_paused = true
-	button_save.grab_focus()
+	shown.emit()
 	
 func hide_pause_menu() -> void:
 	get_tree().paused = false
 	visible = false
 	is_paused = false
-	
+	hidden.emit()
+
 func _on_save_pressed() -> void:
 	if is_paused == false:
 		return
@@ -44,3 +49,6 @@ func _on_load_pressed() -> void:
 	Globalsavemanager.load_game()
 	hide_pause_menu()
 	pass	
+
+func update_item_description(new_text: String) -> void:
+	item_description.text = new_text

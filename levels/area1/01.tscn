@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/PlayerSpawn.tscn" id="2_7m3nb"]
 [ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/stump.tscn" id="3_j7fo1"]
 [ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/LevelTransition.tscn" id="3_lvlyw"]
+[ext_resource type="PackedScene" uid="uid://dirqmwd7jksf4" path="res://items/item_pickups/item_pickup.tscn" id="4_hrjbf"]
+[ext_resource type="Resource" uid="uid://denkv85305cti" path="res://items/potion.tres" id="5_vtwgx"]
 
 [node name="01" type="Node2D" unique_id=2033094809]
 script = ExtResource("1_y63o5")
@@ -16,6 +18,10 @@ y_sort_enabled = true
 
 [node name="Stump" parent="Actors" unique_id=627746519 instance=ExtResource("3_j7fo1")]
 position = Vector2(232, -16)
+
+[node name="ItemPickup" parent="Actors" unique_id=290828739 instance=ExtResource("4_hrjbf")]
+position = Vector2(48, -80)
+item_data = ExtResource("5_vtwgx")
 
 [node name="PlayerSpawn" parent="." unique_id=2136238899 instance=ExtResource("2_7m3nb")]
 position = Vector2(24, 184)

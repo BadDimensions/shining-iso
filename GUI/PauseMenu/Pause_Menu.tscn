@@ -1,12 +1,36 @@
 [gd_scene format=3 uid="uid://cmtd4aj8vmby6"]
 
 [ext_resource type="Script" uid="uid://bsgmk4cq6odh3" path="res://GUI/PauseMenu/pause_menu.gd" id="1_d86h7"]
+[ext_resource type="Texture2D" uid="uid://dlyafb4sb6y7g" path="res://items/sprites/inventory_texture.png" id="2_kdi1x"]
+[ext_resource type="PackedScene" uid="uid://cyi0p832nutap" path="res://GUI/PauseMenu/inventory/inventory_slot.tscn" id="3_arkll"]
+[ext_resource type="Script" uid="uid://c2f5noy0hbsie" path="res://GUI/PauseMenu/inventory/scripts/inventoryUI.gd" id="3_y7c58"]
+[ext_resource type="Resource" uid="uid://ck3bc8a6fdmlw" path="res://GUI/PauseMenu/inventory/player_inventory.tres" id="4_xbpjf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_arkll"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+texture = ExtResource("2_kdi1x")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=1568044813]
 process_mode = 3
 script = ExtResource("1_d86h7")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=257447029]
+[node name="Control" type="Control" parent="." unique_id=1345055598]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=257447029]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,33 +38,80 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.09803922, 0.09803922, 0.09803922, 0.5882353)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=586944487]
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=246800011]
+texture_filter = 1
+layout_mode = 0
+offset_left = 128.0
+offset_top = 56.0
+offset_right = 344.0
+offset_bottom = 168.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_arkll")
+
+[node name="GridContainer" type="GridContainer" parent="Control/PanelContainer" unique_id=1144114907]
+layout_mode = 2
+columns = 5
+script = ExtResource("3_y7c58")
+data = ExtResource("4_xbpjf")
+
+[node name="InventorySlot" parent="Control/PanelContainer/GridContainer" unique_id=363513625 instance=ExtResource("3_arkll")]
+texture_filter = 1
+layout_mode = 2
+
+[node name="InventorySlot2" parent="Control/PanelContainer/GridContainer" unique_id=2109364001 instance=ExtResource("3_arkll")]
+texture_filter = 1
+layout_mode = 2
+
+[node name="InventorySlot3" parent="Control/PanelContainer/GridContainer" unique_id=1783288817 instance=ExtResource("3_arkll")]
+texture_filter = 1
+layout_mode = 2
+
+[node name="InventorySlot4" parent="Control/PanelContainer/GridContainer" unique_id=2004193872 instance=ExtResource("3_arkll")]
+texture_filter = 1
+layout_mode = 2
+
+[node name="InventorySlot5" parent="Control/PanelContainer/GridContainer" unique_id=1435959998 instance=ExtResource("3_arkll")]
+texture_filter = 1
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=344244002]
+custom_minimum_size = Vector2(7, 7)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -47.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -56.0
+offset_top = 89.0
+offset_right = 56.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="button_save" type="Button" parent="VBoxContainer" unique_id=678215567]
+[node name="button_save" type="Button" parent="Control/HBoxContainer" unique_id=678215567]
 layout_mode = 2
 text = "SAVE
 "
 
-[node name="button_load" type="Button" parent="VBoxContainer" unique_id=1721427766]
+[node name="button_load" type="Button" parent="Control/HBoxContainer" unique_id=1721427766]
 layout_mode = 2
 text = "LOAD
 "
 
-[node name="Paused" type="Label" parent="." unique_id=1778305897]
+[node name="Paused" type="Label" parent="Control" unique_id=1778305897]
 modulate = Color(1, 1, 1, 0.5882353)
-offset_left = 192.0
-offset_top = 64.0
-offset_right = 256.0
-offset_bottom = 87.0
+layout_mode = 0
+offset_left = 200.0
+offset_top = 40.0
+offset_right = 264.0
+offset_bottom = 63.0
 text = " Paused"
+
+[node name="ItemDescription" type="Label" parent="Control" unique_id=43344145]
+texture_filter = 1
+layout_mode = 0
+offset_left = 152.0
+offset_top = 168.0
+offset_right = 206.0
+offset_bottom = 191.0
+theme_override_font_sizes/font_size = 8
