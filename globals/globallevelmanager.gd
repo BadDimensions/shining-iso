@@ -19,13 +19,14 @@ func ChangeTileMapBounds(bounds: Array[Vector2]) -> void:
 		TileMapBoundsChanged.emit(bounds)
 		print("Bounds being set: ", bounds)
 
-
+		
 func load_new_level(
 		level_path: String,
 		_target_transition : String,
 		_position_offset : Vector2
 ) -> void:
-	
+	print("loading level at path", level_path)
+	level_load_started.emit()
 	get_tree().paused = true
 	target_transition = _target_transition
 	position_offset = _position_offset
@@ -34,9 +35,9 @@ func load_new_level(
 	
 	await get_tree().process_frame
 	
-	get_tree().change_scene_to_file(level_path) # old level freed, new scene loaded
+	get_tree().change_scene_to_file(level_path)#this line is giving me the error
 	
-	await get_tree().scene_changed # new scene tree fully build
+	await get_tree().scene_changed 
 	
 	await SceneTransition.fade_in()
 	
