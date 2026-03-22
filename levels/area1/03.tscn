@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://depy6hpa1hpfc"]
 
 [ext_resource type="PackedScene" uid="uid://r0b15rh5qfai" path="res://levels/tiles/tiles.tscn" id="1_1spkn"]
+[ext_resource type="Script" uid="uid://cla0rjuvhfp0t" path="res://levels/scripts/Level.gd" id="1_c8vo2"]
 [ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/PlayerSpawn.tscn" id="2_48ag6"]
 [ext_resource type="PackedScene" uid="uid://dw73j2t5sd1wp" path="res://enemies/gorblin.tscn" id="2_emvwm"]
 [ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/LevelTransition.tscn" id="3_48ag6"]
@@ -16,6 +17,7 @@
 
 [node name="03" type="Node2D" unique_id=1269264465]
 z_as_relative = false
+script = ExtResource("1_c8vo2")
 
 [node name="Node2D" parent="." unique_id=1122495924 instance=ExtResource("1_1spkn")]
 
