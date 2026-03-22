@@ -29,19 +29,24 @@ func save_game() -> void:
 	pass
 	
 func load_game() -> void:
-	print("Scene path from save:", current_save.scene_path)
 	var file := FileAccess.open(SAVE_PATH + "save.sav", FileAccess.READ)
 	var json := JSON.new()
 	json.parse(file.get_line())
 	var save_dict : Dictionary = json.get_data() as Dictionary
 	current_save = save_dict
+	print("Scene path from save:", current_save.scene_path)
+	
+	# guard against empty path
+	if current_save.scene_path == "":
+		push_error("SaveManager: scene_path is empty, cannot load game")
+		return
 	
 	LevelManager.load_new_level(current_save.scene_path, "", Vector2.ZERO)
 	
 	await LevelManager.level_load_started
 	
-	PlayerManager.set_player_postion(Vector2(current_save.player.pos_x, current_save.player.pos_y))
-	PlayerManager.set_health(current_save.player.hp, current_save.player.max_hp)
+	PlayerManager.player_position = Vector2(current_save.player.pos_x, current_save.player.pos_y)
+	PlayerManager.hp = current_save.player.hp
 	
 	await LevelManager.level_loaded
 	
@@ -59,8 +64,11 @@ func update_scene_path() -> void:
 	for c in get_tree().root.get_children():
 		if c is Level:
 			p= c.scene_file_path
+	if p == "": # guard against empty path
+		push_warning("SaveManager: Could not find a Level node to save scene path")
+		return
 	current_save.scene_path = p
-	print("Saving scene path: ", p)
+	print("SaveManager: Saving scene path: ", p)
 
 func update_item_data() -> void:
 	current_save.items = PlayerManager.INVENTORY_DATA.get_save_data()
