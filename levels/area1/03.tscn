@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dw73j2t5sd1wp" path="res://enemies/gorblin.tscn" id="2_emvwm"]
 [ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/LevelTransition.tscn" id="3_48ag6"]
 [ext_resource type="PackedScene" uid="uid://bofoatgma3srf" path="res://enemies/wolf.tscn" id="3_l8w45"]
-[ext_resource type="PackedScene" uid="uid://1uqsmbyugq04" path="res://objects/treasure_chest.tscn" id="4_c8vo2"]
+[ext_resource type="PackedScene" uid="uid://1uqsmbyugq04" path="res://objects/treasure_chest/treasure_chest.tscn" id="4_c8vo2"]
 [ext_resource type="PackedScene" uid="uid://brtmlsljnhisu" path="res://objects/barrel.tscn" id="5_t2a16"]
 [ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/stump.tscn" id="6_ar0gi"]
 [ext_resource type="PackedScene" uid="uid://cwo4lb0qyyjwe" path="res://levels/tiles/left_wall.tscn" id="7_27xqd"]
