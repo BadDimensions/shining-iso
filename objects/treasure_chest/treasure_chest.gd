@@ -7,6 +7,7 @@ class_name Chest extends Node2D
 @onready var label: Label = $Sprite2D2/Label
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var interact_area: Area2D = $Area2D
+@onready var is_open_data: PersistentDataHandler = $IsOpenData
 
 var is_open : bool = false
 
@@ -18,12 +19,15 @@ func _ready() -> void:
 		return
 	interact_area.area_entered.connect(_on_area_enter)
 	interact_area.area_exited.connect(_on_area_exit)
+	is_open_data.data_loaded.connect(set_chest_state)
+	set_chest_state()
 	pass # Replace with function body.
 
 func player_interact() -> void:
 	if is_open == true:
 		return
 	is_open == true
+	is_open_data.set_value()
 	animation_player.play("opening")
 	if item_data and quantity > 0:
 		PlayerManager.INVENTORY_DATA.add_item(item_data, quantity)
@@ -59,3 +63,10 @@ func _update_label() -> void:
 			label.text = ""
 		else:
 			label.text ="x" + str(quantity)	
+
+func set_chest_state() -> void:
+	is_open = is_open_data.value
+	if is_open:
+		animation_player.play("opened")
+	else:
+		animation_player.play("closed")

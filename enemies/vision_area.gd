@@ -10,7 +10,7 @@ func _ready() -> void:
 
 	var p = get_parent()
 	if p is Enemy:
-		p.direction_change.connect(_on_direction_change)
+		p.direction_changed.connect(_on_direction_change)
 
 func _on_body_entered( _b : Node2D ) -> void:
 	if _b is Player:

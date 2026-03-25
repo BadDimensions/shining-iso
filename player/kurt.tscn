@@ -7,11 +7,11 @@
 [ext_resource type="Script" uid="uid://cwaemvsg3eqxt" path="res://player/state_walk.gd" id="3_he7lc"]
 [ext_resource type="Script" uid="uid://cg20htlnhn5lb" path="res://player/playerstatemachine.gd" id="3_vaxvc"]
 [ext_resource type="Script" uid="uid://dsxyrbov8usru" path="res://player/state_attack.gd" id="4_bxe58"]
-[ext_resource type="Script" uid="uid://bkv5sfdd4ugal" path="res://scripts/hurtbox.gd" id="4_v57gg"]
+[ext_resource type="Script" uid="uid://bkv5sfdd4ugal" path="res://general/scripts/hurtbox.gd" id="4_v57gg"]
 [ext_resource type="Script" uid="uid://c6vs0ter1dm7f" path="res://player/playercamera.gd" id="5_vaxvc"]
 [ext_resource type="Script" uid="uid://xx1rt7x73618" path="res://player/playerinteractionshost.gd" id="6_v57gg"]
 [ext_resource type="Script" uid="uid://d0blx860ltkp2" path="res://player/state_stun.gd" id="9_cnlbk"]
-[ext_resource type="Script" uid="uid://dwv7neum3vd4c" path="res://scripts/hitbox.gd" id="11_fsvws"]
+[ext_resource type="Script" uid="uid://dwv7neum3vd4c" path="res://general/scripts/hitbox.gd" id="11_fsvws"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vaxvc"]
 
