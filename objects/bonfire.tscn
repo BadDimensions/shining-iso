@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ddis3x6j8fhy"]
+
+[ext_resource type="Texture2D" uid="uid://cw2uxgcm0ht81" path="res://sprite_sheets/bonfire.png" id="1_2t10b"]
+[ext_resource type="Texture2D" uid="uid://bp8jv8vbf42yq" path="res://sprite_sheets/flame.png" id="2_vbuxu"]
+
+[node name="Node2D" type="Node2D" unique_id=1527383722]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1658848403]
+texture_filter = 1
+position = Vector2(1, -6)
+texture = ExtResource("1_2t10b")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D" unique_id=1749925247]
+
+[node name="flame" type="CPUParticles2D" parent="Sprite2D" unique_id=1762889966]
+position = Vector2(0, -10)
+amount = 1
+texture = ExtResource("2_vbuxu")
+gravity = Vector2(0, 0)
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="Sprite2D" unique_id=1851929098]
+
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="Sprite2D" unique_id=297285058]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1454877476]
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1299041570]
