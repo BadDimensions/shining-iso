@@ -5,7 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/PlayerSpawn.tscn" id="2_7m3nb"]
 [ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/stump.tscn" id="3_j7fo1"]
 [ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/LevelTransition.tscn" id="3_lvlyw"]
+[ext_resource type="PackedScene" uid="uid://ddis3x6j8fhy" path="res://objects/bonfire/bonfire.tscn" id="3_oryfo"]
 [ext_resource type="PackedScene" uid="uid://dirqmwd7jksf4" path="res://items/item_pickups/item_pickup.tscn" id="4_hrjbf"]
+[ext_resource type="PackedScene" uid="uid://cfxgsm0igwo6r" path="res://npcs/sage.tscn" id="5_laie6"]
 [ext_resource type="Resource" uid="uid://denkv85305cti" path="res://items/potion.tres" id="5_vtwgx"]
 [ext_resource type="PackedScene" uid="uid://dw73j2t5sd1wp" path="res://enemies/gorblin.tscn" id="6_vtwgx"]
 
@@ -17,8 +19,14 @@ script = ExtResource("1_y63o5")
 [node name="Actors" type="Node2D" parent="." unique_id=2124882686 groups=["Actors"]]
 y_sort_enabled = true
 
+[node name="Node2D" parent="Actors" unique_id=1527383722 instance=ExtResource("3_oryfo")]
+position = Vector2(175, 61)
+
 [node name="Stump" parent="Actors" unique_id=627746519 instance=ExtResource("3_j7fo1")]
 position = Vector2(232, -16)
+
+[node name="Sage" parent="Actors" unique_id=297921911 instance=ExtResource("5_laie6")]
+position = Vector2(206, 37)
 
 [node name="ItemPickup" parent="Actors" unique_id=290828739 instance=ExtResource("4_hrjbf")]
 position = Vector2(40, -96)

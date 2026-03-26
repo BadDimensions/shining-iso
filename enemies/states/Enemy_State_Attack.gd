@@ -23,13 +23,11 @@ func _ready() -> void:
 func Enter() -> void:
 	enemy.direction = enemy.direction
 	enemy.UpdateAnimation(anim_name)
-	animation_player.animation_finished.connect(EndAttack)
 	attacking = true
-	attack_hurtbox.monitoring = false
-	
-	# Enable hitbox slightly after attack starts
-	var timer = get_tree().create_timer(0.075)
-	timer.timeout.connect(_enable_attack_hitbox)
+	animation_player.animation_finished.connect(EndAttack)
+	#attack_hurtbox.monitoring = false
+	#var timer = get_tree().create_timer(0.075)
+	#timer.timeout.connect(_enable_attack_hitbox)
 	pass
 
 func Exit() -> void:
