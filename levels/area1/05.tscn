@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cla0rjuvhfp0t" path="res://levels/scripts/Level.gd" id="1_243od"]
 [ext_resource type="PackedScene" uid="uid://djjyx28ne6qrb" path="res://levels/tiles/cave_tiles.tscn" id="1_c0rh4"]
-[ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/PlayerSpawn.tscn" id="2_3f1y6"]
-[ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/LevelTransition.tscn" id="3_3f1y6"]
+[ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/misc/PlayerSpawn.tscn" id="2_3f1y6"]
+[ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/misc/LevelTransition.tscn" id="3_3f1y6"]
 
 [node name="05" type="Node2D" unique_id=279013002]
 script = ExtResource("1_243od")
@@ -19,5 +19,7 @@ position = Vector2(-24, 16)
 [node name="LevelTransition" parent="." unique_id=466434468 instance=ExtResource("3_3f1y6")]
 position = Vector2(-72, 40)
 level = "uid://b7ljhafl04s1s"
+target_transition_area = "LevelTransition2"
+center_player = null
 size = 1
 side = 3

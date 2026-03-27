@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://or07240cv26y"
-path="res://.godot/imported/kurt_shadow.png-a3fa131d954de810b16eaa03085bc1c9.ctex"
+uid="uid://bmdff4n3dpojk"
+path="res://.godot/imported/cave_door.png-bce791b6ef76fcd2c3d1575f9e5333c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/kurt_shadow.png"
-dest_files=["res://.godot/imported/kurt_shadow.png-a3fa131d954de810b16eaa03085bc1c9.ctex"]
+source_file="res://sprite_sheets/cave_door.png"
+dest_files=["res://.godot/imported/cave_door.png-bce791b6ef76fcd2c3d1575f9e5333c7.ctex"]
 
 [params]
 

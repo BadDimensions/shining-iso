@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://r0b15rh5qfai" path="res://levels/tiles/tiles.tscn" id="1_gssw6"]
 [ext_resource type="Script" uid="uid://cla0rjuvhfp0t" path="res://levels/scripts/Level.gd" id="1_y63o5"]
-[ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/PlayerSpawn.tscn" id="2_7m3nb"]
-[ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/stump.tscn" id="3_j7fo1"]
-[ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/LevelTransition.tscn" id="3_lvlyw"]
+[ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/misc/PlayerSpawn.tscn" id="2_7m3nb"]
+[ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/misc/stump.tscn" id="3_j7fo1"]
+[ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/misc/LevelTransition.tscn" id="3_lvlyw"]
 [ext_resource type="PackedScene" uid="uid://ddis3x6j8fhy" path="res://objects/bonfire/bonfire.tscn" id="3_oryfo"]
 [ext_resource type="PackedScene" uid="uid://dirqmwd7jksf4" path="res://items/item_pickups/item_pickup.tscn" id="4_hrjbf"]
 [ext_resource type="PackedScene" uid="uid://cfxgsm0igwo6r" path="res://npcs/sage.tscn" id="5_laie6"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://brxhr27wlx2os"]
 
-[ext_resource type="Texture2D" uid="uid://b3c7vi8q8ltd3" path="res://player/kurt_health.png" id="1_ohdfl"]
+[ext_resource type="Texture2D" uid="uid://b3c7vi8q8ltd3" path="res://player/sprites/kurt_health.png" id="1_ohdfl"]
 [ext_resource type="Script" uid="uid://d4bb2gy8wev7b" path="res://GUI/playerHUD/health.gd" id="1_x7nqt"]
 
 [sub_resource type="Animation" id="Animation_dlf0g"]

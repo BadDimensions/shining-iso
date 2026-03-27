@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://bvaer7dv3d5bi"]
 
+[ext_resource type="Script" uid="uid://drviali4mncli" path="res://player/scripts/kurt.gd" id="1_bxe58"]
 [ext_resource type="Texture2D" uid="uid://yrxreqga7cwh" path="res://player/sprites/kurt_01.png" id="2_v57gg"]
 [ext_resource type="Texture2D" uid="uid://or07240cv26y" path="res://player/sprites/kurt_shadow.png" id="3_fsvws"]
 [ext_resource type="Script" uid="uid://bkv5sfdd4ugal" path="res://general/scripts/hurtbox.gd" id="4_v57gg"]
-[ext_resource type="Script" uid="uid://cg20htlnhn5lb" path="res://player/scripts/playerstatemachine.gd" id="5_fsvws"]
-[ext_resource type="Script" uid="uid://drviali4mncli" path="res://player/scripts/kurt.gd" id="5_v57gg"]
 [ext_resource type="Script" uid="uid://c6vs0ter1dm7f" path="res://player/scripts/playercamera.gd" id="5_vaxvc"]
 [ext_resource type="Script" uid="uid://xx1rt7x73618" path="res://player/scripts/playerinteractionshost.gd" id="6_v57gg"]
 [ext_resource type="Script" uid="uid://b6lxmflmpo4x7" path="res://player/scripts/push_area.gd" id="8_vaxvc"]
@@ -529,6 +528,61 @@ _data = {
 radius = 8.0
 height = 18.0
 
+[sub_resource type="GDScript" id="GDScript_fsvws"]
+script/source = "class_name PlayerStateMachine extends Node
+
+var states: Array[ State ]
+var prev_state: State
+var current_state : State
+ 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED
+	pass 
+
+func _process(delta):
+	if current_state:
+		ChangeState(current_state.Process(delta))
+		pass
+
+func _physics_process(delta):
+	if current_state:
+		ChangeState(current_state.Physics(delta))
+		pass
+	
+func _unhandled_input(event):
+	if current_state:
+		ChangeState(current_state.HandleInput(event))
+		pass
+	
+func Initialize(_player : Player) -> void:
+		states = []
+	
+		for c in get_children():
+			if c is State:
+				c.player = _player
+				states.append(c)
+				
+		if states.size() == 0:
+			return
+		states[0].player = _player
+		states[0].state_machine = self
+		for state in states:
+			state.init()
+		ChangeState( states[0])
+		process_mode = Node.PROCESS_MODE_INHERIT
+		
+func ChangeState(new_state: State) -> void:
+	if new_state == null || new_state == current_state:
+		return
+		
+	if current_state:
+		current_state.Exit()
+		
+	prev_state = current_state
+	current_state = new_state
+	current_state.Enter()	
+"
+
 [sub_resource type="GDScript" id="GDScript_bxe58"]
 script/source = "class_name State_Idle extends State
 
@@ -712,7 +766,7 @@ y_sort_enabled = true
 collision_mask = 67
 motion_mode = 1
 wall_min_slide_angle = 0.17453292
-script = ExtResource("5_v57gg")
+script = ExtResource("1_bxe58")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=541461178]
 texture_filter = 1
@@ -745,7 +799,7 @@ libraries/ = SubResource("AnimationLibrary_1esnm")
 shape = SubResource("CapsuleShape2D_cnlbk")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1289282382]
-script = ExtResource("5_fsvws")
+script = SubResource("GDScript_fsvws")
 
 [node name="StateIdle" type="Node" parent="StateMachine" unique_id=50546725]
 script = SubResource("GDScript_bxe58")

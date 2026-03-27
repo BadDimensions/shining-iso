@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djnrpkrcpmi00"
-path="res://.godot/imported/kurt_idle.png-004d1c6a079c373ce24fc4f7bc302489.ctex"
+uid="uid://b3c7vi8q8ltd3"
+path="res://.godot/imported/kurt_health.png-07738e9757836da1a5a2b2f9382176d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/kurt_idle.png"
-dest_files=["res://.godot/imported/kurt_idle.png-004d1c6a079c373ce24fc4f7bc302489.ctex"]
+source_file="res://player/sprites/kurt_health.png"
+dest_files=["res://.godot/imported/kurt_health.png-07738e9757836da1a5a2b2f9382176d9.ctex"]
 
 [params]
 

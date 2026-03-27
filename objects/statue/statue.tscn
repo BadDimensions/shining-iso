@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://duvg3hl3ujhck"]
+
+[ext_resource type="Script" uid="uid://d8rkjrhsq5ce" path="res://objects/statue/statue.gd" id="1_v12xc"]
+[ext_resource type="Texture2D" uid="uid://dj3uawnmapo8" path="res://sprite_sheets/statue01.png" id="2_sf756"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m60yk"]
+
+[node name="Statue" type="RigidBody2D" unique_id=1005981857]
+y_sort_enabled = true
+collision_layer = 64
+collision_mask = 128
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+script = ExtResource("1_v12xc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1727746294]
+texture_filter = 1
+position = Vector2(0, -29)
+texture = ExtResource("2_sf756")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2024613305]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_m60yk")

@@ -5,7 +5,7 @@ enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 
 @export_file("*.tscn") var level
 @export var target_transition_area: String = "LevelTransition"
-
+@export var center_player: bool = false
 @export_category("Collision Area Setting")
 @export_range(1, 12, 1, "or_greater") var size: int = 2:
 	set(_v):
@@ -48,6 +48,9 @@ func _place_player() -> void:
 	if name != LevelManager.target_transition:
 		return
 	if PlayerManager.is_loading:  
+		return
+	if center_player:
+		player.global_position = collision_shape.global_position
 		return
 	
 	var new_position = global_position

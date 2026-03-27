@@ -2,15 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://r0b15rh5qfai" path="res://levels/tiles/tiles.tscn" id="1_1spkn"]
 [ext_resource type="Script" uid="uid://cla0rjuvhfp0t" path="res://levels/scripts/Level.gd" id="1_c8vo2"]
-[ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/PlayerSpawn.tscn" id="2_48ag6"]
+[ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/misc/PlayerSpawn.tscn" id="2_48ag6"]
 [ext_resource type="PackedScene" uid="uid://dw73j2t5sd1wp" path="res://enemies/gorblin.tscn" id="2_emvwm"]
-[ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/LevelTransition.tscn" id="3_48ag6"]
+[ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/misc/LevelTransition.tscn" id="3_48ag6"]
 [ext_resource type="PackedScene" uid="uid://bofoatgma3srf" path="res://enemies/wolf.tscn" id="3_l8w45"]
 [ext_resource type="PackedScene" uid="uid://1uqsmbyugq04" path="res://objects/treasure_chest/treasure_chest.tscn" id="4_c8vo2"]
-[ext_resource type="PackedScene" uid="uid://brtmlsljnhisu" path="res://objects/barrel.tscn" id="5_t2a16"]
-[ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/stump.tscn" id="6_ar0gi"]
+[ext_resource type="PackedScene" uid="uid://brtmlsljnhisu" path="res://objects/misc/barrel.tscn" id="5_t2a16"]
+[ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/misc/stump.tscn" id="6_ar0gi"]
 [ext_resource type="PackedScene" uid="uid://cwo4lb0qyyjwe" path="res://levels/tiles/left_wall.tscn" id="7_27xqd"]
-[ext_resource type="PackedScene" uid="uid://e8xujesqxoho" path="res://objects/door.tscn" id="8_47i2q"]
+[ext_resource type="PackedScene" uid="uid://e8xujesqxoho" path="res://objects/doors/door.tscn" id="8_47i2q"]
 [ext_resource type="PackedScene" uid="uid://g1hbq0qp6l0j" path="res://levels/tiles/right_wall.tscn" id="9_fr7sp"]
 [ext_resource type="PackedScene" uid="uid://dirqmwd7jksf4" path="res://items/item_pickups/item_pickup.tscn" id="10_l8w45"]
 [ext_resource type="Resource" uid="uid://denkv85305cti" path="res://items/potion.tres" id="11_c8vo2"]
@@ -79,7 +79,7 @@ position = Vector2(-240, -192)
 position = Vector2(-176, -224)
 
 [node name="Door" parent="Actors/Walls" unique_id=940012692 instance=ExtResource("8_47i2q")]
-position = Vector2(224, -80)
+position = Vector2(192, -120)
 
 [node name="RightWall" parent="Actors/Walls" unique_id=875123341 instance=ExtResource("9_fr7sp")]
 position = Vector2(-32, -232)
@@ -116,7 +116,7 @@ item_data = ExtResource("11_c8vo2")
 position = Vector2(48, 160)
 
 [node name="LevelTransition" parent="." unique_id=466434468 instance=ExtResource("3_48ag6")]
-position = Vector2(184, -128)
+position = Vector2(272, -184)
 level = "uid://b7ljhafl04s1s"
 size = 1
 side = 2
