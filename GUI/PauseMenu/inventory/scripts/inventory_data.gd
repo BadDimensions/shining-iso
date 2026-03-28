@@ -5,22 +5,13 @@ class_name InventoryData extends Resource
 func _init() -> void:
 	connect_slots()
 	pass
-#func add_item(item : ItemData, count : int = 1) -> bool:
-	#for s in slots:
-		#if s:
-			#if s.item_data == item:
-				#s.quantity += count
-				#return true
-				
-	#for i in slots.size():
-		#if slots[i] == null:
-			#var new = SlotData.new()
-			#new.item_data = item
-			#new.quantity = count
-			#slots[i] = new
-			#return true
-	#print("inventory was full")				
-	#return false				
+
+func has_item(item: ItemData) -> bool:
+	for s in slots:
+		if s != null and s.item_data == item and s.quantity > 0:
+			return true
+	return false
+
 	
 func add_item(item: ItemData, count: int = 1) -> bool:
 	var remaining = count

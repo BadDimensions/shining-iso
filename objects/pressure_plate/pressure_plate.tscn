@@ -69,6 +69,7 @@ hframes = 2
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1570237958]
 collision_layer = 0
+collision_mask = 65
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1244543567]

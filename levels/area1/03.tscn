@@ -116,7 +116,7 @@ item_data = ExtResource("11_c8vo2")
 position = Vector2(48, 160)
 
 [node name="LevelTransition" parent="." unique_id=466434468 instance=ExtResource("3_48ag6")]
-position = Vector2(272, -184)
+position = Vector2(189, -126)
 level = "uid://b7ljhafl04s1s"
 size = 1
 side = 2

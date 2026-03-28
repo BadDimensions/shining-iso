@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://e8xujesqxoho"]
 
 [ext_resource type="Texture2D" uid="uid://buv1u707nvjrr" path="res://sprite_sheets/door.png" id="1_566yj"]
-[ext_resource type="Script" uid="uid://cx0ya4xsg8k1c" path="res://objects/doors/door.gd" id="1_jo8eb"]
+[ext_resource type="Script" uid="uid://bha36wyheym1r" path="res://objects/doors/locked_door.gd" id="1_jo8eb"]
+[ext_resource type="Resource" uid="uid://cai8c3es8s40" path="res://items/key.tres" id="2_yq6pe"]
+[ext_resource type="PackedScene" uid="uid://crdbogbkdvm1s" path="res://general/PersistentDataHandler.tscn" id="3_34ppg"]
 
 [sub_resource type="Animation" id="Animation_ichkx"]
 length = 0.001
@@ -119,9 +121,13 @@ _data = {
 &"opening": SubResource("Animation_yq6pe")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jo8eb"]
+size = Vector2(34, 18)
+
 [node name="Door" type="Node2D" unique_id=940012692]
 y_sort_enabled = true
 script = ExtResource("1_jo8eb")
+required_item = ExtResource("2_yq6pe")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=637465858]
 texture_filter = 1
@@ -138,3 +144,14 @@ disabled = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1710356788]
 libraries/ = SubResource("AnimationLibrary_o61w1")
 autoplay = &"closed"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1228554504]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1799044837]
+position = Vector2(-15, -12)
+shape = SubResource("RectangleShape2D_jo8eb")
+debug_color = Color(1, 1, 0, 0.41960785)
+
+[node name="IsOpenData" parent="." unique_id=1476007555 instance=ExtResource("3_34ppg")]
