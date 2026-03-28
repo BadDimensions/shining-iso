@@ -6,7 +6,10 @@
 [ext_resource type="Script" uid="uid://cg20htlnhn5lb" path="res://player/scripts/playerstatemachine.gd" id="5_fsvws"]
 [ext_resource type="Script" uid="uid://drviali4mncli" path="res://player/scripts/kurt.gd" id="5_v57gg"]
 [ext_resource type="Script" uid="uid://c6vs0ter1dm7f" path="res://player/scripts/playercamera.gd" id="5_vaxvc"]
+[ext_resource type="Script" uid="uid://cis470ucohsin" path="res://player/scripts/state_idle.gd" id="6_tvxcc"]
 [ext_resource type="Script" uid="uid://xx1rt7x73618" path="res://player/scripts/playerinteractionshost.gd" id="6_v57gg"]
+[ext_resource type="Script" uid="uid://cwaemvsg3eqxt" path="res://player/scripts/state_walk.gd" id="7_4rk75"]
+[ext_resource type="Script" uid="uid://dsxyrbov8usru" path="res://player/scripts/state_attack.gd" id="8_sc5hc"]
 [ext_resource type="Script" uid="uid://b6lxmflmpo4x7" path="res://player/scripts/push_area.gd" id="8_vaxvc"]
 [ext_resource type="Script" uid="uid://d0blx860ltkp2" path="res://player/scripts/state_stun.gd" id="9_cnlbk"]
 [ext_resource type="Script" uid="uid://dwv7neum3vd4c" path="res://general/scripts/hitbox.gd" id="11_fsvws"]
@@ -529,123 +532,6 @@ _data = {
 radius = 8.0
 height = 18.0
 
-[sub_resource type="GDScript" id="GDScript_bxe58"]
-script/source = "class_name State_Idle extends State
-
-@onready var state_walk: State_Walk = $\"../StateWalk\"
-@onready var state_attack: State_Attack = $\"../StateAttack\"
-
-func Enter() -> void:
-	player.UpdateAnimation(\"kurt_idle\")
-	pass
-	
-func Exit() -> void:
-	pass
-	
-func Process(_delta : float) -> State:
-	if player.direction != Vector2.ZERO:
-		return state_walk
-	player.velocity = Vector2.ZERO
-	return null
-	
-func Physics(_delta: float) -> State:
-	return null
-	
-func HandleInput(_event: InputEvent) -> State:
-	if _event.is_action_pressed(\"attack\"):
-		return state_attack 
-	if _event.is_action_pressed(\"interact\"):
-		PlayerManager.interact_pressed.emit()
-	return null
-"
-
-[sub_resource type="GDScript" id="GDScript_vaxvc"]
-script/source = "class_name State_Walk extends State
-
-@export var move_speed: float = 50.0
-@onready var state_idle: State_Idle = $\"../StateIdle\"
-@onready var state_attack: State_Attack = $\"../StateAttack\"
-
-func Enter() -> void:
-	player.UpdateAnimation(\"kurt_walk\")
-	pass
-
-func Exit() -> void:
-	pass
-
-func Process(_delta : float) -> State:
-	if player.direction.length() < 0.1:
-		return state_idle
-
-	player.UpdateAnimation(\"kurt_walk\")
-	return null
-
-func Physics(_delta: float) -> State:
-	if player.direction != Vector2.ZERO:
-		player.velocity = player.direction * move_speed
-	else:
-		player.velocity = Vector2.ZERO
-	player.move_and_slide()
-	return null
-
-
-func HandleInput(_event: InputEvent) -> State:
-	if _event.is_action_pressed(\"attack\"):
-		return state_attack
-	if _event.is_action_pressed(\"interact\"):
-		PlayerManager.interact_pressed.emit()
-	return null
-"
-
-[sub_resource type="GDScript" id="GDScript_v57gg"]
-script/source = "class_name State_Attack extends State
-
-var attacking : bool = false
-@onready var state_idle: State_Idle = $\"../StateIdle\"
-@onready var state_walk: State_Walk = $\"../StateWalk\"
-
-@export_range(1.20,0.5) var decelerate_speed: float = 5.0
-@onready var animation_player: AnimationPlayer = $\"../../AnimationPlayer\"
-
-@onready var attack_hurtbox: Hurtbox = $\"../../Sprite2D/AttackHurtbox\"
-
-
-# Called when the node enters the scene tree for the first time.
-func Enter() -> void:
-	player.UpdateAnimation(\"kurt_attack\")
-	animation_player.animation_finished.connect(EndAttack)
-	attacking = true
-	await get_tree().create_timer(0.075).timeout
-	if attacking:
-		attack_hurtbox.monitoring = true
-	pass
-	
-func Exit() -> void:
-	animation_player.animation_finished.disconnect(EndAttack)
-	attacking = false
-	attack_hurtbox.monitoring = false
-	pass
-	
-func Process(_delta : float) -> State:
-	player.velocity -= player.velocity * decelerate_speed * _delta
-	
-	if attacking == false:
-		if player.direction == Vector2.ZERO:
-			return state_idle
-		else:
-			return state_walk
-	return null
-	
-func Physics(_delta: float) -> State:
-	return null
-	
-func HandleInput(_event: InputEvent) -> State:
-	return null
-	
-func EndAttack(_newAnimName: String) -> void:
-	attacking = false
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnlbk"]
 size = Vector2(12, 13)
 
@@ -748,13 +634,13 @@ shape = SubResource("CapsuleShape2D_cnlbk")
 script = ExtResource("5_fsvws")
 
 [node name="StateIdle" type="Node" parent="StateMachine" unique_id=50546725]
-script = SubResource("GDScript_bxe58")
+script = ExtResource("6_tvxcc")
 
 [node name="StateWalk" type="Node" parent="StateMachine" unique_id=419270199]
-script = SubResource("GDScript_vaxvc")
+script = ExtResource("7_4rk75")
 
 [node name="StateAttack" type="Node" parent="StateMachine" unique_id=2137699398]
-script = SubResource("GDScript_v57gg")
+script = ExtResource("8_sc5hc")
 
 [node name="StateStun" type="Node" parent="StateMachine" unique_id=154099999]
 script = ExtResource("9_cnlbk")
