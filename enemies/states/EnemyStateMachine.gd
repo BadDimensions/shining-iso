@@ -38,7 +38,9 @@ func Initialize(_enemy : Enemy ) -> void:
 func ChangeState(new_state: EnemyState) -> void:
 	if new_state == null || new_state == current_state:
 		return
-		
+	
+	print("ChangeState called, from: ", current_state, " to: ", new_state)	
+	
 	if current_state:
 		current_state.Exit()
 		
