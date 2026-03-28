@@ -685,11 +685,10 @@ next_state = NodePath("../Chase")
 script = ExtResource("8_8x14a")
 drops = Array[ExtResource("10_oh1j4")]([SubResource("Resource_32agx"), SubResource("Resource_xsae6")])
 
-[node name="Chase" type="Node" parent="EnemyStateMachine" unique_id=817896230 node_paths=PackedStringArray("vision_area", "attack_area", "next_state", "attack_state")]
+[node name="Chase" type="Node" parent="EnemyStateMachine" unique_id=817896230 node_paths=PackedStringArray("vision_area", "next_state", "attack_state")]
 script = ExtResource("13_xsae6")
 chase_speed = 50.0
 vision_area = NodePath("../../VisionArea")
-attack_area = NodePath("../../Sprite2D/AttackHurtbox")
 next_state = NodePath("../Idle")
 attack_state = NodePath("../Attack")
 

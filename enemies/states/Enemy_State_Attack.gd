@@ -1,16 +1,19 @@
 class_name EnemyStateAttack extends EnemyState
 
+
 @export var anim_name : String = "attack"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
-@onready var attack_hurtbox: Hurtbox = $"../../Sprite2D/attack_hurtbox"
+@onready var attack_hurtbox: Hurtbox = $"../../Sprite2D/AttackHurtbox"
 @export_range(1.20,0.5) var decelerate_speed: float = 5.0
 @export_category ("AI")
 @export var state_chase : EnemyState
 @export var state_fallback : EnemyState  
 @export var vision_area : VisionArea
+@export var attack_cooldown: float = 1.0 
+var attack_timer: float = 0.0
 var attacking : bool = false
 var _can_see_player : bool = false
-var cooldown_timer = 2.0 
+
 func init() -> void:
 	if vision_area:
 		vision_area.player_entered.connect(_on_player_enter)
@@ -23,7 +26,7 @@ func _ready() -> void:
 	
 
 func Enter() -> void:
-	if attacking:
+	if attacking or attack_timer > 0:
 		return
 	enemy.UpdateAnimation(anim_name)
 	enemy.direction = enemy.direction
@@ -38,13 +41,9 @@ func Exit() -> void:
 func Process(_delta: float) -> EnemyState:
 	if not enemy or not enemy.player:
 		return null
-	
-	var dist_to_player = enemy.global_position.distance_to(enemy.player.global_position)
-	
+	if attack_timer > 0:
+		attack_timer -= _delta
 	if attacking:
-		return null
-	if dist_to_player <= enemy.attack_range:
-		Enter()
 		return null
 	elif _can_see_player:
 		return state_chase
@@ -65,3 +64,4 @@ func EndAttack(_newAnimName: String) -> void:
 	print("EndAttack called for: ", _newAnimName)
 	attacking = false
 	attack_hurtbox.monitoring = false
+	attack_timer = attack_cooldown 

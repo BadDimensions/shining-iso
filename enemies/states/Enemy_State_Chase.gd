@@ -21,7 +21,7 @@ func init() -> void:
 	pass
 	
 func _ready():
-	pass # Replace with function body.
+	pass 
 
 func Enter() -> void:
 	timer = state_aggro_duration
