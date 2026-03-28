@@ -7,7 +7,8 @@ var attacking : bool = false
 @export_range(1.20,0.5) var decelerate_speed: float = 5.0
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 
-@onready var attack_hurtbox: Hurtbox = $"../../EnemyAttackArea"
+@onready var attack_hurtbox: Hurtbox = $"../../Sprite2D/AttackHurtbox"
+
 
 
 # Called when the node enters the scene tree for the first time.

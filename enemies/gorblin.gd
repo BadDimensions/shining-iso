@@ -16,6 +16,7 @@ const DIR_8 = [
 ]
 
 @export var hp : int = 3
+@export var attack_range: float = 100.0
 var cardinal_direction : Vector2 = Vector2.DOWN
 var last_direction: Vector2 = Vector2.DOWN
 var player : Player

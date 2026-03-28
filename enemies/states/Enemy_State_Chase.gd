@@ -37,18 +37,20 @@ func Exit() -> void:
 	pass
 
 func Process(_delta: float) -> EnemyState:
-	# use attack_area.has_overlapping_areas() instead of has_overlapping_bodies()
-	if attack_area and attack_area.has_overlapping_areas():
-		#stop the enemy before changing states to prevent tethering behavior
-		enemy.velocity = Vector2.ZERO
-		return attack_state
-	
 	var new_dir : Vector2 = enemy.global_position.direction_to(PlayerManager.player.global_position)
+	# Make sure enemy.player exists
+	if not enemy.player:
+		enemy.player = get_tree().get_first_node_in_group("player")
+	if not enemy.player:
+		return null  
+	var dist_to_player = enemy.global_position.distance_to(enemy.player.global_position)
 	direction = lerp(direction, new_dir, turn_rate)
 	enemy.velocity = direction * chase_speed
 	enemy.direction = direction
 	enemy.UpdateAnimation(anim_name)
-		
+	if _can_see_player:
+		if dist_to_player <= enemy.attack_range:
+			return attack_state
 	if _can_see_player == false:
 		timer -= _delta
 		if timer < 0:
