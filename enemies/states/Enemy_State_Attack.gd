@@ -26,6 +26,16 @@ func _ready() -> void:
 	
 
 func Enter() -> void:
+	if state_machine.current_state is EnemyStateDestroy:
+		return  
+
+	if attacking or attack_timer > 0:
+		return
+
+	enemy.UpdateAnimation(anim_name)
+	enemy.direction = enemy.direction
+	attacking = true
+	attack_hurtbox.monitoring = true
 	if attacking or attack_timer > 0:
 		return
 	enemy.UpdateAnimation(anim_name)
@@ -39,6 +49,9 @@ func Exit() -> void:
 	pass
 	
 func Process(_delta: float) -> EnemyState:
+	#if state_machine.current_state is EnemyStateDestroy:
+		#return  #this may not be needed but can be turned on for safety
+
 	if not enemy or not enemy.player:
 		return null
 	if attack_timer > 0:
