@@ -14,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://g1hbq0qp6l0j" path="res://levels/tiles/right_wall.tscn" id="9_fr7sp"]
 [ext_resource type="PackedScene" uid="uid://dirqmwd7jksf4" path="res://items/item_pickups/item_pickup.tscn" id="10_l8w45"]
 [ext_resource type="Resource" uid="uid://denkv85305cti" path="res://items/potion.tres" id="11_c8vo2"]
+[ext_resource type="PackedScene" uid="uid://dx78llodi8uad" path="res://general/enemy_counter/enemy_counter.tscn" id="15_t2a16"]
+[ext_resource type="PackedScene" uid="uid://b8u6kvtn4tq4k" path="res://general/item_dropper/item_dropper.tscn" id="16_27xqd"]
+[ext_resource type="Resource" uid="uid://cai8c3es8s40" path="res://items/key.tres" id="17_47i2q"]
 
 [node name="03" type="Node2D" unique_id=1269264465]
 z_as_relative = false
@@ -24,11 +27,13 @@ script = ExtResource("1_c8vo2")
 [node name="Actors" type="Node2D" parent="." unique_id=1563020644 groups=["Actors"]]
 y_sort_enabled = true
 
-[node name="gorblin" parent="Actors" unique_id=720483896 instance=ExtResource("2_emvwm")]
-position = Vector2(98, 63)
+[node name="EnemyCounter" parent="Actors" unique_id=235315098 instance=ExtResource("15_t2a16")]
 
-[node name="wolf" parent="Actors" unique_id=1588315159 instance=ExtResource("3_l8w45")]
+[node name="wolf" parent="Actors/EnemyCounter" unique_id=1588315159 instance=ExtResource("3_l8w45")]
 position = Vector2(-151, 56)
+
+[node name="gorblin" parent="Actors/EnemyCounter" unique_id=720483896 instance=ExtResource("2_emvwm")]
+position = Vector2(264, 52)
 
 [node name="TreasureChest" parent="Actors" unique_id=1734926386 instance=ExtResource("4_c8vo2")]
 position = Vector2(-92, -204)
@@ -126,3 +131,9 @@ position = Vector2(320, 160)
 level = "uid://daq5bca5ale7j"
 target_transition_area = "LevelTransition2"
 size = 1
+
+[node name="ItemDropper" parent="." unique_id=637760253 instance=ExtResource("16_27xqd")]
+position = Vector2(-1, -1)
+item_data = ExtResource("17_47i2q")
+
+[connection signal="enemies_defeated" from="Actors/EnemyCounter" to="ItemDropper" method="drop_item"]

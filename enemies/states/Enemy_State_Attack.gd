@@ -61,7 +61,7 @@ func _on_player_exit() -> void:
 	_can_see_player = false
 
 func EndAttack(_newAnimName: String) -> void:
-	print("EndAttack called for: ", _newAnimName)
+	#print("EndAttack called for: ", _newAnimName)
 	attacking = false
 	attack_hurtbox.monitoring = false
 	attack_timer = attack_cooldown 

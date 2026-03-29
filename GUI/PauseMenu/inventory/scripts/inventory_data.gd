@@ -6,9 +6,10 @@ func _init() -> void:
 	connect_slots()
 	pass
 
-func has_item(item: ItemData) -> bool:
+func has_item(item: ItemData, count : int = 1) -> bool:
 	for s in slots:
 		if s != null and s.item_data == item and s.quantity > 0:
+			s.quantity -= count
 			return true
 	return false
 

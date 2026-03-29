@@ -11,6 +11,7 @@ func _ready() -> void:
 	interact_area.area_entered.connect(_on_area_enter)
 	interact_area.area_exited.connect(_on_area_exit)
 	is_open_data.data_loaded.connect(set_door_state)
+	set_door_state()
 	pass 
 
 func player_interact() -> void:
@@ -37,9 +38,13 @@ func open_door() -> void:
 	else:
 		print("Door is locked")
 
+
 func set_door_state() -> void:
 	is_open = is_open_data.value
+	
 	if is_open:
 		animation_player.play("open")
+		animation_player.seek(0, true) 
 	else:
 		animation_player.play("closed")
+		animation_player.seek(0, true)

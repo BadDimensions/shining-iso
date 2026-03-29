@@ -39,7 +39,7 @@ func ChangeState(new_state: EnemyState) -> void:
 	if new_state == null || new_state == current_state:
 		return
 	
-	print("ChangeState called, from: ", current_state, " to: ", new_state)	
+	#print("ChangeState called, from: ", current_state, " to: ", new_state)	
 	
 	if current_state:
 		current_state.Exit()
@@ -48,4 +48,4 @@ func ChangeState(new_state: EnemyState) -> void:
 	current_state = new_state
 	current_state.Enter()	
  
-	print (current_state)
+	#print (current_state)

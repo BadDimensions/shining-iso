@@ -38,7 +38,7 @@ size = 1
 side = 3
 
 [node name="LevelTransition2" parent="." unique_id=1074779113 instance=ExtResource("3_f2xdj")]
-position = Vector2(162, -56)
+position = Vector2(166, -58)
 level = "uid://d3kercd4hljcv"
 size = 1
 side = 2

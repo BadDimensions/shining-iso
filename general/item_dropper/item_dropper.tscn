@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b8u6kvtn4tq4k"]
+
+[ext_resource type="Script" uid="uid://sktk1oemy4t8" path="res://general/item_dropper/item_dropper.gd" id="1_m0at1"]
+[ext_resource type="PackedScene" uid="uid://crdbogbkdvm1s" path="res://general/PersistentDataHandler.tscn" id="2_8fvat"]
+
+[node name="ItemDropper" type="Node2D" unique_id=637760253]
+script = ExtResource("1_m0at1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1221113516]
+
+[node name="Label" type="Label" parent="Sprite2D" unique_id=1263166818]
+offset_left = -43.0
+offset_top = -31.0
+offset_right = 44.0
+offset_bottom = -8.0
+text = "ITEM DROP"
+
+[node name="PersistentDataHandler" parent="." unique_id=1476007555 instance=ExtResource("2_8fvat")]
