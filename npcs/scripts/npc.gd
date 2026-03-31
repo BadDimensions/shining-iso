@@ -23,47 +23,30 @@ func _physics_process(delta : float) -> void:
 
 
 func update_direction(target_position : Vector2) -> void:
-	var new_dir = global_position.direction_to(target_position)
-	if new_dir.length() > 0.1:
-		direction = new_dir
-		last_direction = new_dir
+	direction = global_position.direction_to(target_position)
 	
-	if velocity != Vector2.ZERO:
-		UpdateAnimation("walk")
-	else:
-		UpdateAnimation("idle")
-
 
 func UpdateAnimation(state : String) -> void:
-	var anim_name = state + "_" + AnimDirection(direction)
+	animation_player.play(state + "_" + AnimDirection(direction))
 	
-	if animation_player.current_animation != anim_name:
-		animation_player.play(anim_name)
+	
 
 func AnimDirection(dir: Vector2) -> String:
 	if dir.length() < 0.1:
-		return "down"  
+		dir = last_direction
 
-	var angle := rad_to_deg(dir.angle())
-	if angle < 0:
-		angle += 360
-
-	if angle >= 337.5 or angle < 22.5:
-		return "right"
-	elif angle < 67.5:
-		return "diagonal_down"
-	elif angle < 112.5:
-		return "down"
-	elif angle < 157.5:
-		return "diagonal_down"
-	elif angle < 202.5:
-		return "left"
-	elif angle < 247.5:
-		return "diagonal_up"
-	elif angle < 292.5:
+	if dir.y < 0 and abs(dir.x) < 0.5:
 		return "up"
-	else:
+	elif dir.y > 0 and abs(dir.x) < 0.5:
+		return "down"
+	elif dir.y < 0:
 		return "diagonal_up"
+	elif dir.y > 0:
+		return "diagonal_down"
+	else:
+		return "side"
+
+	
 	
 func setup_npc() -> void:
 	if npc_resource and sprite_2d:
