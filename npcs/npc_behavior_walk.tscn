@@ -11,4 +11,4 @@ script = ExtResource("1_8l84t")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1785728792]
 modulate = Color(1, 1, 1, 0.19607843)
 shape = SubResource("CircleShape2D_g50df")
-debug_color = Color(0.96862745, 1, 0.023529412, 0.41960785)
+debug_color = Color(0.96862745, 1, 0.023529412, 1)

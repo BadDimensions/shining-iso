@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cknk7sfg1ntwl" path="res://objects/pressure_plate/pressure_plate.tscn" id="3_uk2dw"]
 [ext_resource type="PackedScene" uid="uid://bb27070tbojt1" path="res://objects/doors/cave_door.tscn" id="4_l64lb"]
 [ext_resource type="PackedScene" uid="uid://duvg3hl3ujhck" path="res://objects/statue/statue.tscn" id="5_7ufu7"]
+[ext_resource type="PackedScene" uid="uid://cfxgsm0igwo6r" path="res://npcs/npc01.tscn" id="7_6hc3q"]
 
 [node name="04" type="Node2D" unique_id=821742652]
 script = ExtResource("1_ifblj")
@@ -29,6 +30,9 @@ position = Vector2(160, -56)
 
 [node name="Statue" parent="Actors" unique_id=1005981857 instance=ExtResource("5_7ufu7")]
 position = Vector2(145, -3)
+
+[node name="NPC1" parent="Actors" unique_id=297921911 instance=ExtResource("7_6hc3q")]
+position = Vector2(-154, -11)
 
 [node name="PlayerSpawn" parent="." unique_id=2136238899 instance=ExtResource("2_us1um")]
 position = Vector2(32, 56)
