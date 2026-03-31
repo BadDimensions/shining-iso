@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cy8ls7j5053e5"]
+
+[ext_resource type="Script" uid="uid://dfib6g45c3gpd" path="res://npcs/scripts/npc_behavior_walk.gd" id="1_8l84t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g50df"]
+radius = 60.033325
+
+[node name="NpcBehaviorWalk" type="Node2D" unique_id=449623266]
+script = ExtResource("1_8l84t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1785728792]
+modulate = Color(1, 1, 1, 0.19607843)
+shape = SubResource("CircleShape2D_g50df")
+debug_color = Color(0.96862745, 1, 0.023529412, 0.41960785)

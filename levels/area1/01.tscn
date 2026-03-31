@@ -8,9 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/misc/LevelTransition.tscn" id="3_lvlyw"]
 [ext_resource type="PackedScene" uid="uid://ddis3x6j8fhy" path="res://objects/bonfire/bonfire.tscn" id="3_oryfo"]
 [ext_resource type="PackedScene" uid="uid://dirqmwd7jksf4" path="res://items/item_pickups/item_pickup.tscn" id="4_hrjbf"]
-[ext_resource type="PackedScene" uid="uid://cfxgsm0igwo6r" path="res://npcs/sage.tscn" id="5_laie6"]
+[ext_resource type="PackedScene" uid="uid://cfxgsm0igwo6r" path="res://npcs/npc01.tscn" id="5_laie6"]
 [ext_resource type="Resource" uid="uid://denkv85305cti" path="res://items/potion.tres" id="5_vtwgx"]
 [ext_resource type="PackedScene" uid="uid://dw73j2t5sd1wp" path="res://enemies/gorblin.tscn" id="6_vtwgx"]
+[ext_resource type="PackedScene" uid="uid://cy8ls7j5053e5" path="res://npcs/npc_behavior_walk.tscn" id="7_m0bjn"]
+[ext_resource type="Resource" uid="uid://dmwrpybmo6er5" path="res://npcs/00npc/npc01.tres" id="7_pq0gk"]
 
 [node name="01" type="Node2D" unique_id=2033094809]
 script = ExtResource("1_y63o5")
@@ -28,7 +30,10 @@ position = Vector2(175, 61)
 position = Vector2(232, -16)
 
 [node name="Sage" parent="Actors" unique_id=297921911 instance=ExtResource("5_laie6")]
-position = Vector2(206, 37)
+position = Vector2(-40, 78)
+npc_resource = ExtResource("7_pq0gk")
+
+[node name="NpcBehaviorWalk" parent="Actors/Sage" unique_id=449623266 instance=ExtResource("7_m0bjn")]
 
 [node name="ItemPickup" parent="Actors" unique_id=290828739 instance=ExtResource("4_hrjbf")]
 position = Vector2(40, -96)
