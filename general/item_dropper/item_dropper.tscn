@@ -9,6 +9,7 @@ script = ExtResource("1_m0at1")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1221113516]
 
 [node name="Label" type="Label" parent="Sprite2D" unique_id=1263166818]
+visible = false
 offset_left = -43.0
 offset_top = -31.0
 offset_right = 44.0

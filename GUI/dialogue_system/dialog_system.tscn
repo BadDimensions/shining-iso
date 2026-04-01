@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://c325d6uy38nag"]
+
+[ext_resource type="Script" uid="uid://c17j3ib5hqxd8" path="res://GUI/dialogue_system/scripts/dialog_system.gd" id="1_w5ko0"]
+[ext_resource type="Texture2D" uid="uid://c0of6nuxa0wlp" path="res://sprite_sheets/talk_02.png" id="2_1m4rv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yfphd"]
+texture = ExtResource("2_1m4rv")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+expand_margin_left = 14.0
+expand_margin_top = 10.0
+expand_margin_right = 14.0
+expand_margin_bottom = 10.0
+
+[node name="DialogSystem" type="CanvasLayer" unique_id=1703634625]
+script = ExtResource("1_w5ko0")
+
+[node name="Control" type="Control" parent="." unique_id=1531438822]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=16632268]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -132.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1017915963]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = -104.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_yfphd")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer" unique_id=1307702096]
+layout_mode = 2
+bbcode_enabled = true
+text = "example text"
+scroll_active = false
+
+[node name="Label" type="Label" parent="Control" unique_id=45254489]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 136.0
+offset_right = 171.0
+offset_bottom = 159.0
+text = "Name"

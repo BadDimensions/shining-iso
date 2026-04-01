@@ -45,5 +45,5 @@ offset_top = 6.095237
 offset_right = 22.805971
 offset_bottom = 29.095238
 theme_override_font_sizes/font_size = 8
-text = "wait 1s"
+text = "wait0.0s"
 horizontal_alignment = 1

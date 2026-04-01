@@ -13,8 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://cwo4lb0qyyjwe" path="res://levels/tiles/left_wall.tscn" id="7_27xqd"]
 [ext_resource type="PackedScene" uid="uid://e8xujesqxoho" path="res://objects/doors/door.tscn" id="8_47i2q"]
 [ext_resource type="PackedScene" uid="uid://g1hbq0qp6l0j" path="res://levels/tiles/right_wall.tscn" id="9_fr7sp"]
-[ext_resource type="PackedScene" uid="uid://dirqmwd7jksf4" path="res://items/item_pickups/item_pickup.tscn" id="10_l8w45"]
-[ext_resource type="Resource" uid="uid://denkv85305cti" path="res://items/potion.tres" id="11_c8vo2"]
 [ext_resource type="PackedScene" uid="uid://dx78llodi8uad" path="res://general/enemy_counter/enemy_counter.tscn" id="15_t2a16"]
 [ext_resource type="PackedScene" uid="uid://b8u6kvtn4tq4k" path="res://general/item_dropper/item_dropper.tscn" id="16_27xqd"]
 [ext_resource type="Resource" uid="uid://cai8c3es8s40" path="res://items/key.tres" id="17_47i2q"]
@@ -115,9 +113,9 @@ position = Vector2(448, 8)
 [node name="RightWall9" parent="Actors/Walls" unique_id=1901266238 instance=ExtResource("9_fr7sp")]
 position = Vector2(512, 40)
 
-[node name="ItemPickup" parent="Actors" unique_id=290828739 instance=ExtResource("10_l8w45")]
-position = Vector2(-352, -32)
-item_data = ExtResource("11_c8vo2")
+[node name="ItemDropper" parent="Actors" unique_id=637760253 instance=ExtResource("16_27xqd")]
+position = Vector2(-16.63076, -20.381695)
+item_data = ExtResource("17_47i2q")
 
 [node name="PlayerSpawn" parent="." unique_id=2136238899 instance=ExtResource("2_48ag6")]
 position = Vector2(48, 160)
@@ -134,8 +132,4 @@ level = "uid://daq5bca5ale7j"
 target_transition_area = "LevelTransition2"
 size = 1
 
-[node name="ItemDropper" parent="." unique_id=637760253 instance=ExtResource("16_27xqd")]
-position = Vector2(-1, -1)
-item_data = ExtResource("17_47i2q")
-
-[connection signal="enemies_defeated" from="Actors/EnemyCounter" to="ItemDropper" method="drop_item"]
+[connection signal="enemies_defeated" from="Actors/EnemyCounter" to="Actors/ItemDropper" method="drop_item"]

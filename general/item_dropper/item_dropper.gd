@@ -13,7 +13,7 @@ func ready() -> void:
 	if Engine.is_editor_hint() == true:
 		_update_texture()
 		return
-		
+	$Sprite2D/Label.queue_free()
 	sprite_2d.visible = false
 	has_dropped_data.data_loaded.connect(_on_data_loaded)
 	_on_data_loaded()

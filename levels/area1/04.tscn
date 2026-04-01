@@ -9,6 +9,16 @@
 [ext_resource type="PackedScene" uid="uid://bb27070tbojt1" path="res://objects/doors/cave_door.tscn" id="4_l64lb"]
 [ext_resource type="PackedScene" uid="uid://duvg3hl3ujhck" path="res://objects/statue/statue.tscn" id="5_7ufu7"]
 [ext_resource type="PackedScene" uid="uid://cfxgsm0igwo6r" path="res://npcs/npc01.tscn" id="7_6hc3q"]
+[ext_resource type="PackedScene" uid="uid://dm8jmusar55f5" path="res://npcs/npc_behavior_patrol.tscn" id="8_gnghv"]
+[ext_resource type="Script" uid="uid://m38c8o3eh4ku" path="res://npcs/scripts/npc_resource.gd" id="8_spp76"]
+[ext_resource type="PackedScene" uid="uid://uabfnkabq460" path="res://npcs/patrol_location.tscn" id="9_3nbvt"]
+[ext_resource type="Texture2D" uid="uid://bw7d274wa75gq" path="res://sprite_sheets/npc_02.png" id="9_d6iph"]
+
+[sub_resource type="Resource" id="Resource_fu5sr"]
+script = ExtResource("8_spp76")
+npc_name = "Sage03"
+sprite = ExtResource("9_d6iph")
+metadata/_custom_type_script = "uid://m38c8o3eh4ku"
 
 [node name="04" type="Node2D" unique_id=821742652]
 script = ExtResource("1_ifblj")
@@ -33,6 +43,20 @@ position = Vector2(145, -3)
 
 [node name="NPC1" parent="Actors" unique_id=297921911 instance=ExtResource("7_6hc3q")]
 position = Vector2(-154, -11)
+npc_resource = SubResource("Resource_fu5sr")
+
+[node name="NpcBehaviorPatrol" parent="Actors/NPC1" unique_id=1011715386 instance=ExtResource("8_gnghv")]
+walk_speed = 30.0
+
+[node name="PatrolLocation" parent="Actors/NPC1/NpcBehaviorPatrol" unique_id=1058541892 instance=ExtResource("9_3nbvt")]
+
+[node name="PatrolLocation2" parent="Actors/NPC1/NpcBehaviorPatrol" unique_id=1928355490 instance=ExtResource("9_3nbvt")]
+position = Vector2(117, -8)
+wait_time = 3.0
+
+[node name="PatrolLocation3" parent="Actors/NPC1/NpcBehaviorPatrol" unique_id=1077363966 instance=ExtResource("9_3nbvt")]
+position = Vector2(72, -50)
+wait_time = 3.0
 
 [node name="PlayerSpawn" parent="." unique_id=2136238899 instance=ExtResource("2_us1um")]
 position = Vector2(32, 56)
