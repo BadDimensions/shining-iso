@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="NPCResource" format=3 uid="uid://dmwrpybmo6er5"]
 
+[ext_resource type="Texture2D" uid="uid://bxngx81veu3vr" path="res://sprite_sheets/npc_potrait.png" id="1_4d7q3"]
 [ext_resource type="Script" uid="uid://m38c8o3eh4ku" path="res://npcs/scripts/npc_resource.gd" id="1_gixtl"]
 [ext_resource type="Texture2D" uid="uid://bw7d274wa75gq" path="res://sprite_sheets/npc_02.png" id="2_cspvv"]
 
@@ -7,4 +8,5 @@
 script = ExtResource("1_gixtl")
 npc_name = "Sage"
 sprite = ExtResource("2_cspvv")
+portrait = ExtResource("1_4d7q3")
 metadata/_custom_type_script = "uid://m38c8o3eh4ku"

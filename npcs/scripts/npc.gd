@@ -22,14 +22,36 @@ func _ready() -> void:
 	setup_npc()
 	if Engine.is_editor_hint():
 		return
+	_gather_interactables()
 	do_behavior = true
 	await get_tree().process_frame
 	behavior_enabled.emit()
-	print("behavior")
+	
 
 func _physics_process(delta : float) -> void:
 	move_and_slide()
 
+func _gather_interactables() -> void:
+	for c in get_children():
+		if c is DialogInteraction:
+			c.player_interacted.connect(_on_player_interacted)
+			c.finished.connect(_on_interaction_finished)
+			
+func _on_player_interacted() -> void:
+	UpdateFacing(PlayerManager.player.global_position)
+	state = "idle"
+	velocity = Vector2.ZERO
+	UpdateAnimation(state)
+	do_behavior = false
+	pass
+	
+func _on_interaction_finished() -> void:
+	state = "idle"
+	UpdateAnimation(state)
+	do_behavior = true
+	behavior_enabled.emit()
+	pass
+	
 func UpdateAnimation(state: String) -> void:
 	var anim_dir := last_direction
 	var anim_name := state + "_" + AnimDirection(anim_dir)

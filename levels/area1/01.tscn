@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://dw73j2t5sd1wp" path="res://enemies/gorblin.tscn" id="6_vtwgx"]
 [ext_resource type="PackedScene" uid="uid://cy8ls7j5053e5" path="res://npcs/npc_behavior_walk.tscn" id="7_m0bjn"]
 [ext_resource type="Resource" uid="uid://dmwrpybmo6er5" path="res://npcs/00npc/npc01.tres" id="7_pq0gk"]
+[ext_resource type="PackedScene" uid="uid://iuccq6tjucjq" path="res://objects/dialog/dialog_interaction.tscn" id="9_rccd6"]
+[ext_resource type="Script" uid="uid://bnnb0kjkuut80" path="res://objects/dialog/scripts/dialog_text.gd" id="10_x07sw"]
+[ext_resource type="Resource" uid="uid://cec6yx4cboupj" path="res://npcs/00npc/kurt01.tres" id="11_yb0j6"]
 
 [node name="01" type="Node2D" unique_id=2033094809]
 script = ExtResource("1_y63o5")
@@ -34,6 +37,29 @@ position = Vector2(-40, 78)
 npc_resource = ExtResource("7_pq0gk")
 
 [node name="NpcBehaviorWalk" parent="Actors/Sage" unique_id=449623266 instance=ExtResource("7_m0bjn")]
+
+[node name="DialogInteraction" parent="Actors/Sage" unique_id=2097985268 instance=ExtResource("9_rccd6")]
+
+[node name="DialogText" type="Node" parent="Actors/Sage/DialogInteraction" unique_id=135013583]
+script = ExtResource("10_x07sw")
+text = "
+Beware the Knight..."
+npc_info = ExtResource("7_pq0gk")
+metadata/_custom_type_script = "uid://bnnb0kjkuut80"
+
+[node name="DialogText2" type="Node" parent="Actors/Sage/DialogInteraction" unique_id=998632590]
+script = ExtResource("10_x07sw")
+text = "
+Knight?"
+npc_info = ExtResource("11_yb0j6")
+metadata/_custom_type_script = "uid://bnnb0kjkuut80"
+
+[node name="DialogText3" type="Node" parent="Actors/Sage/DialogInteraction" unique_id=55833021]
+script = ExtResource("10_x07sw")
+text = "
+In the cave...."
+npc_info = ExtResource("7_pq0gk")
+metadata/_custom_type_script = "uid://bnnb0kjkuut80"
 
 [node name="ItemPickup" parent="Actors" unique_id=290828739 instance=ExtResource("4_hrjbf")]
 position = Vector2(40, -96)

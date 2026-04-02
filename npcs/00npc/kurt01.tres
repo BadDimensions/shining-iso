@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCResource" format=3 uid="uid://cec6yx4cboupj"]
+
+[ext_resource type="Texture2D" uid="uid://qhgj11dck030" path="res://sprite_sheets/kurt_potrait.png" id="1_6gddm"]
+[ext_resource type="Script" uid="uid://m38c8o3eh4ku" path="res://npcs/scripts/npc_resource.gd" id="1_o3hwo"]
+
+[resource]
+script = ExtResource("1_o3hwo")
+npc_name = "Kurt"
+portrait = ExtResource("1_6gddm")
+metadata/_custom_type_script = "uid://m38c8o3eh4ku"
