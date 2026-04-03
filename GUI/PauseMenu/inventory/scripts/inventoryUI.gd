@@ -15,6 +15,7 @@ func clear_inventory() -> void:
 		c.queue_free()
 		
 func update_inventory() -> void:
+	#clear_inventory #possible future bug fix
 	for s in data.slots:
 		var new_slot = INVENTORY_SLOT.instantiate()
 		add_child(new_slot)

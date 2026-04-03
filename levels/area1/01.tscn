@@ -43,7 +43,7 @@ npc_resource = ExtResource("7_pq0gk")
 [node name="DialogText" type="Node" parent="Actors/Sage/DialogInteraction" unique_id=135013583]
 script = ExtResource("10_x07sw")
 text = "
-Beware the Knight..."
+[wave]Beware the Knight..."
 npc_info = ExtResource("7_pq0gk")
 metadata/_custom_type_script = "uid://bnnb0kjkuut80"
 
@@ -57,7 +57,7 @@ metadata/_custom_type_script = "uid://bnnb0kjkuut80"
 [node name="DialogText3" type="Node" parent="Actors/Sage/DialogInteraction" unique_id=55833021]
 script = ExtResource("10_x07sw")
 text = "
-In the cave...."
+[wave]In the cave...."
 npc_info = ExtResource("7_pq0gk")
 metadata/_custom_type_script = "uid://bnnb0kjkuut80"
 

@@ -38,7 +38,7 @@ func start() -> void:
 		return
 		
 	#IDLE
-	npc.global_position = target.target_position
+	#npc.global_position = target.target_position this creates a weird snapping effect
 	npc.state = "idle"
 	npc.velocity = Vector2.ZERO
 	npc.UpdateAnimation(npc.state)

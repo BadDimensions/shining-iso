@@ -1,0 +1,1 @@
+class_name DialogPortrait extends Sprite2D

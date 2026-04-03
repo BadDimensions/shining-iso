@@ -13,6 +13,10 @@
 [ext_resource type="Script" uid="uid://m38c8o3eh4ku" path="res://npcs/scripts/npc_resource.gd" id="8_spp76"]
 [ext_resource type="PackedScene" uid="uid://uabfnkabq460" path="res://npcs/patrol_location.tscn" id="9_3nbvt"]
 [ext_resource type="Texture2D" uid="uid://bw7d274wa75gq" path="res://sprite_sheets/npc_02.png" id="9_d6iph"]
+[ext_resource type="PackedScene" uid="uid://iuccq6tjucjq" path="res://objects/dialog/dialog_interaction.tscn" id="12_8fo53"]
+[ext_resource type="Script" uid="uid://bnnb0kjkuut80" path="res://objects/dialog/scripts/dialog_text.gd" id="13_ovkpf"]
+[ext_resource type="Resource" uid="uid://dmwrpybmo6er5" path="res://npcs/00npc/npc01.tres" id="14_f3pne"]
+[ext_resource type="Resource" uid="uid://cec6yx4cboupj" path="res://npcs/00npc/kurt01.tres" id="15_nlxri"]
 
 [sub_resource type="Resource" id="Resource_fu5sr"]
 script = ExtResource("8_spp76")
@@ -57,6 +61,29 @@ wait_time = 3.0
 [node name="PatrolLocation3" parent="Actors/NPC1/NpcBehaviorPatrol" unique_id=1077363966 instance=ExtResource("9_3nbvt")]
 position = Vector2(72, -50)
 wait_time = 3.0
+
+[node name="DialogInteraction" parent="Actors/NPC1" unique_id=2097985268 instance=ExtResource("12_8fo53")]
+
+[node name="DialogText" type="Node" parent="Actors/NPC1/DialogInteraction" unique_id=1082722282]
+script = ExtResource("13_ovkpf")
+text = "
+[wave]Push... the statue.."
+npc_info = ExtResource("14_f3pne")
+metadata/_custom_type_script = "uid://bnnb0kjkuut80"
+
+[node name="DialogText2" type="Node" parent="Actors/NPC1/DialogInteraction" unique_id=1867385288]
+script = ExtResource("13_ovkpf")
+text = "
+hmm..."
+npc_info = ExtResource("15_nlxri")
+metadata/_custom_type_script = "uid://bnnb0kjkuut80"
+
+[node name="DialogText3" type="Node" parent="Actors/NPC1/DialogInteraction" unique_id=593889075]
+script = ExtResource("13_ovkpf")
+text = "
+[wave] The Knight awaits you."
+npc_info = ExtResource("14_f3pne")
+metadata/_custom_type_script = "uid://bnnb0kjkuut80"
 
 [node name="PlayerSpawn" parent="." unique_id=2136238899 instance=ExtResource("2_us1um")]
 position = Vector2(32, 56)
