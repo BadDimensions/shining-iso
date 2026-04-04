@@ -35,7 +35,8 @@ func start() -> void:
 	npc.velocity = Vector2.ZERO
 	npc.UpdateFacing(npc.direction)
 	await get_tree().create_timer(randf() * idle_duration + idle_duration).timeout
-	
+	#if npc.do_behavior == false: #potential bug fix
+		#return
 	# Walk
 	npc.state = "walk"
 	var _dir : Vector2 = DIR_8[randi_range(0,7)]

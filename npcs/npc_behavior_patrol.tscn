@@ -4,4 +4,5 @@
 
 [node name="NpcBehaviorPatrol" type="Node2D" unique_id=1011715386]
 script = ExtResource("1_fhudy")
-walk_speed = null
+
+[node name="Timer" type="Timer" parent="." unique_id=109977452]

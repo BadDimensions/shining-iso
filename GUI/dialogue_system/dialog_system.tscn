@@ -123,7 +123,7 @@ text = "Name"
 
 [node name="Sprite2D" type="Sprite2D" parent="Dialog_UI" unique_id=2101067923]
 texture_filter = 1
-position = Vector2(48, 206)
+position = Vector2(62, 206)
 texture = ExtResource("3_yfphd")
 hframes = 4
 script = ExtResource("4_k0nna")

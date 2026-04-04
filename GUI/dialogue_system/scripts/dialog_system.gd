@@ -2,6 +2,7 @@
 class_name DialogSystemNode extends CanvasLayer
 
 signal finished
+signal letter_added( letter : String)
 
 var dialog_items : Array[DialogItem]
 var dialog_items_index : int = 0
@@ -94,11 +95,17 @@ func show_dialog_button_indicator(_is_visible : bool) -> void:
 
 func start_timer() -> void:
 	timer.wait_time = text_speed
+	var _char = plain_text[content.visible_characters - 1]
+	if '.!?:;'.contains(_char):
+		timer.wait_time *= 4
+	elif ",".contains(_char):
+		timer.wait_time *= 2
 	timer.start()
 	
 func _on_timer_timeout() -> void:
 	content.visible_characters += 1
 	if content.visible_characters <= text_length:
+		letter_added.emit(plain_text[content.visible_characters - 1])
 		start_timer()
 	else:
 		show_dialog_button_indicator(true)
