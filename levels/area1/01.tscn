@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://r0b15rh5qfai" path="res://levels/tiles/tiles.tscn" id="1_gssw6"]
 [ext_resource type="Script" uid="uid://cla0rjuvhfp0t" path="res://levels/scripts/Level.gd" id="1_y63o5"]
 [ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/misc/PlayerSpawn.tscn" id="2_7m3nb"]
-[ext_resource type="AudioStream" uid="uid://dm5un1qqoo4le" path="res://levels/music/iso_swampland_theme.wav" id="2_claup"]
+[ext_resource type="AudioStream" uid="uid://m3ocfwg6i3n6" path="res://levels/music/iso_theme.wav" id="2_yb0j6"]
 [ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/misc/stump.tscn" id="3_j7fo1"]
 [ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/misc/LevelTransition.tscn" id="3_lvlyw"]
 [ext_resource type="PackedScene" uid="uid://ddis3x6j8fhy" path="res://objects/bonfire/bonfire.tscn" id="3_oryfo"]
@@ -19,7 +19,7 @@
 
 [node name="01" type="Node2D" unique_id=2033094809]
 script = ExtResource("1_y63o5")
-music = ExtResource("2_claup")
+music = ExtResource("2_yb0j6")
 
 [node name="TileMapLayer" parent="." unique_id=1616239644 instance=ExtResource("1_gssw6")]
 

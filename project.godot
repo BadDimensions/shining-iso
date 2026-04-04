@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="shining_iso"
-run/main_scene="uid://b8brdot0bk260"
+run/main_scene="uid://c5vw3ne3nsaqy"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [audio]

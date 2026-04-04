@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cla0rjuvhfp0t" path="res://levels/scripts/Level.gd" id="1_d1f8d"]
 [ext_resource type="PackedScene" uid="uid://b5lovwe4nc01c" path="res://levels/tiles/GrassTiles.tscn" id="2_3x5je"]
-[ext_resource type="AudioStream" uid="uid://dm5un1qqoo4le" path="res://levels/music/iso_swampland_theme.wav" id="2_8suul"]
+[ext_resource type="AudioStream" uid="uid://m3ocfwg6i3n6" path="res://levels/music/iso_theme.wav" id="2_8suul"]
 [ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/misc/stump.tscn" id="3_8suul"]
 [ext_resource type="PackedScene" uid="uid://idwttcxdpctq" path="res://levels/misc/PlayerSpawn.tscn" id="3_ka62j"]
 [ext_resource type="PackedScene" uid="uid://dw73j2t5sd1wp" path="res://enemies/gorblin.tscn" id="4_7x2vg"]

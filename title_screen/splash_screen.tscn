@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://wuaih6cj02x8"]
+
+[ext_resource type="Script" uid="uid://c81doc7x476qo" path="res://title_screen/scripts/splash_screen.gd" id="1_ieajm"]
+[ext_resource type="Texture2D" uid="uid://g1g0smva0nhe" path="res://sprite_sheets/bad_dimensions_01.png" id="1_qpe7k"]
+[ext_resource type="AudioStream" uid="uid://cgsi4763flnrh" path="res://levels/music/iso_intro.wav" id="2_t1sfn"]
+
+[sub_resource type="Animation" id="Animation_t1sfn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.29411766, 0.19607843, 0.29411766, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ieajm"]
+resource_name = "play"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9333333, 5.2, 5.9333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_t1sfn")
+}],
+"times": PackedFloat32Array(1)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5.266667, 5.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.29411766, 0.19607843, 0.29411766, 1), Color(0.29411766, 0.19607843, 0.29411766, 1), Color(0.29411766, 0.19607843, 0.29411766, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k21a7"]
+_data = {
+&"RESET": SubResource("Animation_t1sfn"),
+&"play": SubResource("Animation_ieajm")
+}
+
+[node name="SplashScreen" type="Control" unique_id=604448398]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ieajm")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1556747919]
+layout_mode = 0
+offset_right = 482.0
+offset_bottom = 278.0
+color = Color(0.29411766, 0.19607843, 0.29411766, 1)
+
+[node name="BadDimensions" type="Control" parent="." unique_id=478653050]
+layout_mode = 1
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BadDimensions" unique_id=516067323]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(257, 164)
+texture = ExtResource("1_qpe7k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BadDimensions" unique_id=977534196]
+libraries/ = SubResource("AnimationLibrary_k21a7")
+autoplay = &"play"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BadDimensions" unique_id=728989424]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=588165055]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
