@@ -37,6 +37,8 @@ func Exit() -> void:
 	pass
 
 func Process(_delta: float) -> EnemyState:
+	if PlayerManager.player.hp <= 0:
+		return next_state
 	var new_dir : Vector2 = enemy.global_position.direction_to(PlayerManager.player.global_position)
 	# Make sure enemy.player exists
 	if not enemy.player:

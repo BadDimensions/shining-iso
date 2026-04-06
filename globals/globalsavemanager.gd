@@ -48,6 +48,7 @@ func load_game() -> void:
 	
 	await LevelManager.level_load_started
 	
+	
 	PlayerManager.player_position = Vector2(current_save.player.pos_x, current_save.player.pos_y)
 	PlayerManager.hp = current_save.player.hp
 	

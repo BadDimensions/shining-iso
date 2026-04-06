@@ -80,13 +80,15 @@ func AnimDirection(dir: Vector2) -> String:
 func _take_damage(hurt_box : Hurtbox) -> void:
 	if invulnerable == true:
 		return
-	update_hp(-hurt_box.damage)
 	if hp > 0:
+		update_hp(-hurt_box.damage)
 		player_damaged.emit(hurt_box)
-	else:
-		pass # TODO: state_machine.ChangeState("Death")
+	pass
 
-
+func revive_player() -> void:
+	update_hp(99)
+	state_machine.ChangeState($StateMachine/StateIdle)
+	
 func update_hp(_delta: int) -> void:
 	hp = clampi(hp + _delta, 0, max_hp)
 	emit_signal("health_changed", hp, max_hp)

@@ -50,7 +50,6 @@ position = Vector2(-154, -11)
 npc_resource = SubResource("Resource_fu5sr")
 
 [node name="NpcBehaviorPatrol" parent="Actors/NPC1" unique_id=1011715386 instance=ExtResource("8_gnghv")]
-walk_speed = 30.0
 
 [node name="PatrolLocation" parent="Actors/NPC1/NpcBehaviorPatrol" unique_id=1058541892 instance=ExtResource("9_3nbvt")]
 

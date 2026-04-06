@@ -7,7 +7,6 @@ var music_bus : String = "Music"
 
 var music_fade_duration : float = 0.5
 
-
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	for i in music_audio_player_count:
@@ -18,10 +17,14 @@ func _ready() -> void:
 		player.volume_db = -40
 		
 func play_music( _audio : AudioStream ) -> void:
+	
+	if _audio == null:
+		stop_all_music()	
+		return
 	if _audio == music_players[current_music_player].stream:
 		return
-	elif _audio == null:
-		return
+	#elif _audio == null:
+		#return
 	current_music_player += 1
 	if current_music_player > 1:
 		current_music_player = 0
@@ -34,7 +37,20 @@ func play_music( _audio : AudioStream ) -> void:
 	if current_music_player == 1:
 		old_player = music_players[0]
 	fade_out_and_stop(old_player)
-	
+
+func stop_all_music() -> void:
+	for player in music_players:
+		if player.playing:
+			var tween = create_tween()
+			tween.tween_property(player, "volume_db", -40, music_fade_duration)
+			tween.finished.connect(func():
+				player.stop()
+				player.stream = null
+			)
+		else:
+			# If not playing, just clear stream
+			player.stream = null
+
 func play_and_fade_in(player : AudioStreamPlayer) -> void:
 	player.play(0)
 	var tween : Tween = create_tween()

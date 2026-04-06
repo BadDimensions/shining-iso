@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dsxyrbov8usru" path="res://player/scripts/state_attack.gd" id="8_sc5hc"]
 [ext_resource type="Script" uid="uid://b6lxmflmpo4x7" path="res://player/scripts/push_area.gd" id="8_vaxvc"]
 [ext_resource type="Script" uid="uid://d0blx860ltkp2" path="res://player/scripts/state_stun.gd" id="9_cnlbk"]
+[ext_resource type="Script" uid="uid://c3thhubt2gtcl" path="res://player/scripts/state_death.gd" id="10_4rk75"]
 [ext_resource type="Script" uid="uid://dwv7neum3vd4c" path="res://general/scripts/hitbox.gd" id="11_fsvws"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vaxvc"]
@@ -53,6 +54,22 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_2bq5p"]
+resource_name = "death"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.20000002, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [96, 97, 98, 99, 99]
 }
 
 [sub_resource type="Animation" id="Animation_om7u0"]
@@ -505,6 +522,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1esnm"]
 _data = {
 &"RESET": SubResource("Animation_njs00"),
+&"death": SubResource("Animation_2bq5p"),
 &"kurt_attack_diagonal_down": SubResource("Animation_om7u0"),
 &"kurt_attack_diagonal_up": SubResource("Animation_yjosg"),
 &"kurt_attack_down": SubResource("Animation_vaxvc"),
@@ -644,6 +662,9 @@ script = ExtResource("8_sc5hc")
 
 [node name="StateStun" type="Node" parent="StateMachine" unique_id=154099999]
 script = ExtResource("9_cnlbk")
+
+[node name="StateDeath" type="Node" parent="StateMachine" unique_id=712399332]
+script = ExtResource("10_4rk75")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=841006665 groups=["Actors", "player"]]
 script = ExtResource("5_vaxvc")
