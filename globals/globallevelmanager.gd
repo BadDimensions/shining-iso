@@ -19,30 +19,34 @@ func ChangeTileMapBounds(bounds: Array[Vector2]) -> void:
 		TileMapBoundsChanged.emit(bounds)
 		print("Bounds being set: ", bounds)
 
-		
+
 func load_new_level(
 		level_path: String,
 		_target_transition : String,
 		_position_offset : Vector2
 ) -> void:
 	print("loading level at path", level_path)
-	level_load_started.emit()
+	
+	# level_load_started.emit()
+	
 	get_tree().paused = true
 	target_transition = _target_transition
 	position_offset = _position_offset
-	
+
 	await SceneTransition.fade_out()
 	
+	level_load_started.emit()
+
 	await get_tree().process_frame
-	
+
 	get_tree().change_scene_to_file(level_path)#this line is giving me the error i feel like level path used to be somewhere and i deleted it
-	
-	await get_tree().scene_changed 
-	
+
+	await get_tree().scene_changed
+
 	await SceneTransition.fade_in()
-	
+
 	get_tree().paused = false
-	
+
 	await get_tree().process_frame
-	
+
 	level_loaded.emit()
