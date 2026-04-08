@@ -25,6 +25,7 @@ func Enter() -> void:
 	player.UpdateAnimation("kurt_hit")
 	player.make_invulnerable(invulnerable_duration)
 	player.effects_animation_player.play("damaged")
+	PlayerManager.shake_camera(hurt_box.damage)
 	pass
 
 func Exit() -> void:

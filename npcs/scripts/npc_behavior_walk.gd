@@ -40,6 +40,13 @@ func start() -> void:
 	# Walk
 	npc.state = "walk"
 	var _dir : Vector2 = DIR_8[randi_range(0,7)]
+	#this fixes a bug where the npc wigs out when it hits the end of the wander range
+	if abs(global_position.distance_to(original_position)) > wander_range * 32:
+		var dir_to_area : Vector2 = global_position.direction_to(original_position)
+		var best_directions : Array[float]
+		for d in DIR_8:
+			best_directions.append(d.dot(dir_to_area))
+		_dir = DIR_8[best_directions.find(best_directions.max())]  
 	npc.direction = _dir
 	npc.velocity = wander_speed * _dir
 	npc.UpdateFacing(npc.direction)
@@ -54,10 +61,10 @@ func start() -> void:
 func _process(delta : float) -> void:
 	if Engine.is_editor_hint():
 		return
-	if abs(global_position.distance_to(original_position)) > wander_range * 32:
-		npc.velocity *= -1
-		npc.direction *= -1
-		npc.UpdateFacing(npc.direction)
+	#if abs(global_position.distance_to(original_position)) > wander_range * 32:
+		#npc.velocity *= -1
+		#npc.direction *= -1
+		#npc.UpdateFacing(npc.direction)
 		
 		
 

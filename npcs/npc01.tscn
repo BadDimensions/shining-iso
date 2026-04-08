@@ -235,7 +235,6 @@ shape = SubResource("CapsuleShape2D_jaa82")
 libraries/ = SubResource("AnimationLibrary_ygef2")
 
 [node name="Interactions" type="Node2D" parent="." unique_id=108937935]
-visible = false
 
 [node name="Area2D" type="Area2D" parent="Interactions" unique_id=673860785]
 

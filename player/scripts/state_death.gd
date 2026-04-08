@@ -10,6 +10,7 @@ func Enter() -> void:
 	animation_player.play("death")
 	HealthGui.show_game_over_screen()
 	AudioManager.play_music(null)
+	player.input_enabled = false
 	pass
 
 func Exit() -> void:

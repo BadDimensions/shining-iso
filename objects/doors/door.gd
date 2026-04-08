@@ -9,6 +9,7 @@ func _ready() -> void:
 
 func open_door() -> void:
 	animation_player.play("opening")
+	PlayerManager.shake_camera(1)
 	pass
 	
 func close_door() -> void:

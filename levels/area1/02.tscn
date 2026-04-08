@@ -37,3 +37,7 @@ level = "uid://depy6hpa1hpfc"
 target_transition_area = "LevelTransition2"
 size = 1
 side = 1
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=944468426]
+color = Color(0.24, 0.24, 0.24, 1)
+blend_mode = 1

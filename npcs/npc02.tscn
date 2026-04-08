@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://cgerxjxt8my7b"]
+
+[ext_resource type="Script" uid="uid://c0bugsgikbqpv" path="res://npcs/scripts/npc.gd" id="1_88fjt"]
+[ext_resource type="Texture2D" uid="uid://bcggry04ow20x" path="res://sprite_sheets/npc_01.png" id="1_nxqb8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6hmnk"]
+radius = 8.0
+height = 34.0
+
+[sub_resource type="Animation" id="Animation_wqxq6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_decul"]
+resource_name = "idle"
+length = 0.8
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999, 0.39999998, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_xkphj"]
+resource_name = "point"
+length = 0.8
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19877483, 0.40329045, 0.601245, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 5, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wgil5"]
+_data = {
+&"RESET": SubResource("Animation_wqxq6"),
+&"idle": SubResource("Animation_decul"),
+&"point": SubResource("Animation_xkphj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfdlg"]
+size = Vector2(36.5, 26)
+
+[node name="NPC2" type="CharacterBody2D" unique_id=945599356]
+script = ExtResource("1_88fjt")
+use_directional_animation = null
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1636228584]
+texture_filter = 1
+position = Vector2(0, -28)
+texture = ExtResource("1_nxqb8")
+hframes = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1299736082]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_6hmnk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=587263879]
+libraries/ = SubResource("AnimationLibrary_wgil5")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=721620594]
+
+[node name="Area2D" type="Area2D" parent="Node2D" unique_id=41949220]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D" unique_id=885623686]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_qfdlg")
+debug_color = Color(1, 1, 0, 0.41960785)

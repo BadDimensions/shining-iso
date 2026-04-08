@@ -7,7 +7,7 @@ signal direction_changed(new_direction : Vector2)
 @export var npc_resource : NPCResource : set = _set_npc_resource
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+@export var use_directional_animation: bool = true
 var state : String = "idle"
 var cardinal_direction : Vector2 = Vector2.DOWN
 var last_direction : Vector2 = Vector2.DOWN
@@ -53,10 +53,16 @@ func _on_interaction_finished() -> void:
 	pass
 	
 func UpdateAnimation(state: String) -> void:
+	if not use_directional_animation:
+		animation_player.play(state)
+		return
 	var anim_dir := last_direction
 	var anim_name := state + "_" + AnimDirection(anim_dir)
-	animation_player.play(state + "_" + AnimDirection(direction))
-	
+	if animation_player.has_animation(anim_name):
+		animation_player.play(anim_name)
+	#animation_player.play(state + "_" + AnimDirection(direction))
+	else:
+		animation_player.play(state)
 func AnimDirection(dir: Vector2) -> String:
 	if dir.length() < 0.1:
 		dir = last_direction

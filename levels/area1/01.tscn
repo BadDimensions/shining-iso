@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://m3ocfwg6i3n6" path="res://levels/music/iso_theme.wav" id="2_yb0j6"]
 [ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/misc/stump.tscn" id="3_j7fo1"]
 [ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/misc/LevelTransition.tscn" id="3_lvlyw"]
-[ext_resource type="PackedScene" uid="uid://ddis3x6j8fhy" path="res://objects/bonfire/bonfire.tscn" id="3_oryfo"]
+[ext_resource type="PackedScene" uid="uid://ddis3x6j8fhy" path="res://objects/lightsource/bonfire.tscn" id="3_oryfo"]
 [ext_resource type="PackedScene" uid="uid://dirqmwd7jksf4" path="res://items/item_pickups/item_pickup.tscn" id="4_hrjbf"]
 [ext_resource type="PackedScene" uid="uid://cfxgsm0igwo6r" path="res://npcs/npc01.tscn" id="5_laie6"]
 [ext_resource type="Resource" uid="uid://denkv85305cti" path="res://items/potion.tres" id="5_vtwgx"]
@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://iuccq6tjucjq" path="res://objects/dialog/dialog_interaction.tscn" id="9_rccd6"]
 [ext_resource type="Script" uid="uid://bnnb0kjkuut80" path="res://objects/dialog/scripts/dialog_text.gd" id="10_x07sw"]
 [ext_resource type="Resource" uid="uid://cec6yx4cboupj" path="res://npcs/00npc/kurt01.tres" id="11_yb0j6"]
+[ext_resource type="PackedScene" uid="uid://cgerxjxt8my7b" path="res://npcs/npc02.tscn" id="14_amk1f"]
+[ext_resource type="Resource" uid="uid://7sygl4evcy01" path="res://npcs/00npc/npc02.tres" id="15_dtmsy"]
+[ext_resource type="PackedScene" uid="uid://dnqowk21j8ihh" path="res://npcs/npc_behavior_idle.tscn" id="15_i3xvh"]
 
 [node name="01" type="Node2D" unique_id=2033094809]
 script = ExtResource("1_y63o5")
@@ -26,14 +29,11 @@ music = ExtResource("2_yb0j6")
 [node name="Actors" type="Node2D" parent="." unique_id=2124882686 groups=["Actors"]]
 y_sort_enabled = true
 
-[node name="Node2D" parent="Actors" unique_id=1527383722 instance=ExtResource("3_oryfo")]
-position = Vector2(175, 61)
-
 [node name="Stump" parent="Actors" unique_id=627746519 instance=ExtResource("3_j7fo1")]
 position = Vector2(232, -16)
 
 [node name="Sage" parent="Actors" unique_id=297921911 instance=ExtResource("5_laie6")]
-position = Vector2(-40, 78)
+position = Vector2(-40, 69.92627)
 npc_resource = ExtResource("7_pq0gk")
 
 [node name="NpcBehaviorWalk" parent="Actors/Sage" unique_id=449623266 instance=ExtResource("7_m0bjn")]
@@ -65,8 +65,32 @@ metadata/_custom_type_script = "uid://bnnb0kjkuut80"
 position = Vector2(40, -96)
 item_data = ExtResource("5_vtwgx")
 
+[node name="NPC2" parent="Actors" unique_id=945599356 instance=ExtResource("14_amk1f")]
+position = Vector2(225, 66)
+npc_resource = ExtResource("15_dtmsy")
+use_directional_animation = true
+
+[node name="NpcBehaviorIdle" parent="Actors/NPC2" unique_id=1988017846 instance=ExtResource("15_i3xvh")]
+
+[node name="DialogInteraction" parent="Actors/NPC2" unique_id=909483590 instance=ExtResource("9_rccd6")]
+
+[node name="DialogText" type="Node" parent="Actors/NPC2/DialogInteraction" unique_id=172524124]
+script = ExtResource("10_x07sw")
+text = "[wave] ...cave...defeat... the..knight..."
+npc_info = ExtResource("15_dtmsy")
+metadata/_custom_type_script = "uid://bnnb0kjkuut80"
+
+[node name="DialogText2" type="Node" parent="Actors/NPC2/DialogInteraction" unique_id=960806901]
+script = ExtResource("10_x07sw")
+text = "what are you babbling about?"
+npc_info = ExtResource("11_yb0j6")
+metadata/_custom_type_script = "uid://bnnb0kjkuut80"
+
 [node name="gorblin" parent="Actors" unique_id=720483896 instance=ExtResource("6_vtwgx")]
 position = Vector2(-100, -179)
+
+[node name="Node2D" parent="Actors" unique_id=1527383722 instance=ExtResource("3_oryfo")]
+position = Vector2(188, 71)
 
 [node name="PlayerSpawn" parent="." unique_id=2136238899 instance=ExtResource("2_7m3nb")]
 position = Vector2(24, 184)
@@ -76,3 +100,8 @@ position = Vector2(-352, -160)
 level = "uid://daq5bca5ale7j"
 size = 1
 side = 1
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1167334252]
+color = Color(0.24, 0.24, 0.24, 1)
+energy = 0.8
+blend_mode = 1

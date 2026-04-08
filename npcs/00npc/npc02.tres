@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="NPCResource" format=3 uid="uid://7sygl4evcy01"]
+
+[ext_resource type="Script" uid="uid://m38c8o3eh4ku" path="res://npcs/scripts/npc_resource.gd" id="1_3ghni"]
+[ext_resource type="Texture2D" uid="uid://bxngx81veu3vr" path="res://sprite_sheets/npc_potrait.png" id="1_iifs4"]
+[ext_resource type="Texture2D" uid="uid://bcggry04ow20x" path="res://sprite_sheets/npc_01.png" id="3_geos2"]
+
+[resource]
+script = ExtResource("1_3ghni")
+sprite = ExtResource("3_geos2")
+portrait = ExtResource("1_iifs4")
+metadata/_custom_type_script = "uid://m38c8o3eh4ku"

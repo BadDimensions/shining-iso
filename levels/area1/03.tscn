@@ -132,4 +132,8 @@ level = "uid://daq5bca5ale7j"
 target_transition_area = "LevelTransition2"
 size = 1
 
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1382654955]
+color = Color(0.23529412, 0.23529412, 0.23529412, 1)
+blend_mode = 1
+
 [connection signal="enemies_defeated" from="Actors/EnemyCounter" to="Actors/ItemDropper" method="drop_item"]

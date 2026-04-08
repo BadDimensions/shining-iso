@@ -3,6 +3,8 @@ class_name Player extends CharacterBody2D
 signal player_damaged(hurt_box : Hurtbox)
 signal health_changed(current_hp: int, max_hp: int)
 
+
+var input_enabled: bool = true
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO:
 	set(new_direction):
@@ -33,6 +35,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if not input_enabled:
+		direction = Vector2.ZERO
+		return
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
 
 func _physics_process(delta : float) -> void:
@@ -101,7 +106,7 @@ func make_invulnerable(_duration : float = 1.0) -> void:
 	invulnerable = false
 	hit_box.monitoring = true
 	pass
-
+	
 func _exit_tree() -> void:
 	PlayerManager.hp = hp
 	PlayerManager.max_hp = max_hp

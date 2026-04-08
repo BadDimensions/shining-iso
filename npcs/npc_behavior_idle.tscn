@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dnqowk21j8ihh"]
+
+[ext_resource type="Script" uid="uid://coed2x4sd5dg" path="res://npcs/scripts/npc_behavior_idle.gd" id="1_lv7vy"]
+
+[node name="NpcBehaviorIdle" type="Node2D" unique_id=1988017846]
+script = ExtResource("1_lv7vy")
