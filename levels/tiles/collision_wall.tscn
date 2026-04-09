@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c55soj1ms22s7"]
+
+[ext_resource type="PackedScene" uid="uid://dfpgaoe34ln26" path="res://levels/tiles/invisible_wall.tscn" id="1_i1aeg"]
+[ext_resource type="Script" uid="uid://v32i1mlce85u" path="res://levels/scripts/leveltilemap.gd" id="1_xa7b6"]
+[ext_resource type="PackedScene" uid="uid://bm620vwtp80ri" path="res://levels/tiles/invisible_wall_2.tscn" id="2_4jbyx"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_i1aeg"]
+scenes/1/scene = ExtResource("1_i1aeg")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_x6me0"]
+scenes/1/scene = ExtResource("2_4jbyx")
+
+[sub_resource type="TileSet" id="TileSet_4jbyx"]
+tile_shape = 1
+tile_layout = 5
+tile_offset_axis = 1
+tile_size = Vector2i(32, 16)
+sources/0 = SubResource("TileSetScenesCollectionSource_i1aeg")
+sources/1 = SubResource("TileSetScenesCollectionSource_x6me0")
+
+[node name="CollisionWall" type="TileMapLayer" unique_id=1322114594]
+tile_set = SubResource("TileSet_4jbyx")
+script = ExtResource("1_xa7b6")
+metadata/_custom_type_script = "uid://v32i1mlce85u"

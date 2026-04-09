@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bm620vwtp80ri"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ws4k"]
+size = Vector2(16, 16)
+
+[node name="InvisibleWall2" type="StaticBody2D" unique_id=1720231224]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=287725966]
+rotation = -1.134464
+shape = SubResource("RectangleShape2D_7ws4k")

@@ -161,7 +161,7 @@ hframes = 3
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=761833569]
-polygon = PackedVector2Array(-28, -10, 4, 7, 26, -5, -5, -20)
+polygon = PackedVector2Array(-25, -12, 7, 4, 26, -5, -5, -20)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=10753945]
 libraries/ = SubResource("AnimationLibrary_x31r6")
