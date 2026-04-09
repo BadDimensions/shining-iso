@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://6xbmljr0urcg" path="res://levels/tiles/right_cave_wall.tscn" id="4_q3vrd"]
 [ext_resource type="PackedScene" uid="uid://b17anoh1sw11n" path="res://levels/tiles/left_cave_wall.tscn" id="5_yp52r"]
 [ext_resource type="PackedScene" uid="uid://xp083okxj3qk" path="res://objects/lightsource/torch.tscn" id="6_yp52r"]
+[ext_resource type="PackedScene" uid="uid://bcauf5e8jhqrp" path="res://enemies/boss/enemy_projectile01.tscn" id="7_nxidc"]
 
 [node name="05" type="Node2D" unique_id=279013002]
 script = ExtResource("1_243od")
@@ -72,3 +73,6 @@ side = 3
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=153503988]
 color = Color(0.29411766, 0.29411766, 0.3529412, 1)
 blend_mode = 1
+
+[node name="EnemyProjectile01" parent="." unique_id=857189575 instance=ExtResource("7_nxidc")]
+position = Vector2(375, -56)

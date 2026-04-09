@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bcauf5e8jhqrp"]
+
+[ext_resource type="Script" uid="uid://ca6dqf3gnjjg" path="res://enemies/boss/scripts/enemy_projectile01.gd" id="1_f54ji"]
+[ext_resource type="Material" uid="uid://dpsxmrw12stnv" path="res://shaders_and_materials/light_materiall.tres" id="1_n5c8r"]
+[ext_resource type="Script" uid="uid://bkv5sfdd4ugal" path="res://general/scripts/hurtbox.gd" id="1_p5ds5"]
+
+[sub_resource type="Gradient" id="Gradient_n5c8r"]
+offsets = PackedFloat32Array(0.3539326, 0.53932583, 0.7780899, 0.8426966, 0.94101125, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0.56078434, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f54ji"]
+gradient = SubResource("Gradient_n5c8r")
+width = 24
+height = 24
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8nnat"]
+radius = 11.401754
+
+[node name="EnemyProjectile01" type="Node2D" unique_id=857189575]
+script = ExtResource("1_f54ji")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1458668986]
+material = ExtResource("1_n5c8r")
+texture = SubResource("GradientTexture2D_f54ji")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=428146541]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_p5ds5")
+metadata/_custom_type_script = "uid://bkv5sfdd4ugal"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=696436151]
+shape = SubResource("CircleShape2D_8nnat")
