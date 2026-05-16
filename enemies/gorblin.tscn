@@ -717,6 +717,3 @@ shape = SubResource("CircleShape2D_irknb")
 debug_color = Color(0.02745098, 0.9490196, 0.007843138, 0.41960785)
 
 [node name="VisionArea" parent="." unique_id=629815518 instance=ExtResource("15_knksa")]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea" unique_id=1376788367]
-polygon = PackedVector2Array(-16, 0, 16, 0, 80, 80, -80, 80)
