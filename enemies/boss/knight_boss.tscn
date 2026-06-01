@@ -64,10 +64,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10410872, 0.2027139),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.10410872, 0.2027139, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [48, 49, 50]
+"values": [48, 49, 50, 30]
 }
 
 [sub_resource type="Animation" id="Animation_m33sj"]
@@ -96,10 +96,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10181558, 0.19996214),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.10181558, 0.19996214, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [45, 46, 47]
+"values": [45, 46, 47, 28]
 }
 
 [sub_resource type="Animation" id="Animation_ya764"]
@@ -112,10 +112,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.09998107, 0.1962931),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.09998107, 0.1962931, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [51, 52, 53]
+"values": [51, 52, 53, 34]
 }
 
 [sub_resource type="Animation" id="Animation_4lhns"]

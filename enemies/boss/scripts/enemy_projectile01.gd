@@ -13,7 +13,11 @@ func _ready() -> void:
 	direction = global_position.direction_to(PlayerManager.player.global_position)
 	flicker()
 	pass 
+func set_direction(dir: Vector2):
+	direction = dir.normalized()
 
+func _physics_process(delta):
+	position += direction * speed * delta
 func _process(delta: float) -> void:
 	position += direction * speed * delta
 	pass

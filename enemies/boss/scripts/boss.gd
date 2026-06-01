@@ -14,7 +14,7 @@ signal enemy_damaged
 signal enemy_destroyed
 
 const ENEMY_PROJECTILE : PackedScene = preload("res://enemies/boss/enemy_projectile01.tscn")
-const move_speed = 120
+const move_speed = 20
 const DIR_8 = [
 	Vector2(1, 0),    # right
 	Vector2(1, 1),    # down-right
@@ -26,12 +26,9 @@ const DIR_8 = [
 	Vector2(1, -1)    # up-right
 ]
 
-@export var acceleration = 200
-@export var friction = 10000
 @export var is_invincible = false
 @export var max_hp : int = 10
 var hp : int = 10
-@export var attack_range: float = 100.0
 @export var chase_speed : float = 20.0
 @export var state_aggro_duration : float = 0.5
 var _can_see_player : bool = false
@@ -39,12 +36,10 @@ var _can_see_player : bool = false
 @export var attack_cooldown: float = 1.0
 var is_busy = false
 var orb_ready = true
-var can_attack = true
 var player : Player
-var invulnerable : bool = false
 var teleport_positions: Array[Vector2] = []
 @export var melee_cooldown := 1.0
-@export var orb_cooldown := 4.0
+@export var orb_cooldown := 20.0
 @export var teleport_invulnerability := 0.5
 var cardinal_direction : Vector2 = Vector2.DOWN
 var last_direction: Vector2 = Vector2.DOWN
@@ -57,26 +52,33 @@ var direction : Vector2 = Vector2.ZERO
 
 
 func _ready():
-	player = get_tree().get_first_node_in_group("player")
-	change_state(STATE.WALK)
+	#player = get_tree().get_first_node_in_group("player")
+	#change_state(STATE.IDLE)
+	UpdateAnimation("idle")
 	hitbox.Damaged.connect(take_damage)
 	
 	
 func _physics_process(delta):
-	if state == STATE.WALK and player:
-		var dist = global_position.distance_to(player.global_position)
-		if dist <= melee_range and can_attack:
-			change_state(STATE.ATTACK)
-	
-	match state:
+	if player == null:
+		player = get_tree().get_first_node_in_group("player")
 
+	if player == null:
+		return
+
+	if state == STATE.WALK:
+		var dist = global_position.distance_to(player.global_position)
+		if dist <= melee_range:
+			change_state(STATE.ATTACK)
+		if orb_ready and randf() < 0.01:
+			change_state(STATE.CAST)
+			start_orb_cooldown()
+	match state:
 		STATE.IDLE:
 			velocity = Vector2.ZERO
-			
+
 		STATE.WALK:
-			_can_see_player = true
 			chase()
-			
+
 		STATE.ATTACK:
 			velocity = Vector2.ZERO
 
@@ -85,23 +87,19 @@ func _physics_process(delta):
 
 		STATE.TELEPORT:
 			velocity = Vector2.ZERO
-	
-	
+
 	move_and_slide()
 	
+
+
 func change_state(new_state):
 
 	if state == new_state:
 		return
 
-	if state in [STATE.ATTACK, STATE.CAST, STATE.TELEPORT]:
-		if new_state != STATE.WALK and new_state != STATE.DESTROY:
-			return
-
 	state = new_state
 
 	match state:
-
 		STATE.IDLE:
 			UpdateAnimation("idle")
 
@@ -109,35 +107,47 @@ func change_state(new_state):
 			UpdateAnimation("walk")
 
 		STATE.ATTACK:
-			melee_attack()
-
-		STATE.TELEPORT:
-			teleport()
+			start_melee_attack()
 
 		STATE.CAST:
-			orb_attack()
+			start_orb_attack()
+
+		STATE.TELEPORT:
+			start_teleport()
 
 		STATE.DESTROY:
-			velocity = Vector2.ZERO
-			animation_player.play("destroy")
-			await animation_player.animation_finished
-			queue_free()
+			destroy()
 		
 		
-
+func start_melee_attack():
+	velocity = Vector2.ZERO
+	melee_attack()
+	
+func start_orb_attack():
+	velocity = Vector2.ZERO
+	orb_attack()
+	
+func start_teleport():
+	velocity = Vector2.ZERO
+	teleport()
+	
+func destroy():
+	velocity = Vector2.ZERO
+	animation_player.play("destroy")
+	await animation_player.animation_finished
+	queue_free()
+	
+		
 func chase():
 	if player == null:
 		return
 
-	direction = (player.global_position - global_position).normalized()
-
+	direction = global_position.direction_to(player.global_position)
 	velocity = direction * move_speed
 
 	UpdateFacing(direction)
-
+	
 func melee_attack():
-
-	can_attack = false
 
 	velocity = Vector2.ZERO
 
@@ -150,29 +160,32 @@ func melee_attack():
 
 	await get_tree().create_timer(attack_cooldown).timeout
 
-	can_attack = true
-
 	change_state(STATE.WALK)
 			
 func teleport():
-	if is_busy:
+	if state != STATE.TELEPORT:
 		return
-	velocity = Vector2.ZERO	
-	is_busy = true
+
+	velocity = Vector2.ZERO
+
 	animation_player.play("disappear")
-
 	await animation_player.animation_finished
-	
-	if teleport_positions.is_empty():
-		is_busy = false
+
+	if state != STATE.TELEPORT:
 		return
-	global_position = teleport_positions.pick_random()
-	
-	animation_player.play("reappear")
 
+	if teleport_positions.is_empty():
+		change_state(STATE.WALK)
+		return
+
+	global_position = teleport_positions.pick_random()
+
+	animation_player.play("reappear")
 	await animation_player.animation_finished
-	
-	is_busy = false
+
+	if state != STATE.TELEPORT:
+		return
+
 	change_state(STATE.WALK)
 
 func set_teleport_positions(points: Array[Vector2]) -> void:
@@ -192,13 +205,13 @@ func orb_attack():
 	var orb = ENEMY_PROJECTILE.instantiate()
 	get_parent().add_child(orb)
 	orb.global_position = global_position
-
-	await get_tree().create_timer(orb_cooldown).timeout
-	orb_ready = true
-
+	orb.set_direction(global_position.direction_to(player.global_position))
 	change_state(STATE.WALK)
 
-
+func start_orb_cooldown():
+	orb_ready = false
+	await get_tree().create_timer(orb_cooldown).timeout
+	orb_ready = true
 	
 func take_damage(hurt_box : Hurtbox) -> void:
 
@@ -210,8 +223,8 @@ func take_damage(hurt_box : Hurtbox) -> void:
 	if hp <= 0:
 		change_state(STATE.DESTROY)
 		return
-	if is_busy:
-		return
+	#if is_busy:
+		#return
 		
 	interrupt_actions()
 
@@ -224,9 +237,10 @@ func interrupt_actions():
 	
 func UpdateFacing(new_direction: Vector2) -> void:
 	if new_direction.length() < 0.1:
-		return
-
-	last_direction = new_direction
+		last_direction = new_direction
+		#return
+	direction = new_direction
+	#last_direction = new_direction
 
 	# Flip only for side animation
 	if new_direction.x != 0:
@@ -245,14 +259,28 @@ func UpdateFacing(new_direction: Vector2) -> void:
 	if new_cardinal != cardinal_direction:
 		cardinal_direction = new_cardinal
 		direction_changed.emit(cardinal_direction)
-		
+
+	vision_area.rotation_degrees = cardinal_direction_to_degrees(cardinal_direction)
+
+	UpdateAnimation("walk")
+func cardinal_direction_to_degrees(dir: Vector2) -> float:
+	if dir == Vector2.DOWN:
+		return 0
+	elif dir == Vector2.UP:
+		return 180
+	elif dir == Vector2.LEFT:
+		return 90
+	elif dir == Vector2.RIGHT:
+		return -90
+	return 0
+			
 func UpdateAnimation(state : String) -> void:
 	animation_player.play( state + "_" + AnimDirection(direction))
 
 func AnimDirection(dir: Vector2) -> String:
 	if dir.length() < 0.1:
-		dir = last_direction
-
+		#dir = last_direction
+		return "down"
 	if dir.y < 0 and abs(dir.x) < 0.5:
 		return "up"
 	elif dir.y > 0 and abs(dir.x) < 0.5:
