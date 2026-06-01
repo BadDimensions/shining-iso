@@ -9,7 +9,7 @@ var music_fade_duration : float = 0.5
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	for i in music_audio_player_count:
+	for i in range(music_audio_player_count):
 		var player = AudioStreamPlayer.new()
 		add_child(player)
 		player.bus = music_bus
@@ -37,7 +37,20 @@ func play_music( _audio : AudioStream ) -> void:
 	if current_music_player == 1:
 		old_player = music_players[0]
 	fade_out_and_stop(old_player)
+func play_boss_music(track: AudioStream):
+	play_music(track)
 
+func stop_music() -> void:
+	for player in music_players:
+		if player.playing:
+			var tween = create_tween()
+			tween.tween_property(player, "volume_db", -40, music_fade_duration)
+			tween.finished.connect(func():
+				player.stop()
+			)
+
+	current_music_player = 0
+	
 func stop_all_music() -> void:
 	for player in music_players:
 		if player.playing:

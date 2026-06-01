@@ -27,13 +27,14 @@ const DIR_8 = [
 ]
 
 @export var is_invincible = false
-@export var max_hp : int = 10
-var hp : int = 10
+@export var hp : int = 10
 @export var chase_speed : float = 20.0
 @export var state_aggro_duration : float = 0.5
 var _can_see_player : bool = false
 @export var melee_range = 40.0
 @export var attack_cooldown: float = 1.0
+var is_teleporting := false
+var is_dying := false
 var is_busy = false
 var orb_ready = true
 var player : Player
@@ -93,7 +94,10 @@ func _physics_process(delta):
 
 
 func change_state(new_state):
-
+	if is_dying:
+		return
+	if is_teleporting:
+		return
 	if state == new_state:
 		return
 
@@ -131,10 +135,24 @@ func start_teleport():
 	velocity = Vector2.ZERO
 	teleport()
 	
+#func destroy():
+	#enemy_destroyed.emit()
+	#is_invincible = true
+	#velocity = Vector2.ZERO
 func destroy():
+	if is_dying:
+		return
+
+	is_dying = true
+	state = STATE.DESTROY
+	is_invincible = true
 	velocity = Vector2.ZERO
+	enemy_destroyed.emit()
 	animation_player.play("destroy")
+	AudioManager.stop_music()
+	
 	await animation_player.animation_finished
+
 	queue_free()
 	
 		
@@ -163,19 +181,20 @@ func melee_attack():
 	change_state(STATE.WALK)
 			
 func teleport():
-	if state != STATE.TELEPORT:
-		return
+	is_teleporting = true
+	is_busy = true
+	is_invincible = true
 
 	velocity = Vector2.ZERO
 
 	animation_player.play("disappear")
 	await animation_player.animation_finished
 
-	if state != STATE.TELEPORT:
-		return
-
+	# safety check (important)
 	if teleport_positions.is_empty():
-		change_state(STATE.WALK)
+		is_teleporting = false
+		is_busy = false
+		is_invincible = false
 		return
 
 	global_position = teleport_positions.pick_random()
@@ -183,11 +202,12 @@ func teleport():
 	animation_player.play("reappear")
 	await animation_player.animation_finished
 
-	if state != STATE.TELEPORT:
-		return
+	is_busy = false
+	is_invincible = false
+	is_teleporting = false
 
 	change_state(STATE.WALK)
-
+	
 func set_teleport_positions(points: Array[Vector2]) -> void:
 	teleport_positions = points			
 
@@ -214,10 +234,11 @@ func start_orb_cooldown():
 	orb_ready = true
 	
 func take_damage(hurt_box : Hurtbox) -> void:
-
+	enemy_damaged.emit()
 	if is_invincible:
 		return
-
+	if is_dying:
+		return
 	hp -= hurt_box.damage
 	PlayerManager.shake_camera(hurt_box.damage)
 	if hp <= 0:

@@ -8,3 +8,6 @@ class_name Level extends Node2D
 func _ready() -> void:
 	AudioManager.play_music(music)
 	pass
+
+func resume_music():
+	AudioManager.play_music(music)

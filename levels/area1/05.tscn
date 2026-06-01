@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://xp083okxj3qk" path="res://objects/lightsource/torch.tscn" id="6_yp52r"]
 [ext_resource type="PackedScene" uid="uid://btoeg8bsry40a" path="res://enemies/boss/knight_boss.tscn" id="7_2pu74"]
 [ext_resource type="Script" uid="uid://dgp8wpwdxajev" path="res://levels/scripts/trigger.gd" id="11_i43lb"]
+[ext_resource type="AudioStream" uid="uid://0tkpurmnhhhu" path="res://levels/music/iso_boss_theme.wav" id="12_r81sf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r81sf"]
 size = Vector2(68.15931, 20)
@@ -104,6 +105,7 @@ blend_mode = 1
 position = Vector2(334, -22)
 collision_layer = 0
 script = ExtResource("11_i43lb")
+boss_music = ExtResource("12_r81sf")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossTrigger" unique_id=1584399305]

@@ -399,6 +399,7 @@ radius = 9.0
 [node name="Knight" type="CharacterBody2D" unique_id=1859669160]
 collision_layer = 2
 script = ExtResource("1_2nxpg")
+hp = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=711085236]
 texture_filter = 1

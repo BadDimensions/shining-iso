@@ -11,8 +11,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	_setup_boss()
 	boss_trigger.triggered.connect(_on_boss_started)
-	
-	
+	boss.enemy_destroyed.connect(_on_boss_defeated)
 
 func _setup_boss() -> void:
 	if boss == null:
@@ -31,5 +30,7 @@ func _on_boss_started():
 	boss.change_state(boss.STATE.WALK)
 	
 func _on_boss_defeated():
+	print("boss_defeated")
 	collision_wall.enabled = false
-	
+	await get_tree().create_timer(3.0).timeout
+	resume_music()

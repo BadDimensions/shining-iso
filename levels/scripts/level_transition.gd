@@ -42,6 +42,7 @@ func _player_entered(_p: Node2D) -> void:
 
 #places the player at the transition in the new level
 func _place_player() -> void:
+	print("PLACE PLAYER CALLED:", name)
 	var player = get_tree().get_first_node_in_group("player")
 	if not is_instance_valid(player):
 		return
