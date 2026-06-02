@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b3c7vi8q8ltd3" path="res://player/sprites/kurt_health.png" id="1_ohdfl"]
 [ext_resource type="Script" uid="uid://d4bb2gy8wev7b" path="res://GUI/playerHUD/health.gd" id="1_x7nqt"]
+[ext_resource type="Texture2D" uid="uid://du4ys3u3oerra" path="res://sprite_sheets/boss_health.png" id="3_dlf0g"]
 
 [sub_resource type="Animation" id="Animation_dlf0g"]
 length = 0.001
@@ -201,6 +202,14 @@ _data = {
 &"show_game_over": SubResource("Animation_ftgwq")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_18vws"]
+atlas = ExtResource("3_dlf0g")
+region = Rect2(22, 32, 4, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlf0g"]
+atlas = ExtResource("3_dlf0g")
+region = Rect2(38, 32, 4, 7)
+
 [node name="HealthGUI" type="CanvasLayer" unique_id=526147568]
 layer = 2
 script = ExtResource("1_x7nqt")
@@ -268,3 +277,64 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
+
+[node name="BossUI" type="Control" parent="." unique_id=1255920135]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HealthBar" type="TextureProgressBar" parent="BossUI" unique_id=770040336]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -25.0
+offset_right = 24.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+nine_patch_stretch = true
+texture_under = SubResource("AtlasTexture_18vws")
+texture_progress = SubResource("AtlasTexture_dlf0g")
+
+[node name="HeathUI" type="NinePatchRect" parent="BossUI" unique_id=1365485859]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -29.0
+offset_right = 29.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_dlf0g")
+region_rect = Rect2(2, 15, 59, 11)
+patch_margin_left = 24
+patch_margin_right = 24
+axis_stretch_horizontal = 1
+
+[node name="BossName" type="Label" parent="BossUI" unique_id=1610571858]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.0
+offset_right = 26.0
+offset_bottom = 13.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 8
+text = "BOSS NAME"
+horizontal_alignment = 1

@@ -27,12 +27,14 @@ const DIR_8 = [
 ]
 
 @export var is_invincible = false
-@export var hp : int = 10
+@export var max_hp : int = 10
+var hp : int = 10
 @export var chase_speed : float = 20.0
 @export var state_aggro_duration : float = 0.5
 var _can_see_player : bool = false
 @export var melee_range = 40.0
 @export var attack_cooldown: float = 1.0
+var can_attack : bool = true
 var is_teleporting := false
 var is_dying := false
 var is_busy = false
@@ -50,6 +52,7 @@ var direction : Vector2 = Vector2.ZERO
 @onready var hitbox: Hitbox = $Hitbox
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var vision_area: VisionArea = $VisionArea
+@onready var attack_hurtbox: Hurtbox = $Sprite2D/AttackHurtbox
 
 
 func _ready():
@@ -57,7 +60,9 @@ func _ready():
 	#change_state(STATE.IDLE)
 	UpdateAnimation("idle")
 	hitbox.Damaged.connect(take_damage)
-	
+
+func _process(delta:float) -> void:
+	pass
 	
 func _physics_process(delta):
 	if player == null:
@@ -68,7 +73,8 @@ func _physics_process(delta):
 
 	if state == STATE.WALK:
 		var dist = global_position.distance_to(player.global_position)
-		if dist <= melee_range:
+		if dist <= melee_range and can_attack:
+			can_attack = false
 			change_state(STATE.ATTACK)
 		if orb_ready and randf() < 0.01:
 			change_state(STATE.CAST)
@@ -135,10 +141,6 @@ func start_teleport():
 	velocity = Vector2.ZERO
 	teleport()
 	
-#func destroy():
-	#enemy_destroyed.emit()
-	#is_invincible = true
-	#velocity = Vector2.ZERO
 func destroy():
 	if is_dying:
 		return
@@ -166,19 +168,17 @@ func chase():
 	UpdateFacing(direction)
 	
 func melee_attack():
-
 	velocity = Vector2.ZERO
-
 	UpdateAnimation("attack")
-
 	await animation_player.animation_finished
-
 	if state != STATE.ATTACK:
 		return
-
-	await get_tree().create_timer(attack_cooldown).timeout
-
 	change_state(STATE.WALK)
+	_start_attack_cooldown()
+	
+func _start_attack_cooldown():
+	await get_tree().create_timer(attack_cooldown).timeout
+	can_attack = true 
 			
 func teleport():
 	is_teleporting = true
@@ -186,7 +186,7 @@ func teleport():
 	is_invincible = true
 
 	velocity = Vector2.ZERO
-
+	animation_player.play("RESET")
 	animation_player.play("disappear")
 	await animation_player.animation_finished
 
@@ -240,22 +240,25 @@ func take_damage(hurt_box : Hurtbox) -> void:
 	if is_dying:
 		return
 	hp -= hurt_box.damage
+	HealthGui.update_boss_health(hp,max_hp)
 	PlayerManager.shake_camera(hurt_box.damage)
 	if hp <= 0:
 		change_state(STATE.DESTROY)
 		return
-	#if is_busy:
-		#return
-		
-	interrupt_actions()
+	
+	deferred_damage.call_deferred()	
+	#interrupt_actions()
 
+	#change_state(STATE.TELEPORT)
+func deferred_damage():
+	interrupt_actions()
 	change_state(STATE.TELEPORT)
 
 func interrupt_actions():
-
+	
 	animation_player.stop()
 	velocity = Vector2.ZERO
-	
+		
 func UpdateFacing(new_direction: Vector2) -> void:
 	if new_direction.length() < 0.1:
 		last_direction = new_direction

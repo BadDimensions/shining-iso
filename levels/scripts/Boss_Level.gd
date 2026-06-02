@@ -28,9 +28,11 @@ func _on_boss_started():
 	#print("Boss started")
 	collision_wall.enabled = true  
 	boss.change_state(boss.STATE.WALK)
+	HealthGui.show_boss_health("Ruin Knight")
 	
 func _on_boss_defeated():
 	print("boss_defeated")
 	collision_wall.enabled = false
 	await get_tree().create_timer(3.0).timeout
 	resume_music()
+	HealthGui.hide_boss_health()

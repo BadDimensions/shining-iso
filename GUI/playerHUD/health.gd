@@ -7,6 +7,9 @@ extends CanvasLayer
 @onready var continue_button: Button = $GameOver/VBoxContainer/continue_button
 @onready var title_button: Button = $GameOver/VBoxContainer/title_button
 @onready var animation_player: AnimationPlayer = $GameOver/AnimationPlayer
+@onready var boss_ui: Control = $BossUI
+@onready var boss_health_bar: TextureProgressBar = $BossUI/HealthBar
+@onready var boss_label: Label = $BossUI/BossName
 
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -20,6 +23,7 @@ func _ready() -> void:
 	continue_button.pressed.connect(load_game)
 	title_button.pressed.connect(title_screen)
 	LevelManager.level_load_started.connect(hide_game_over_screen)
+	hide_boss_health()
 	
 func _on_level_loaded () -> void:
 	# now player should be available
@@ -39,7 +43,7 @@ func _on_health_changed(current_hp: int, max_hp: int) -> void:
 func show_game_over_screen() -> void:
 	game_over.visible = true
 	game_over.mouse_filter = Control.MOUSE_FILTER_STOP
-	
+	hide_boss_health()
 	var can_continue : bool = Globalsavemanager.get_save_file() != null
 	continue_button.visible = can_continue
 	
@@ -71,6 +75,20 @@ func fade_to_black() -> bool:
 	await animation_player.animation_finished
 	PlayerManager.player.revive_player()	
 	return true	
+
+func show_boss_health(boss_name: String) -> void:
+	boss_ui.visible = true
+	boss_label.text = boss_name
+	update_boss_health(1,1)
+	pass
+	
+func hide_boss_health() -> void:
+	boss_ui.visible = false
+	pass
+	
+func update_boss_health(hp : int, max_hp : int) -> void:
+	boss_health_bar.value = clampf(float(hp)/ float(max_hp) * 100,0,100)
+	pass
 	
 #func play_audio(_a : AudioStream) -> void:
 	#audio_stream = _a
