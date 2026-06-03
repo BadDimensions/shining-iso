@@ -1,9 +1,13 @@
 class_name BossLevel extends Level
 
+@onready var player = PlayerManager.player
+
 @onready var boss: KnightBoss = $Actors/Knight
 @onready var position_markers: Node2D = $Actors/PositionMarkers
 @onready var collision_wall: LevelTileMap = $CollisionWall
 @onready var boss_trigger: Area2D = $BossTrigger
+@onready var cutscene_player: AnimationPlayer = $CutscenePlayer
+@onready var cutscene_camera: Camera2D = $CutsceneCamera
 
 
 func _ready() -> void:
@@ -24,9 +28,16 @@ func _setup_boss() -> void:
 		points.append(marker.global_position)
 
 	boss.set_teleport_positions(points)
+
 func _on_boss_started():
-	#print("Boss started")
 	collision_wall.enabled = true  
+	player.input_enabled = false
+	boss.change_state(boss.STATE.IDLE)
+	player.get_node("Camera2D").enabled = false
+	cutscene_player.play("boss_intro")
+	await cutscene_player.animation_finished 
+	player.get_node("Camera2D").enabled = true
+	player.input_enabled = true
 	boss.change_state(boss.STATE.WALK)
 	HealthGui.show_boss_health("Ruin Knight")
 	
