@@ -612,8 +612,9 @@ _data = {
 }
 
 [node name="player" type="CharacterBody2D" unique_id=437297442 groups=["player"]]
+z_as_relative = false
 y_sort_enabled = true
-collision_mask = 67
+collision_mask = 73
 motion_mode = 1
 wall_min_slide_angle = 0.17453292
 script = ExtResource("5_v57gg")
@@ -630,7 +631,7 @@ position = Vector2(32, 2)
 texture = ExtResource("3_fsvws")
 
 [node name="AttackHurtbox" type="Area2D" parent="Sprite2D" unique_id=484564105 groups=["player"]]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 4
 script = ExtResource("4_v57gg")
 metadata/_custom_type_script = "uid://bkv5sfdd4ugal"

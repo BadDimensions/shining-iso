@@ -44,6 +44,7 @@ func _on_boss_started():
 func _on_boss_defeated():
 	print("boss_defeated")
 	collision_wall.enabled = false
+	HealthGui.hide_boss_health()
 	await get_tree().create_timer(3.0).timeout
 	resume_music()
-	HealthGui.hide_boss_health()
+	

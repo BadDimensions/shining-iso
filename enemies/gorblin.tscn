@@ -627,6 +627,7 @@ radius = 7.0
 
 [node name="gorblin" type="CharacterBody2D" unique_id=720483896]
 collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_3q6jj")
 attack_range = 50.0
 
@@ -717,3 +718,7 @@ shape = SubResource("CircleShape2D_irknb")
 debug_color = Color(0.02745098, 0.9490196, 0.007843138, 0.41960785)
 
 [node name="VisionArea" parent="." unique_id=629815518 instance=ExtResource("15_knksa")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea" unique_id=515696040]
+position = Vector2(0, -9)
+polygon = PackedVector2Array(-16, 0, 16, 0, 128, 128, -128, 128)

@@ -67,8 +67,9 @@ _data = {
 size = Vector2(36.5, 26)
 
 [node name="NPC2" type="CharacterBody2D" unique_id=945599356]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("1_88fjt")
-use_directional_animation = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1636228584]
 texture_filter = 1

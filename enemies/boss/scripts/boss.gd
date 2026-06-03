@@ -34,7 +34,6 @@ var hp : int = 10
 var _can_see_player : bool = false
 @export var melee_range = 40.0
 @export var attack_cooldown: float = 1.0
-var can_attack : bool = true
 var is_teleporting := false
 var is_dying := false
 var is_busy = false
@@ -53,6 +52,7 @@ var direction : Vector2 = Vector2.ZERO
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var vision_area: VisionArea = $VisionArea
 @onready var attack_hurtbox: Hurtbox = $Sprite2D/AttackHurtbox
+@onready var melee_timer: Timer = $MeleeTimer
 
 
 func _ready():
@@ -73,8 +73,7 @@ func _physics_process(delta):
 
 	if state == STATE.WALK:
 		var dist = global_position.distance_to(player.global_position)
-		if dist <= melee_range and can_attack:
-			can_attack = false
+		if dist <= melee_range and melee_timer.is_stopped():
 			change_state(STATE.ATTACK)
 		if orb_ready and randf() < 0.01:
 			change_state(STATE.CAST)
@@ -173,13 +172,9 @@ func melee_attack():
 	await animation_player.animation_finished
 	if state != STATE.ATTACK:
 		return
+	melee_timer.start(attack_cooldown) 
 	change_state(STATE.WALK)
-	_start_attack_cooldown()
-	
-func _start_attack_cooldown():
-	await get_tree().create_timer(attack_cooldown).timeout
-	can_attack = true 
-			
+		
 func teleport():
 	is_teleporting = true
 	is_busy = true

@@ -55,6 +55,10 @@ func show_dialog(_items: Array[DialogItem]) -> void:
 	dialog_items = _items
 	dialog_items_index = 0
 	get_tree().paused = true
+	var _d: DialogItem = dialog_items[dialog_items_index]
+	set_dialog_data(_d)
+	content.visible_characters = 0 
+	get_viewport().set_input_as_handled()
 	await get_tree().process_frame
 	start_dialog()
 	pass			

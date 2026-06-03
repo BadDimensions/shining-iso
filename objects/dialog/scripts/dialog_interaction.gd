@@ -18,6 +18,7 @@ func _ready() -> void:
 	area_entered.connect(_on_area_enter)
 	area_exited.connect(_on_area_exit)
 	
+	dialog_items.clear()
 	for c in get_children():
 		if c is DialogItem:
 			dialog_items.append(c)
@@ -25,9 +26,9 @@ func _ready() -> void:
 
 func player_interact() -> void:
 	player_interacted.emit()
-	await get_tree().process_frame
-	await get_tree().process_frame
-	await get_tree().process_frame
+	#await get_tree().process_frame these awaits might be redundant now!
+	#await get_tree().process_frame
+	#await get_tree().process_frame
 	DialogSystem.show_dialog(dialog_items)
 	DialogSystem.finished.connect(_on_dialog_finished)
 	pass

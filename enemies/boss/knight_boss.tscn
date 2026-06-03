@@ -544,6 +544,7 @@ radius = 9.0
 
 [node name="Knight" type="CharacterBody2D" unique_id=1859669160]
 collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_2nxpg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=711085236]
@@ -603,3 +604,6 @@ metadata/_custom_type_script = "uid://vmvhsknytul3"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea" unique_id=1578297030]
 polygon = PackedVector2Array(-16, 0, 16, 0, 80, 80, -80, 80)
+
+[node name="MeleeTimer" type="Timer" parent="." unique_id=1033189229]
+one_shot = true

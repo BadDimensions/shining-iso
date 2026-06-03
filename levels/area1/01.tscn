@@ -68,7 +68,6 @@ item_data = ExtResource("5_vtwgx")
 [node name="NPC2" parent="Actors" unique_id=945599356 instance=ExtResource("14_amk1f")]
 position = Vector2(225, 66)
 npc_resource = ExtResource("15_dtmsy")
-use_directional_animation = true
 
 [node name="NpcBehaviorIdle" parent="Actors/NPC2" unique_id=1988017846 instance=ExtResource("15_i3xvh")]
 

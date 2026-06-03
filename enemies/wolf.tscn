@@ -627,6 +627,7 @@ radius = 6.0827627
 
 [node name="wolf" type="CharacterBody2D" unique_id=1588315159]
 collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_0ox3s")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1680156748]

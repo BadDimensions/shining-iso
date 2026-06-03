@@ -214,6 +214,8 @@ size = Vector2(36, 20)
 
 [node name="NPC1" type="CharacterBody2D" unique_id=297921911]
 y_sort_enabled = true
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("1_q7ppt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=638965709]

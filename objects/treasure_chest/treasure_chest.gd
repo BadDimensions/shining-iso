@@ -26,7 +26,7 @@ func _ready() -> void:
 func player_interact() -> void:
 	if is_open == true:
 		return
-	is_open == true
+	is_open = true #there was a typo here is_open == true
 	is_open_data.set_value()
 	animation_player.play("opening")
 	if item_data and quantity > 0:
