@@ -136,6 +136,8 @@ texture = ExtResource("1_566yj")
 hframes = 2
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1303918249]
+collision_layer = 32768
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=194350309]
 polygon = PackedVector2Array(-35, -14, -3, 3, 16, -7, -16, -22)

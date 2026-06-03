@@ -8,6 +8,8 @@ height = 24.0
 
 [node name="Barrel" type="StaticBody2D" unique_id=1459545463]
 y_sort_enabled = true
+collision_layer = 32768
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1701688381]
 position = Vector2(0, -1)

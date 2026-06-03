@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b8brdot0bk260"]
+[gd_scene format=4 uid="uid://b8brdot0bk260"]
 
 [ext_resource type="PackedScene" uid="uid://r0b15rh5qfai" path="res://levels/tiles/tiles.tscn" id="1_gssw6"]
 [ext_resource type="Script" uid="uid://cla0rjuvhfp0t" path="res://levels/scripts/Level.gd" id="1_y63o5"]
@@ -7,9 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://cug1wxc75du5b" path="res://objects/misc/stump.tscn" id="3_j7fo1"]
 [ext_resource type="PackedScene" uid="uid://cqlxas67g2ws4" path="res://levels/misc/LevelTransition.tscn" id="3_lvlyw"]
 [ext_resource type="PackedScene" uid="uid://ddis3x6j8fhy" path="res://objects/lightsource/bonfire.tscn" id="3_oryfo"]
+[ext_resource type="PackedScene" uid="uid://c55soj1ms22s7" path="res://levels/tiles/collision_wall.tscn" id="4_dtmsy"]
 [ext_resource type="PackedScene" uid="uid://dirqmwd7jksf4" path="res://items/item_pickups/item_pickup.tscn" id="4_hrjbf"]
 [ext_resource type="PackedScene" uid="uid://cfxgsm0igwo6r" path="res://npcs/npc01.tscn" id="5_laie6"]
+[ext_resource type="PackedScene" uid="uid://g1hbq0qp6l0j" path="res://levels/tiles/right_wall.tscn" id="5_rjej6"]
 [ext_resource type="Resource" uid="uid://denkv85305cti" path="res://items/potion.tres" id="5_vtwgx"]
+[ext_resource type="PackedScene" uid="uid://cwo4lb0qyyjwe" path="res://levels/tiles/left_wall.tscn" id="6_hvq33"]
 [ext_resource type="PackedScene" uid="uid://dw73j2t5sd1wp" path="res://enemies/gorblin.tscn" id="6_vtwgx"]
 [ext_resource type="PackedScene" uid="uid://cy8ls7j5053e5" path="res://npcs/npc_behavior_walk.tscn" id="7_m0bjn"]
 [ext_resource type="Resource" uid="uid://dmwrpybmo6er5" path="res://npcs/00npc/npc01.tres" id="7_pq0gk"]
@@ -25,6 +28,65 @@ script = ExtResource("1_y63o5")
 music = ExtResource("2_yb0j6")
 
 [node name="TileMapLayer" parent="." unique_id=1616239644 instance=ExtResource("1_gssw6")]
+
+[node name="CollisionWall" parent="." unique_id=1322114594 instance=ExtResource("4_dtmsy")]
+tile_map_data = PackedByteArray("AAASAPP/AAAAAAAAAQASAPT/AAAAAAAAAQASAPX/AAAAAAAAAQASAPb/AAAAAAAAAQASAPf/AAAAAAAAAQASAPj/AAAAAAAAAQASAPn/AAAAAAAAAQASAPr/AAAAAAAAAQASAPv/AAAAAAAAAQASAPz/AAAAAAAAAQASAP3/AAAAAAAAAQASAP7/AAAAAAAAAQASAP//AAAAAAAAAQASAAAAAAAAAAAAAQASAAEAAAAAAAAAAQASAAIAAAAAAAAAAQASAAMAAAAAAAAAAQASAAQAAAAAAAAAAQASAAUAAAAAAAAAAQASAAYAAAAAAAAAAQASAAcAAAAAAAAAAQASAAgAAAAAAAAAAQASAAkAAAAAAAAAAQASAAoAAAAAAAAAAQASAAsAAAAAAAAAAQASAAwAAAAAAAAAAQASAA0AAAAAAAAAAQASAA4AAAAAAAAAAQASAA8AAAAAAAAAAQASABAAAAAAAAAAAQAQABAAAQAAAAAAAQARABAAAQAAAAAAAQAPABAAAQAAAAAAAQAOABAAAQAAAAAAAQANABAAAQAAAAAAAQAMABAAAQAAAAAAAQALABAAAQAAAAAAAQAKABAAAQAAAAAAAQAJABAAAQAAAAAAAQAIABAAAQAAAAAAAQAHABAAAQAAAAAAAQAGABAAAQAAAAAAAQAFABAAAQAAAAAAAQAEABAAAQAAAAAAAQADABAAAQAAAAAAAQACABAAAQAAAAAAAQABABAAAQAAAAAAAQAAABAAAQAAAAAAAQD//xAAAQAAAAAAAQD+/xAAAQAAAAAAAQD9/xAAAQAAAAAAAQD8/xAAAQAAAAAAAQD7/xAAAQAAAAAAAQD6/xAAAQAAAAAAAQD5/xAAAQAAAAAAAQD4/xAAAQAAAAAAAQD3/xAAAQAAAAAAAQD2/xAAAQAAAAAAAQD1/xAAAQAAAAAAAQD0/xAAAQAAAAAAAQDz/xAAAQAAAAAAAQDy/xAAAQAAAAAAAQDx/xAAAQAAAAAAAQDw/xAAAQAAAAAAAQDv/xAAAQAAAAAAAQDu/xAAAQAAAAAAAQDt/xAAAQAAAAAAAQDs/xAAAQAAAAAAAQA=")
+
+[node name="Walls" type="Node2D" parent="." unique_id=1081350781]
+
+[node name="RightWall" parent="Walls" unique_id=875123341 instance=ExtResource("5_rjej6")]
+position = Vector2(-32, -232)
+
+[node name="RightWall2" parent="Walls" unique_id=206443046 instance=ExtResource("5_rjej6")]
+position = Vector2(32, -200)
+
+[node name="RightWall3" parent="Walls" unique_id=100120470 instance=ExtResource("5_rjej6")]
+position = Vector2(96, -168)
+
+[node name="RightWall4" parent="Walls" unique_id=541935758 instance=ExtResource("5_rjej6")]
+position = Vector2(160, -136)
+
+[node name="RightWall5" parent="Walls" unique_id=70407884 instance=ExtResource("5_rjej6")]
+position = Vector2(224, -104)
+
+[node name="RightWall6" parent="Walls" unique_id=1681114292 instance=ExtResource("5_rjej6")]
+position = Vector2(288, -72)
+
+[node name="RightWall7" parent="Walls" unique_id=111221007 instance=ExtResource("5_rjej6")]
+position = Vector2(352, -40)
+
+[node name="RightWall8" parent="Walls" unique_id=907236035 instance=ExtResource("5_rjej6")]
+position = Vector2(416, -8)
+
+[node name="RightWall9" parent="Walls" unique_id=1715559549 instance=ExtResource("5_rjej6")]
+position = Vector2(480, 24)
+
+[node name="RightWall10" parent="Walls" unique_id=742446605 instance=ExtResource("5_rjej6")]
+position = Vector2(512, 40)
+
+[node name="LeftWall" parent="Walls" unique_id=260363876 instance=ExtResource("6_hvq33")]
+position = Vector2(-160, -232)
+
+[node name="LeftWall2" parent="Walls" unique_id=1065346446 instance=ExtResource("6_hvq33")]
+position = Vector2(-224, -200)
+
+[node name="LeftWall3" parent="Walls" unique_id=2113171750 instance=ExtResource("6_hvq33")]
+position = Vector2(-288, -168)
+
+[node name="LeftWall4" parent="Walls" unique_id=863973147 instance=ExtResource("6_hvq33")]
+position = Vector2(-320, -152)
+
+[node name="LeftWall5" parent="Walls" unique_id=1561367358 instance=ExtResource("6_hvq33")]
+position = Vector2(-416, -104)
+
+[node name="LeftWall6" parent="Walls" unique_id=1184334159 instance=ExtResource("6_hvq33")]
+position = Vector2(-480, -72)
+
+[node name="LeftWall7" parent="Walls" unique_id=1788228547 instance=ExtResource("6_hvq33")]
+position = Vector2(-544, -40)
+
+[node name="LeftWall8" parent="Walls" unique_id=1768621595 instance=ExtResource("6_hvq33")]
+position = Vector2(-560, -32)
 
 [node name="Actors" type="Node2D" parent="." unique_id=2124882686 groups=["Actors"]]
 y_sort_enabled = true

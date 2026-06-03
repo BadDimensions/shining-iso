@@ -71,6 +71,12 @@ func _physics_process(delta):
 	if player == null:
 		return
 
+	if player.hp <= 0:
+		change_state(STATE.IDLE)
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+		
 	if state == STATE.WALK:
 		var dist = global_position.distance_to(player.global_position)
 		if dist <= melee_range and melee_timer.is_stopped():

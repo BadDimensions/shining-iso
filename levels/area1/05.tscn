@@ -184,31 +184,52 @@ tile_map_data = PackedByteArray("AAD8/wAAAAAHAAEAAAD8////AAAGAAEAAAD+////AAAGAAE
 tile_map_data = PackedByteArray("AAAKAPb/AQAAAAAAAQAJAPb/AQAAAAAAAQAIAPb/AQAAAAAAAQAHAPb/AQAAAAAAAQA=")
 enabled = false
 
+[node name="CollisionWall2" parent="." unique_id=1636464387 instance=ExtResource("4_2pu74")]
+tile_map_data = PackedByteArray("AAAQAOv/AAAAAAAAAQAQAOz/AAAAAAAAAQAQAO3/AAAAAAAAAQAQAO7/AAAAAAAAAQAQAO//AAAAAAAAAQAQAPD/AAAAAAAAAQAQAPH/AAAAAAAAAQAQAPL/AAAAAAAAAQAQAPP/AAAAAAAAAQAQAPT/AAAAAAAAAQAQAPX/AAAAAAAAAQALAPb/AQAAAAAAAQALAPf/AAAAAAAAAQALAPj/AAAAAAAAAQALAPn/AAAAAAAAAQALAPr/AAAAAAAAAQALAPv/AAAAAAAAAQALAPz/AAAAAAAAAQALAP3/AAAAAAAAAQALAP7/AAAAAAAAAQALAP//AAAAAAAAAQALAAAAAAAAAAAAAQALAAEAAAAAAAAAAQAFAAIAAQAAAAAAAQAFAAMAAAAAAAAAAQAPAPb/AQAAAAAAAQAOAPb/AQAAAAAAAQANAPb/AQAAAAAAAQAMAPb/AQAAAAAAAQAKAAIAAQAAAAAAAQAJAAIAAQAAAAAAAQAIAAIAAQAAAAAAAQAHAAIAAQAAAAAAAQAGAAIAAQAAAAAAAQD//wUAAQAAAAAAAQD+/wUAAQAAAAAAAQD9/wUAAQAAAAAAAQD8/wUAAQAAAAAAAQD7/wUAAQAAAAAAAQALAAIAAQAAAAAAAQAQAPb/AQAAAAAAAQAFAAQAAAAAAAAAAQACAAUAAQAAAAAAAQADAAUAAQAAAAAAAQAEAAUAAQAAAAAAAQAFAAUAAQAAAAAAAQAEAPb/AQAAAAAAAQADAPb/AQAAAAAAAQACAPb/AQAAAAAAAQAFAPb/AQAAAAAAAQAGAPb/AQAAAAAAAQA=")
+
 [node name="walls" type="Node2D" parent="." unique_id=1417574938]
 
 [node name="RightCaveWall" parent="walls" unique_id=1724033384 instance=ExtResource("4_q3vrd")]
-position = Vector2(416, -136)
+position = Vector2(414, -136)
 
 [node name="RightCaveWall2" parent="walls" unique_id=1352886893 instance=ExtResource("4_q3vrd")]
-position = Vector2(448, -120)
+position = Vector2(446, -120)
 
 [node name="RightCaveWall3" parent="walls" unique_id=985763231 instance=ExtResource("4_q3vrd")]
-position = Vector2(480, -104)
+position = Vector2(478, -104)
 
 [node name="RightCaveWall4" parent="walls" unique_id=967880550 instance=ExtResource("4_q3vrd")]
-position = Vector2(512, -88)
+position = Vector2(510, -88)
 
 [node name="RightCaveWall5" parent="walls" unique_id=1616510006 instance=ExtResource("4_q3vrd")]
-position = Vector2(544, -72)
+position = Vector2(542, -72)
 
 [node name="RightCaveWall6" parent="walls" unique_id=532707376 instance=ExtResource("4_q3vrd")]
-position = Vector2(576, -56)
+position = Vector2(574, -56)
 
 [node name="RightCaveWall7" parent="walls" unique_id=1473194541 instance=ExtResource("4_q3vrd")]
 position = Vector2(608, -40)
 
+[node name="RightCaveWall13" parent="walls" unique_id=1395961092 instance=ExtResource("4_q3vrd")]
+position = Vector2(606, -40)
+
+[node name="RightCaveWall8" parent="walls" unique_id=1778804675 instance=ExtResource("4_q3vrd")]
+position = Vector2(48, -65)
+
+[node name="RightCaveWall9" parent="walls" unique_id=1696780903 instance=ExtResource("4_q3vrd")]
+position = Vector2(80, -49)
+
+[node name="RightCaveWall10" parent="walls" unique_id=98284732 instance=ExtResource("4_q3vrd")]
+position = Vector2(112, -33)
+
+[node name="RightCaveWall11" parent="walls" unique_id=167829991 instance=ExtResource("4_q3vrd")]
+position = Vector2(144, -17)
+
+[node name="RightCaveWall12" parent="walls" unique_id=1515187265 instance=ExtResource("4_q3vrd")]
+position = Vector2(176, -1)
+
 [node name="LeftCaveWall" parent="walls" unique_id=975100811 instance=ExtResource("5_yp52r")]
-position = Vector2(338, -129)
+position = Vector2(336, -128)
 
 [node name="LeftCaveWall2" parent="walls" unique_id=409839923 instance=ExtResource("5_yp52r")]
 position = Vector2(292, -106)
@@ -217,9 +238,22 @@ position = Vector2(292, -106)
 position = Vector2(246, -83)
 
 [node name="LeftCaveWall4" parent="walls" unique_id=139012304 instance=ExtResource("5_yp52r")]
-position = Vector2(200, -60)
+position = Vector2(210, -65)
+
+[node name="LeftCaveWall5" parent="walls" unique_id=1413958681 instance=ExtResource("5_yp52r")]
+position = Vector2(-30, -58)
+
+[node name="LeftCaveWall6" parent="walls" unique_id=893461185 instance=ExtResource("5_yp52r")]
+position = Vector2(-76, -35)
+
+[node name="LeftCaveWall7" parent="walls" unique_id=1092546389 instance=ExtResource("5_yp52r")]
+position = Vector2(-122, -12)
+
+[node name="LeftCaveWall8" parent="walls" unique_id=1068548586 instance=ExtResource("5_yp52r")]
+position = Vector2(-144, -1)
 
 [node name="Actors" type="Node2D" parent="." unique_id=1562904463 groups=["Actors"]]
+y_sort_enabled = true
 
 [node name="Knight" parent="Actors" unique_id=1859669160 instance=ExtResource("7_2pu74")]
 position = Vector2(435, -69)
@@ -244,11 +278,23 @@ position = Vector2(519, -48)
 [node name="Marker4" type="Marker2D" parent="Actors/PositionMarkers" unique_id=777946010]
 position = Vector2(428, 12)
 
+[node name="RightCaveWall" parent="Actors" unique_id=1258470139 instance=ExtResource("4_q3vrd")]
+position = Vector2(254, -8)
+
+[node name="RightCaveWall2" parent="Actors" unique_id=1622227292 instance=ExtResource("4_q3vrd")]
+position = Vector2(222, 8)
+
+[node name="RightCaveWall3" parent="Actors" unique_id=1436929987 instance=ExtResource("4_q3vrd")]
+position = Vector2(190, 24)
+
+[node name="RightCaveWall4" parent="Actors" unique_id=1060663710 instance=ExtResource("4_q3vrd")]
+position = Vector2(158, 40)
+
 [node name="PlayerSpawn" parent="." unique_id=2136238899 instance=ExtResource("2_3f1y6")]
 position = Vector2(-40, 11)
 
 [node name="LevelTransition" parent="." unique_id=466434468 instance=ExtResource("3_3f1y6")]
-position = Vector2(-72, 40)
+position = Vector2(-62, 43)
 level = "uid://b7ljhafl04s1s"
 target_transition_area = "LevelTransition2"
 size = 1

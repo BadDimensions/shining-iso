@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 signal player_damaged(hurt_box : Hurtbox)
 signal health_changed(current_hp: int, max_hp: int)
 
-
+@export var speed: float = 50.0
 var input_enabled: bool = true
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO:
@@ -34,13 +34,25 @@ func _ready() -> void:
 	emit_signal("health_changed", hp, max_hp)
 
 
-func _process(delta: float) -> void:
+func update_isometric_movement() -> void:
 	if not input_enabled:
 		direction = Vector2.ZERO
 		return
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
+	
+	
+	var iso_velocity = Vector2.ZERO
+	iso_velocity.x = (direction.x - direction.y)
+	iso_velocity.y = (direction.x + direction.y) * 0.5
+	
+	if direction != Vector2.ZERO:
+		velocity = iso_velocity.normalized() * speed
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, speed)
 
+	
 func _physics_process(delta : float) -> void:
+	update_isometric_movement()
 	if state_machine.current_state:
 		state_machine.ChangeState(state_machine.current_state.Physics(delta))
 	move_and_slide()
